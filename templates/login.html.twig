@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+        <title>
+            {% block title %}Connexion{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <section class="section_login">
+            <div class="div1_login">
+                <div class="infos_login">
+                    <img src="logo">
+                    <p>Gérez votre crèche</p>
+                    <p>tout-en-un</p>
+                    <p>24h/24 et 7j/7</p>
+                </div>
+                <img class="illustration_login" src="illustration">
+            </div>
+            <div class="div2_login">
+                <p class="inscription_login">Vous n’avez pas de compte ? <a href="">Inscrivez-vous</a></p>
+                <form class="form_login">
+                    <h3>Je me connecte</h3>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Mot de passe">
+                    </div>
+                    <button type="submit" class="btn button_login">Je me connecte</button>
+                </form>
+            </div>
+        </section>
+        {% endblock %}
+    </body>
+</html>
