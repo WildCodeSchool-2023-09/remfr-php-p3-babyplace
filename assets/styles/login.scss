@@ -1,0 +1,56 @@
+.section_login {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+}
+
+.div1_login {
+    background: linear-gradient(135deg, rgba(71, 79, 255, 1) 0%, rgba(227, 122, 204, 1) 100%);
+    height: 100vh;
+    width: 50%;
+}
+
+.div2_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    width: 50%;
+}
+
+.infos_login {
+    position: absolute;
+    top: 70px;
+    left: 70px;
+}
+
+.illustration_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inscription_login {
+    position: absolute;
+    top: 70px;
+    right: 70px;
+}
+
+.form_login {
+    position: absolute;
+    margin: auto;
+    width: 25vw;
+}
+
+.form_login input {
+    margin-bottom: 2vh;
+}
+
+.button_login {
+    width: 100%;
+    background-color: #9C69E2;
+}

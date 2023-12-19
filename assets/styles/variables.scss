@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Adamina&display=swap');
 
 :root {
     /* Fonts */
     $title-font: 'Montserrat';
     $text-font: 'Red Hat Text';
+    $tertiary-font: 'Adamina';
     $number-font:'';
     /* Textes et titres */
     $h1-size: 4.5rem;
@@ -17,7 +19,7 @@
     $link-menu: '';
     /* Couleurs */
     $bg-light-color: #F6FAFD;
-    $bg-dark-color: ;
+    $bg-dark-color: #212353;
     $h-color: #212353;
     $p-color: #343A40;
     $button-color-normal: #7E72F2;
@@ -25,6 +27,11 @@
     $button-color-success: #2DCD7A;
     $button-color-alert: #FFA84C;
     $button-color-danger: #EA5455;
-    $menu-color : linear-gradient(#474fff, #E37ACC) ;
+    $gradient-color-main: linear-gradient(#474fff, #E37ACC);
+    $gradient-color-green: linear-gradient(#8DDAD5, #00CDAC);
+    $gradient-color-blue: linear-gradient(#4FACFE, #00F2FE);
+    $gradient-color-orange: linear-gradient(#FFAFBD, #FFC3A0); 
+
     /* Formes */
     $arrondi: 0.3rem;
+}
