@@ -19,4 +19,10 @@ class HomeController extends AbstractController
     {
         return $this->render('login.html.twig');
     }
+
+    #[Route('/inscription', methods: ['GET', 'POST'], name: 'inscription')]
+    public function register(): Response
+    {
+        return $this->render('register.html.twig');
+    }
 }

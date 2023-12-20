@@ -19,17 +19,19 @@
     <body>
         {% block body %}
         <section class="section_login">
-            <div class="div1_login">
+            <div class="div-left_login">
                 <div class="infos_login">
                     <img src="logo">
-                    <p>Gérez votre crèche</p>
-                    <p>tout-en-un</p>
-                    <p>24h/24 et 7j/7</p>
+                    <p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
+                    <p class="infos-bg-white_login mb-3">tout-en-un</p>
+                    <p class="infos-bg_login">24h/24 et 7j/7</p>
                 </div>
                 <img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_login align-self-center">
             </div>
-            <div class="div2_login">
+            <div class="div-right_login">
+                {# Redirection vers l'inscription #}
                 <p class="inscription_login">Vous n’avez pas de compte ? <a href="">Inscrivez-vous</a></p>
+                {# Login de connexion #}
                 <form class="form_login">
                     <h4 class="title_login mb-5">Je me connecte</h4>
                     <div class="form-group">
@@ -40,6 +42,7 @@
                     </div>
                     <button type="submit" class="btn button_login mt-4 text-uppercase">Se connecter</button>
                 </form>
+                {# Fin du login de connexion #}
             </div>
         </section>
         {% endblock %}

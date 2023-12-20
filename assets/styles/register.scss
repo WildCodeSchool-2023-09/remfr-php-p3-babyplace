@@ -1,0 +1,69 @@
+.section_register {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.navbar_register {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 10vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    z-index: 99;
+}
+
+.navbar-text {
+    font-family: 'Adamina';
+}
+
+.progress {
+    background-color: #E8E8E8;
+    position: fixed;
+    top: 9vh;
+    width: 100%;
+    height: 2vh;
+    border-radius: 0;
+    z-index: 999;
+}
+
+.progress-bar {
+    background-color: $btn-color;
+}
+
+.div-left_register {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    width: 50%;
+}
+
+.div-right_register {
+    background-color: #F9F9F9;
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 50%;
+}
+
+.div-content_register {
+    background-color: transparent;
+    height: auto;
+    padding: 15vh 5vw 5vh 5vw;
+}
+
+.module-info_register {
+    width: 70%;
+}
