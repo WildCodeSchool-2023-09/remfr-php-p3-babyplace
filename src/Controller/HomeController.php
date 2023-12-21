@@ -25,4 +25,10 @@ class HomeController extends AbstractController
     {
         return $this->render('register.html.twig');
     }
+
+    #[Route('/choix', methods: ['GET', 'POST'], name: 'choix')]
+    public function choice(): Response
+    {
+        return $this->render('choice.html.twig');
+    }
 }
