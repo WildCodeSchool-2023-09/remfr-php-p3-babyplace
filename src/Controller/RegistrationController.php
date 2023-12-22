@@ -80,7 +80,7 @@ class RegistrationController extends AbstractController
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(
-        Request $request, 
+        Request $request,
         TranslatorInterface $translator,
         UserRepository $userRepository
     ): Response {
