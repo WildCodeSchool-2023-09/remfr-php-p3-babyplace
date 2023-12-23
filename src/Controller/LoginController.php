@@ -5,37 +5,28 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-//Donne les méthodes de sécurisation et de vérification des données.
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\LoginType;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login', methods: ['GET', 'POST'], name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
+    #[Route(path: '/login', name: 'app_login')]
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        //Méthode se trouvant dans l'objet authenticationUtils pour la gestion des erreurs
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        //getLastUsername -> récupère la dernière valeur entrée pour se connecter, même email
-        $lastEmail = $authenticationUtils->getLastUsername();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        $form = $this->createForm(LoginType::class);
-        $form->handleRequest($request);
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //Récupération des données du formulaire
-            //$formData = $form->getData();
-
-            return $this->redirectToRoute('accueil');
-        }
-
-
-        return $this->render('login/index.html.twig', [
-            'controller_name' => 'LoginController',
-            'lastEmail' => $lastEmail,
-            'error' => $error,
-            'form' => $form
-        ]);
+    #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        // nothing
     }
 }
