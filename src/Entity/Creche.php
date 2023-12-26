@@ -47,7 +47,7 @@ class Creche
     #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Team::class, orphanRemoval: true)]
     private Collection $teams;
 
-    #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Photo::class, nullable: true)]
+    #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Photo::class)]
     private Collection $photos;
 
     #[ORM\ManyToMany(targetEntity: Administration::class, mappedBy: 'creche')]

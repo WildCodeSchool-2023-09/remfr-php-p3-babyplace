@@ -8,6 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ScheduleRepository::class)]
 class Schedule
 {
+    const DAYS = [
+        'Monday' => 'Monday',
+        'Tuesday' => 'Tuesday',
+        'Wednesday' => 'Wednesday',
+        'Thursday' => 'Thursday',
+        'Friday' => 'Friday',
+        'Saturday' => 'Saturday',
+        'Sunday' => 'Sunday',
+    ];
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
