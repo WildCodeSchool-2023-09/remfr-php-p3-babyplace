@@ -20,31 +20,24 @@ class RegistrationCrecheController extends AbstractController
         dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            
             // Créez et persistez la crèche
             $creche = $data['creche'];
             $entityManager->persist($creche);
-    
             // Créez et persistez l'horaire
             $schedule = $data['schedule'];
             $schedule->setCreche($creche); // Assurez-vous que l'horaire est associé à la crèche
             $entityManager->persist($schedule);
-    
             // Créez et persistez l'équipe
             $team = $data['team'];
             $team->setCreche($creche); // Assurez-vous que l'équipe est associée à la crèche
             $entityManager->persist($team);
-    
             // Exécutez la persistance des entités
             $entityManager->flush();
-    
             // Redirigez vers la page de succès
             return $this->redirectToRoute('registration_success');
         }
-    
         return $this->render('registration_creche/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    
 }

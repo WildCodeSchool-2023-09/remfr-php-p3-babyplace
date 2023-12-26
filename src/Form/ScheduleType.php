@@ -26,7 +26,6 @@ class ScheduleType extends AbstractType
                 'label' => $day,
                 ]);
         }
-   
     }
 
     public function configureOptions(OptionsResolver $resolver)
