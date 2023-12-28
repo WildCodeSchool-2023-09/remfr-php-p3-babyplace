@@ -16,7 +16,7 @@ class TeamType extends AbstractType
             ->add('teamFirstname', TextType::class, ['label' => 'First Name'])
             ->add('teamLastname', TextType::class, ['label' => 'Last Name'])
             ->add('fonction', TextType::class, ['label' => 'Function'])
-            ->add('photo', VichFileType::class, [
+            ->add('teamAvatarFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
+#[Vich\Uploadable] 
 class Team
 {
     #[ORM\Id]
@@ -28,10 +29,9 @@ class Team
     private ?string $fonction = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Vich\UploadableField(mapping: 'team_file', fileNameProperty: 'teamAvatar')]
     private ?string $photo = null;
 
-    #[Vich\UploadableField(mapping: 'team_file', fileNameProperty: 'teamAvatar')]
+    #[Vich\UploadableField(mapping: 'team_file', fileNameProperty: 'photo')]
     private ?File $teamAvatarFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -82,12 +82,12 @@ class Team
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): static
+    public function setPhoto($photo): self
     {
         $this->photo = $photo;
 
@@ -126,7 +126,7 @@ class Team
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt): ?Team
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
 

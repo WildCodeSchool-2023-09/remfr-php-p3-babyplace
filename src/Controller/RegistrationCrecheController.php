@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// ...
+
 class RegistrationCrecheController extends AbstractController
 {
     #[Route('/registration', methods: ['GET', 'POST'], name: 'registration')]
@@ -33,7 +35,7 @@ class RegistrationCrecheController extends AbstractController
             // Créez et persistez l'équipe
             $team = $data['team'];
             $team->setCreche($creche);
-
+            
             $entityManager->persist($team);
             $entityManager->flush();
 
@@ -45,3 +47,4 @@ class RegistrationCrecheController extends AbstractController
         ]);
     }
 }
+

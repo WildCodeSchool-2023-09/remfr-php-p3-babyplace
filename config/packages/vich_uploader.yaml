@@ -9,4 +9,3 @@ vich_uploader:
             uri_prefix: /uploads/images/teamAvatar
             upload_destination: '%upload_team_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-
