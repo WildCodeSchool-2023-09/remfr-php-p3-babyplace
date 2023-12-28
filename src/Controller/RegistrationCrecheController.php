@@ -35,7 +35,6 @@ class RegistrationCrecheController extends AbstractController
             // Créez et persistez l'équipe
             $team = $data['team'];
             $team->setCreche($creche);
-            
             $entityManager->persist($team);
             $entityManager->flush();
 
@@ -47,4 +46,3 @@ class RegistrationCrecheController extends AbstractController
         ]);
     }
 }
-
