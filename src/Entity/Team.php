@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
@@ -110,12 +109,11 @@ class Team
 
     public function setTeamAvatarFile(File $image = null): Team
     {
-      $this->teamAvatarFile = $image;
-      if ($image) {
-        $this->updatedAt = new DateTime('now');
-      }
-  
-      return $this;
+        $this->teamAvatarFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
     }
 
     public function getTeamAvatarFile(): ?File
@@ -123,17 +121,12 @@ class Team
         return $this->teamAvatarFile;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?DatetimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Set the value of updatedAt
-     *
-     * @return  self
-     */ 
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt): ?Team
     {
         $this->updatedAt = $updatedAt;
 
