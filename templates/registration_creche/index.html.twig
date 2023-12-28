@@ -20,7 +20,7 @@
 				{# Code du contenu ici #}
 				<h2>Registration</h2>
 
-				<form id="registrationForm" action="{#{{ path('register') }}#}" method="post">
+				<form id="registrationForm" action="{#{{ path('register') }}#}" method="post" enctype="multipart/form-data">
 					<div id="step1" class="form-step">
 						<h1>La Creche</h1>
 						{{form_start(form)}}
@@ -62,7 +62,7 @@
 
 						<button type="button" onclick="prevStep(3)" class="btn button_login mt-4 text-uppercase">Previous</button>
 						<button type="submit" class="btn button_login mt-4 text-uppercase">Register</button>
-						<button type="button" class="add_item_link btn button_login mt-4 text-uppercase" data-collection-holder-class="schedule">Add a another day</button>
+						<button type="button" class="add_item_link btn button_login mt-4 text-uppercase" data-collection-holder-class="schedule">Add a another member</button>
 					</div>
 				</form>
 			</div>

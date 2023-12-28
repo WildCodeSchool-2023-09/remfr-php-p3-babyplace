@@ -2,8 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\TeamRepository;
+
+use DateTime;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TeamRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
 class Team
@@ -22,8 +28,15 @@ class Team
     #[ORM\Column(length: 255)]
     private ?string $fonction = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Vich\UploadableField(mapping: 'team_file', fileNameProperty: 'teamAvatar')]
     private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'team_file', fileNameProperty: 'teamAvatar')]
+    private ?File $teamAvatarFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'teams')]
     #[ORM\JoinColumn(nullable: false)]
@@ -90,6 +103,39 @@ class Team
     public function setCreche(?Creche $creche): static
     {
         $this->creche = $creche;
+
+        return $this;
+    }
+
+
+    public function setTeamAvatarFile(File $image = null): Team
+    {
+      $this->teamAvatarFile = $image;
+      if ($image) {
+        $this->updatedAt = new DateTime('now');
+      }
+  
+      return $this;
+    }
+
+    public function getTeamAvatarFile(): ?File
+    {
+        return $this->teamAvatarFile;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */ 
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
