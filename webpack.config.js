@@ -62,14 +62,6 @@ Encore
     // uncomment if you use React
     //.enableReactPreset()
 
-<<<<<<< HEAD
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
-
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
-=======
   // enables Sass/SCSS support
   .enableSassLoader();
 const fullConfig = Encore.getWebpackConfig();
@@ -97,7 +89,6 @@ module.exports = fullConfig;
 
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
->>>>>>> bd4228e002249d041a9dd4f4c819cc2473e009c9
 ;
 
 module.exports = Encore.getWebpackConfig();

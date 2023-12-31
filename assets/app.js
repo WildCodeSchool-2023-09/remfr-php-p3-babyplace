@@ -10,8 +10,4 @@ import './styles/app.css';
 // Bootstrap
 require('bootstrap');
 // start the Stimulus application
-<<<<<<< HEAD
 import 'bootstrap';
-=======
-import 'bootstrap';
->>>>>>> bd4228e002249d041a9dd4f4c819cc2473e009c9
