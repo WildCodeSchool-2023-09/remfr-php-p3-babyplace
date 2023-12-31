@@ -1,0 +1,129 @@
+.body_home {
+    background-color: $bg-light-color;
+}
+
+.navbar_home {
+    background-color: transparent;
+    margin-top: 3vh;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.section_home {
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+}
+
+.h1_home {
+    color: $h-color;
+    font-family: $tertiary-font;
+    font-size: 6rem;
+    text-align: left;
+}
+
+.h4_home {
+    color: $h-color;
+    font-family: $tertiary-font;
+    font-size: $h4-font-size;
+}
+
+.h5_home {
+    color: $h-color;
+    font-family: $tertiary-font;
+    font-size: $h5-font-size;
+}
+
+.text_home {
+    color: $p-color;
+    font-family: $tertiary-font;
+    font-size: $p-size-desktop;
+}
+
+.footer_home {
+    margin-top: 10vh;
+}
+
+.section-simplifiez_home {
+    background-color: #fde8f4;
+    padding: 12vh 4vw 12vh 4vw;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.div-img-simplifiez_home {}
+
+.img-simplifiez_home {
+    width: auto;
+    max-width: 90%;
+}
+
+.btn-primary_home {
+    color: $p-color;
+    font-family: $tertiary-font;
+    font-size: $btn-font-size;
+    background-color: white;
+    padding: 1vh 2vw 1vh 2vw;
+    box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+    border-radius: 2rem;
+}
+
+.btn-primary_home:hover {
+    color: white;
+    font-family: $tertiary-font;
+    font-size: $btn-font-size;
+    background-color: $btn-color-hover;
+    padding: 1vh 2vw 1vh 2vw;
+    box-shadow: 0px 5px 15px 0px rgba(240, 99, 167, 0.3);
+    border-radius: 2rem;
+}
+
+.btn-secondary_home {
+    color: white;
+    font-family: $tertiary-font;
+    font-size: $btn-font-size;
+    background-color: $btn-color;
+    padding: 1vh 2vw 1vh 2vw;
+    box-shadow: 0px 5px 15px 0px rgba(156, 105, 226, 0.3);
+    border-radius: 2rem;
+}
+
+.btn-secondary_home:hover {
+    color: white;
+    font-family: $tertiary-font;
+    font-size: $btn-font-size;
+    background-color: $btn-color-hover;
+    padding: 1vh 2vw 1vh 2vw;
+    box-shadow: 0px 5px 15px 0px rgba(240, 99, 167, 0.3);
+    border-radius: 2rem;
+}
+
+.div1_home {
+    /*background-image: url("images/bg-div1-vert.png");*/
+    background-size: contain;
+    padding: 4vh 3vw 4vh 1vw;
+}
+
+.div2_home {
+    background-color: #f2f1fe;
+    padding: 3vh 2vw 3vh 0vw;
+}
+
+.div3_home {
+    background-color: #feeff6;
+    padding: 3vh 2vw 3vh 0vw;
+}
+
+.div4_home {
+    background-color: #eaf5fb;
+    padding: 3vh 2vw 3vh 0vw;
+}
+
+.img-info_home {
+    width: 15vw;
+}
+
+.margin-l-2 {
+    margin-left: 2vw;
+}
