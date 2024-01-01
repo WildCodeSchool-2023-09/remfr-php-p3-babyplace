@@ -21,6 +21,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('role', ChoiceType::class)
             ->add('email', EmailType::class, [
+                //permet de mettre les champs en français:
                 'label' => 'Adresse email',
                 'constraints' => [
                     new NotBlank([
