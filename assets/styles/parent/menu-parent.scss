@@ -1,0 +1,36 @@
+.body_menu-parent {
+    background: $bg-light-color;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.header_menu-parent {
+    background-color: white;
+    height: 15vh;
+    width: 100%;
+    box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+.section_menu-parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.div_menu-parent {
+    width: 90%;
+}
+
+.ul_menu-parent {
+    width: 100%;
+}
+
+.liens_menu-parent {
+    text-decoration: none;
+}
+
+.fa-ul {
+    line-height: 5vh;
+}
