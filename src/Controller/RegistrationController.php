@@ -63,12 +63,10 @@ class RegistrationController extends AbstractController
                     ->subject('Vérification de votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig');
 
-                    $htmlBody = $email->getHtmlBody();
-
                     $this->emailVerifier->sendEmailConfirmation(
                         'app_verify_email',
-                        $user,
-                        $htmlBody
+                        $email,
+                        $user
                     );
             // do anything else you need here, like send an email
 
