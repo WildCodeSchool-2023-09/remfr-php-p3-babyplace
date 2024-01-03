@@ -33,6 +33,7 @@ class Family
     private string $postalCode;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private string $city;
 
     #[ORM\Column(length: 10)]
