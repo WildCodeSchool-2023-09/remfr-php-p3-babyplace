@@ -44,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Vich\UploadableField(mapping:'', fileNameProperty:'avatar')]
     private ?File $avatarFile = null;
 
+    //Pour persister en BDD
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
 
