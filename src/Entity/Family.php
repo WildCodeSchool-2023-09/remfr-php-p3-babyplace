@@ -6,6 +6,7 @@ use App\Repository\FamilyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FamilyRepository::class)]
 class Family
@@ -16,22 +17,27 @@ class Family
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lastname = null;
+    #[Assert\NotBlank]
+    private string $lastname;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstname = null;
+    #[Assert\NotBlank]
+    private string $firstname;
 
     #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    #[Assert\NotBlank]
+    private string $address;
 
     #[ORM\Column(length: 5)]
-    private ?string $postalCode = null;
+    #[Assert\NotBlank]
+    private string $postalCode;
 
     #[ORM\Column(length: 255)]
-    private ?string $city = null;
+    private string $city;
 
     #[ORM\Column(length: 10)]
-    private ?string $phone = null;
+    #[Assert\NotBlank]
+    private string $phone;
 
     #[ORM\OneToOne(mappedBy: 'parent', cascade: ['persist', 'remove'])]
     private ?Administration $administration = null;
