@@ -26,28 +26,36 @@ class CrecheType extends AbstractType
 
         $builder
             ->add('introduction', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Presentation'],
+                'attr' => ['placeholder' => 'Presentation',
+                'class' => 'form-control'],
             ]))
             ->add('name', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Nom de la crèche'],
+                'attr' => ['placeholder' => 'Nom de la crèche',
+                'class' => 'form-control'],
             ]))
             ->add('localisation', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Adresse'],
+                'attr' => ['placeholder' => 'Adresse',
+                'class' => 'form-control'],
             ]))
             ->add('postCode', IntegerType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Code postal'],
+                'attr' => ['placeholder' => 'Code postal',
+                'class' => 'form-control'],
             ]))
             ->add('city', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Ville'],
+                'attr' => ['placeholder' => 'Ville',
+                'class' => 'form-control'],
             ]))
             ->add('phoneNumber', TelType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Telephone'],
+                'attr' => ['placeholder' => 'Telephone',
+                'class' => 'form-control'],
             ]))
             ->add('insuranceNumber', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Numero d\'assurance'],
+                'attr' => ['placeholder' => 'Numero d\'assurance',
+                'class' => 'form-control'],
             ]))
             ->add('legalStatus', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Statut juridique'],
+                'attr' => ['placeholder' => 'Statut juridique',
+                'class' => 'form-control'],
             ]));
     }
 
