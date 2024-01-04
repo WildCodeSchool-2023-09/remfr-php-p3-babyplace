@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\FamilyRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Symfony\Component\Mailer\MailerInterface;
@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(FamilyRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
