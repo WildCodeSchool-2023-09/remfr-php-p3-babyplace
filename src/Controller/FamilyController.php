@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/parent', name: 'parent_')]
 class FamilyController extends AbstractController
 {
-    #[Route('/parent', name: 'parent')]
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->render('parent/index.html.twig', [
@@ -20,7 +21,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('', name:'')]
+    #[Route('/new', methods: ['GET', 'POST'], name:'parent_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $family = new Family();
@@ -31,11 +32,11 @@ class FamilyController extends AbstractController
             $entityManager->persist($family);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('');
+            return $this->redirectToRoute('parent_new');
         }
 
-        return $this->render('', [
-            'form' => $form,
+        return $this->render('parent/register-parent.html.twig', [
+            'formRegister' => $form,
         ]);
     }
 
