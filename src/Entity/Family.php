@@ -48,10 +48,18 @@ class Family
     #[ORM\OneToMany(mappedBy: 'family', targetEntity: EmergencyContact::class, orphanRemoval: true)]
     private Collection $emergencyContacts;
 
+    #[ORM\OneToMany(mappedBy: 'family', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->emergencyContacts = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +212,48 @@ class Family
                 $emergencyContact->setFamily(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setFamily($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getFamily() === $this) {
+                $reservation->setFamily(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
