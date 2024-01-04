@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class FamilyType extends AbstractType
@@ -34,7 +35,8 @@ class FamilyType extends AbstractType
             ->add('postalCode', TextType::class, [
                 'placeholder' => 'Code postal',
                 'constraints' =>
-                new notBlank(['message' => 'Veuillez inscrire votre code postal.'])
+                new notBlank(['message' => 'Veuillez inscrire votre code postal.']),
+                new Length(['message' => '.'])
             ])
             ->add('city', TextType::class, [
                 'placeholder' => 'Ville',
