@@ -23,4 +23,12 @@ class FamilyController extends AbstractController
             'controller_name' => 'FamilyController',
         ]);
     }
+
+    #[Route('/recherches', name: 'recherches')]
+    public function searchList(): Response
+    {
+        return $this->render('parent/search-list.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
 }

@@ -19,16 +19,13 @@
     <body class="body_home">
         {% block body %}
            <header>
-           <nav class="navbar_home navbar navbar-expand-lg">
+           <nav class="navbar_home navbar navbar-expand-lg container">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Babyplace</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link" aria-current="page" href="#">Accueil</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">Offres</a>
@@ -43,7 +40,7 @@
             </nav>
             </header>
 
-            <section class="section_home container d-flex justify-content-center">
+            <section class="section_home container d-flex justify-content-center align-items-start">
             <div>
                 <h1 class="h1_home mb-5">Babyplace</h1>
                 <p class="text_home mb-3">Gagnez du temps en découvrant les crèches autour de chez vous ainsi que leurs créneaux disponibles.</p>
@@ -56,28 +53,30 @@
             </div>
             </section>
 
-            <section class="section-simplifiez_home d-flex justify-content-center align-items-center">
-                <div class="container row">
-                    <div class="col div-img-simplifiez_home">
-                        <img src="{{ asset('build/images/puzzle-elements-assemblage.png') }}" class="img-simplifiez_home">
-                    </div>
-                    <div class="col">
-                        <h4 class="h4_home text-start mb-4">Simplifiez-vous la vie en choisissant un systéme de réservation moderne et efficace</h4>
-                        <p class="text_home text-start">Gérez vos reservations directement depuis votre agenda que vous pouvez consulter sur votre télèphone, ordinateur ou tablette soyez prevenu en temps réel des annulations vous permettant ainsi de remplacer les places vacantes. Faciliter le système des absences grâce aux “waiting list” des parents.</p>
+            <section class="section-simplifiez_home">
+                <div class="div-simplifiez_home">
+                    <div class="container d-flex justify-content-center align-items-center row">
+                        <div class="col div-img-simplifiez_home">
+                            <img src="{{ asset('build/images/puzzle-elements-assemblage.png') }}" class="img-simplifiez_home">
+                        </div>
+                        <div class="col info-simplifiez_home">
+                            <h4 class="h4_home text-start mb-4">Simplifiez-vous la vie en choisissant un systéme de réservation moderne et efficace</h4>
+                            <p class="text_home text-start">Gérez vos reservations directement depuis votre agenda que vous pouvez consulter sur votre télèphone, ordinateur ou tablette soyez prevenu en temps réel des annulations vous permettant ainsi de remplacer les places vacantes. Faciliter le système des absences grâce aux “waiting list” des parents.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="section_home d-flex justify-content-center">
+            <section class="section_home container d-flex justify-content-center">
                 <div>
-                    <h4 class="h4_home text-center">Équipez-vous du logiciel de gestion de places d’accueil de jeunes enfants le plus complet du marché</h4>
+                    <h4 class="h4_home text-center mb-3">Équipez-vous du logiciel de gestion de places d’accueil de jeunes enfants le plus complet du marché</h4>
                     <p class="text_home text-center">Une multitude de fonctionnalités que ce soit du côté des parents comme du côté structures accueillantes...</p>
                 </div>
             </section>
 
-            <section class="d-flex justify-content-center mt-5 mb-3">
+            <section class="d-flex justify-content-center mt-5 mb-5">
                 <div class=" container row">
-                    <div class="div1_home col">
+                    <div class="div1_home col" style="background-image:url('{{ asset('build/images/bg-div1.png') }}')">
                         <div class="row">
                             <div class="left col">
                                 <img src="{{ asset('build/images/office-workers-organizing-data-storage-modifie.png') }}" class="img-info_home">
@@ -88,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="div2_home col">
+                    <div class="div2_home col" style="background-image:url('{{ asset('build/images/bg-div2.png') }}')">
                         <div class="row">
                             <div class="left col">
                                 <img src="{{ asset('build/images/office-workers-organizing-data-storage-modifie.png') }}" class="img-info_home">
@@ -101,9 +100,9 @@
                     </div>
                 </div>
             </section>
-            <section class="d-flex justify-content-center mt-2">
-                <div class=" container row">
-                    <div class="div3_home col">
+            <section class="d-flex justify-content-center mt-5">
+                <div class="container row">
+                    <div class="div3_home col" style="background-image:url('{{ asset('build/images/bg-div3.png') }}')">
                         <div class="row">
                             <div class="left col">
                                 <img src="{{ asset('build/images/office-workers-organizing-data-storage-modifie.png') }}" class="img-info_home">
@@ -114,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="div4_home col">
+                    <div class="div4_home col" style="background-image:url('{{ asset('build/images/bg-div4.png') }}')">
                         <div class="row">
                             <div class="left col">
                                 <img src="{{ asset('build/images/office-workers-organizing-data-storage-modifie.png') }}" class="img-info_home">
@@ -129,29 +128,40 @@
             </section>
 
             <footer class="footer_home">
-                <div class="container row d-flex justify-content-center">
+                <div class="container row">
                     <div class="left col">
-                        <h4 class="h4_home mb-5">Essayez c’est gratuit !</h4>
+                        <h4 class="h4_home mb-3">Essayez c’est gratuit !</h4>
                         <p class="text_home">Profitez d’un mois d’essai gratuitement</p>
                     </div>
-                    <div class="right col d-flex-inline">
+                    <div class="right col btn-footer_home">
                         <a href="/connexion" class="btn btn-secondary_home">En savoir plus</a>
                         <a href="/connexion" class="btn btn-primary_home margin-l-2">Demander une démo</a>
                     </div>
                 </div>
 
-                <div class="grid de 4">
-                    <div grid-1>
-                        <img src="logo">
-                        <p class="text_home">Infos de contact</p>
+                <div class="container row justify-content-between mt-5">
+                    <div class="col-5">
+                        <img src="logo mb-5">
+                        <p class="contact-footer_home mb-2">contact@babyplace.fr</p>
+                        <p class="contact-footer_home">05 57 58 59 60</p>
                     </div>
-                    <div grid-1>
-                        <img src="logo">
-                        <p class="text_home">Infos de contact</p>
+                    <div class="col-2 d-flex flex-column">
+                        <p class="title-footer_home mb-5">À propos</p>
+                        <a href="" class="text-footer_home mb-3">S'inscrire</a>
+                        <a href="" class="text-footer_home mb-3">Se connecter</a>
+                        <a href="" class="text-footer_home mb-3">Offres</a>
+                        <a href="" class="text-footer_home mb-3">Features</a>
                     </div>
-                    <div grid-1>
-                        <img src="logo">
-                        <p class="text_home">Infos de contact</p>
+                    <div class="col-2 d-flex flex-column">
+                        <p class="title-footer_home mb-5">Mentions légales</p>
+                        <a href="" class="text-footer_home mb-3">Politique de confidentialité</a>
+                        <a href="" class="text-footer_home mb-3">CGV</a>
+                        <a href="" class="text-footer_home mb-3">CGU</a>
+                    </div>
+                    <div class="col-3 d-flex flex-row justify-content-end">
+                        <img src="{{ asset('build/images/facebook.png') }}" class="social_home">
+                        <img src="{{ asset('build/images/instagram.png') }}" class="social_home">
+                        <img src="{{ asset('build/images/linkedin.png') }}" class="social_home">
                     </div>
                 </div>
             </footer>
