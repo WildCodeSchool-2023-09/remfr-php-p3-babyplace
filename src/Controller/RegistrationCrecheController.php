@@ -21,11 +21,17 @@ class RegistrationCrecheController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            dump($data);
 
             // Créez et persistez la crèche
             $creche = $data['creche'];
             $entityManager->persist($creche);
+
+            // Créez et persistez les photos
+            $photos = $data['photo'];
+            foreach ($photos as $photo) {
+                $photo->setCreche($creche);
+                $entityManager->persist($photo);
+            }
 
             // Créez et persistez l'horaire
             $schedule = $data['schedule'];

@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
+#[Vich\Uploadable]
 class Photo
 {
     #[ORM\Id]
@@ -15,6 +21,12 @@ class Photo
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[Vich\UploadableField(mapping: 'creche_file', fileNameProperty: 'picture')]
+    private ?File $picturesFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'photos')]
     private ?Creche $creche = null;
@@ -44,6 +56,35 @@ class Photo
     public function setCreche(?Creche $creche): static
     {
         $this->creche = $creche;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of picturesFile
+     */
+    public function setPicturesFile(File $pictures = null)
+    {
+        $this->picturesFile = $pictures;
+        if ($pictures) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getPicturesFile()
+    {
+        return $this->picturesFile;
+    }
+
+    public function getUpdatedAt(): ?DatetimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeInterface $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
