@@ -23,17 +23,17 @@ class RegistrationFormType extends AbstractType
             ->add('role', ChoiceType::class)
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:
-                'label' => 'Adresse email',
+                'placeholder' => 'Email',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer une adresse mail valide.',
+                        'message' => 'Veuillez entrer une adresse email valide.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label' => 'Mot de passe',
+                'placeholder' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -49,7 +49,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('avatar', VichFileType::class, [
-                'label' => 'Ajoutez votre photo de profil',
+                'placeholder' => 'Photo de profil',
                 'required' => false,
                 'allow_delete'  => true,
                 'download_uri' => true,
