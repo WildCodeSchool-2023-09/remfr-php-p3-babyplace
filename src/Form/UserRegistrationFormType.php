@@ -14,20 +14,20 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class FamilyRegistrationFormType extends AbstractType
+class UserRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('roles', ChoiceType::class,
+            ->add('roles', ChoiceType::class, 
             [
                 'choices' => [
-                    'Parent' => 'ROLE_PARENT',
-                    'creche' => 'ROLE_CRECHE',
+                    'Parents' => 'ROLE_FAMILY',
+                    'Créche' => 'ROLE_CRECHE',
                 ],
                 'expanded' => true,
                 'multiple' => true,
-                'label' => 'Vous êtes :',
+                'label' => 'Rôle',
             ])
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\Type\RegistrationFormType;
+use App\Form\Type\UserRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class RegistrationCrecheController extends AbstractController
     #[Route('/registration', methods: ['GET', 'POST'], name: 'registration')]
     public function register(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(RegistrationFormType::class);
+        $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
