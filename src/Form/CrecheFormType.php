@@ -14,103 +14,41 @@ class CrecheType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $commonOptions = [
+            'label' => false,
+            'attr' => ['class' => 'form-control'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Ce champ est obligatoire.',
+                ]),
+            ],
+        ];
+
         $builder
-            ->add('introduction', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Presentation',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une presentation de votre crèche.',
-                    ]),
-                ],
-            ])
-            ->add('name', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Nom de la crèche',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer le nom de votre crèche.',
-                    ]),
-                ],
-            ])
-            ->add('localisation', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Adresse',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre adresse.',
-                    ]),
-                ],
-            ])
-            ->add('postCode', IntegerType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Code postal',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre code postal.',
-                    ]),
-                ],
-            ])
-            ->add('city', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Ville',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre ville.',
-                    ]),
-                ],
-            ])
-            ->add('phoneNumber', TelType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Telephone',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre numero de telephone.',
-                    ]),
-                ],
-            ])
-            ->add('insuranceNumber', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Numero d\'assurance',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre numero d\'assurance.',
-                    ]),
-                ],
-            ])
-            ->add('legalStatus', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Statut juridique',
-                    'class' => 'form-control',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir votre statut juridique.',
-                    ]),
-                ],
-            ]);
+            ->add('introduction', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Presentation'],
+            ]))
+            ->add('name', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Nom de la crèche'],
+            ]))
+            ->add('localisation', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Adresse'],
+            ]))
+            ->add('postCode', IntegerType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Code postal'],
+            ]))
+            ->add('city', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Ville'],
+            ]))
+            ->add('phoneNumber', TelType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Telephone'],
+            ]))
+            ->add('insuranceNumber', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Numero d\'assurance'],
+            ]))
+            ->add('legalStatus', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Statut juridique'],
+            ]));
     }
 
     public function configureOptions(OptionsResolver $resolver)

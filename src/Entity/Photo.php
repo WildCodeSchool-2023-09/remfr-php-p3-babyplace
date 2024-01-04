@@ -63,7 +63,7 @@ class Photo
     /**
      * Get the value of picturesFile
      */
-    public function setPicturesFile(File $pictures = null)
+    public function setPicturesFile(File $pictures = null): static
     {
         $this->picturesFile = $pictures;
         if ($pictures) {
@@ -72,7 +72,7 @@ class Photo
         return $this;
     }
 
-    public function getPicturesFile()
+    public function getPicturesFile(): ?File
     {
         return $this->picturesFile;
     }

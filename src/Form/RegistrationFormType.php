@@ -11,6 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('creche', CrecheType::class)
+            ->add('schedules', ScheduleType::class)
+            ->add('photo', PhotoType::class)
+            ->add('team', TeamType::class);
+    }
     /*{
         $builder
             ->add('creche', CrecheType::class)
@@ -25,13 +32,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('team', TeamType::class);
     }*/
-    {
-        $builder
-            ->add('creche', CrecheType::class)
-            ->add('schedules', ScheduleType::class)
-            ->add('photo', PhotoType::class)
-            ->add('team', TeamType::class);
-    }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TeamType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('teamFirstname', TextType::class, [
