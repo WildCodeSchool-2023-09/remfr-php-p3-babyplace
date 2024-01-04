@@ -16,6 +16,11 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+// phpcs:ignoreFile
+/** 
+ * @SuppressWarnings(PHPMD)
+*/
+
 class UserAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;

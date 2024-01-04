@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
