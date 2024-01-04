@@ -59,12 +59,23 @@ class Creche
     #[ORM\OneToOne(mappedBy: 'creche', cascade: ['persist', 'remove'])]
     private ?Schedule $schedule = null;
 
+    #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Service::class)]
+    private Collection $services;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $rules = null;
+
+    #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->photos = new ArrayCollection();
         $this->administrations = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->services = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -307,6 +318,78 @@ class Creche
         }
 
         $this->schedule = $schedule;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Service>
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): static
+    {
+        if (!$this->services->contains($service)) {
+            $this->services->add($service);
+            $service->setCreche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): static
+    {
+        if ($this->services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getCreche() === $this) {
+                $service->setCreche(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRules(): ?string
+    {
+        return $this->rules;
+    }
+
+    public function setRules(string $rules): static
+    {
+        $this->rules = $rules;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setCreche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getCreche() === $this) {
+                $reservation->setCreche(null);
+            }
+        }
 
         return $this;
     }
