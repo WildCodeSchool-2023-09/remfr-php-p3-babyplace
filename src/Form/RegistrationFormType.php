@@ -49,7 +49,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('avatar', VichFileType::class, [
-                'placeholder' => 'Photo de profil',
+                'label' => 'Photo de profil',
                 'required' => false,
                 'allow_delete'  => true,
                 'download_uri' => true,
