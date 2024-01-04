@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231221120532 extends AbstractMigration
+final class Version20240103162423 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -30,7 +30,7 @@ final class Version20231221120532 extends AbstractMigration
         $this->addSql('CREATE TABLE photo (id INT AUTO_INCREMENT NOT NULL, creche_id INT DEFAULT NULL, picture VARCHAR(255) NOT NULL, INDEX IDX_14B784186C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE schedule (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, weekdays VARCHAR(255) NOT NULL, opening_hours VARCHAR(255) NOT NULL, closing_hours VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_5A3811FB6C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE team (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, team_firstname VARCHAR(255) NOT NULL, team_lastname VARCHAR(255) NOT NULL, fonction VARCHAR(255) NOT NULL, photo VARCHAR(255) NOT NULL, INDEX IDX_C4E0A61F6C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, avatar VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, avatar VARCHAR(255) NOT NULL, is_verified TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE administration ADD CONSTRAINT FK_9FDD0D18727ACA70 FOREIGN KEY (parent_id) REFERENCES family (id)');
         $this->addSql('ALTER TABLE administration_creche ADD CONSTRAINT FK_EFFF052639B8E743 FOREIGN KEY (administration_id) REFERENCES administration (id) ON DELETE CASCADE');
@@ -43,11 +43,13 @@ final class Version20231221120532 extends AbstractMigration
         $this->addSql('ALTER TABLE photo ADD CONSTRAINT FK_14B784186C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
         $this->addSql('ALTER TABLE schedule ADD CONSTRAINT FK_5A3811FB6C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
         $this->addSql('ALTER TABLE team ADD CONSTRAINT FK_C4E0A61F6C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
+        $this->addSql('ALTER TABLE reset_password_request ADD CONSTRAINT FK_7CE748AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE reset_password_request DROP FOREIGN KEY FK_7CE748AA76ED395');
         $this->addSql('ALTER TABLE administration DROP FOREIGN KEY FK_9FDD0D18727ACA70');
         $this->addSql('ALTER TABLE administration_creche DROP FOREIGN KEY FK_EFFF052639B8E743');
         $this->addSql('ALTER TABLE administration_creche DROP FOREIGN KEY FK_EFFF05266C6060B');

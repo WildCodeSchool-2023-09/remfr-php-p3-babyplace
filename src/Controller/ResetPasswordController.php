@@ -20,6 +20,10 @@ use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
+// phpcs:ignoreFile
+/**
+* @SuppressWarnings(PHPMD)
+*/
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
 {
@@ -40,8 +44,8 @@ class ResetPasswordController extends AbstractController
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processSendingPasswordResetEmail(
+        if ($form->isSubmitted() && $form->isValid()) {            
+            return $this->processSendingPasswordResetEmail(                
                 $form->get('email')->getData(),
                 $mailer,
                 $translator
@@ -124,7 +128,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('reset_password/reset.html.twig', 

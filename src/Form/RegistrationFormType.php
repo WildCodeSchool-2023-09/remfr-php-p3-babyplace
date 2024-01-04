@@ -19,9 +19,19 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('role', ChoiceType::class)
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'ROLE_CONTRIBUTOR' => 'ROLE_USER',
+                    'ROLE_CRECHE' => 'ROLE_CONTRIBUTOR',
+                    'ROLE_FAMILY' => 'ROLE_CONTRIBUTOR',
+                    'ROLE_ADMIN' => 'ROLE_CONTRIBUTOR',
+                    // Ajoutez d'autres rôles au besoin
+                ],
+                'label' => 'Rôles', // Label du champ
+                'expanded' => true, // Optionnel : afficher les choix sous forme de boutons radio
+                'multiple' => true, // Optionnel : permettre la sélection multiple
+            ])
             ->add('email', EmailType::class, [
-                //permet de mettre les champs en français:
                 'label' => 'Adresse email',
                 'constraints' => [
                     new NotBlank([
@@ -30,8 +40,6 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
@@ -42,7 +50,6 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de passe doit contenir au minimum {{ limit }} caractères.',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
