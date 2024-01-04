@@ -74,4 +74,3 @@
         </properties>
     </rule>
     <exclude-pattern>src/Migrations</exclude-pattern>
-</ruleset>
