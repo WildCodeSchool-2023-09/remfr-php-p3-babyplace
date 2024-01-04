@@ -12,10 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FamilyController extends AbstractController
 {
-    #[Route('/family', name: 'app_family')]
+    #[Route('/parent', name: 'parent')]
     public function index(): Response
     {
-        return $this->render('family/index.html.twig', [
+        return $this->render('parent/index.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
