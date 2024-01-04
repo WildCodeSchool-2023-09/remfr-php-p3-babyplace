@@ -9,6 +9,7 @@ use App\Security\EmailVerifier;
 use Symfony\Component\Mailer\MailerInterface;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,10 +57,10 @@ class RegistrationController extends AbstractController
 
             // generate a signed url and email it to the user
             $email = (new TemplatedEmail())
-            ->from(new Address('mailer@example.com', 'BabyPlace'))
-            ->to($user->getEmail())
-            ->subject('Please Confirm your Email')
-            ->htmlTemplate('registration/confirmation_email.html.twig');
+                ->from(new Address('mailer@example.com', 'BabyPlace'))
+                ->to($user->getEmail())
+                ->subject('Please Confirm your Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig');
 
             $this->emailVerifier->sendEmailConfirmation(
                 'app_verify_email',
@@ -108,7 +109,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Félicitations ! Vous pouvez à présent utiliser BabyPlace !');
 
         return $this->redirectToRoute('app_register');
     }
