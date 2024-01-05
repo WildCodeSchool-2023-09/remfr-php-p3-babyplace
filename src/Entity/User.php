@@ -25,7 +25,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message:'Veuillez insérer une adresse mail valide.'
+    )]
     private string $email;
 
     #[ORM\Column]
@@ -42,6 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $avatar = null;
 
     #[Vich\UploadableField(mapping:'', fileNameProperty:'avatar')]
+    #[Assert\File(
+        maxSize:'1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png'],
+        mimeTypesMessage: 'Veuillez insérer une photo en format jpeg
+         ou png.'
+    )]
     private ?File $avatarFile = null;
 
     //Pour persister en BDD
