@@ -20,10 +20,16 @@ class FamilyType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'placeholder' => 'Nom de famille',
+                'label' => false,
+                'attr' => [
+                'placeholder' => 'Nom de famille',
+                'class' => 'form-control',
+                ],
                 'constraints' =>
-                new notBlank(['message' => 'Veuillez indiquer votre nom de famille.'])
+                    new notBlank(['message' => 'Veuillez indiquer votre nom de famille.'])
             ])
             ->add('firstname', TextType::class, [
+
                 'placeholder' => 'Prénom',
                 new notBlank(['message' => 'Veuillez indiquer votre prénom.'])
             ])
@@ -47,11 +53,12 @@ class FamilyType extends AbstractType
                 'placeholder' => 'Numéro de téléphone',
                 'constraints' =>
                 new notBlank(['message' => 'Veuillez saisir votre numéro de téléphone valide.'])
+
             ])
-            ->add('administration', EntityType::class, [
+            /*->add('administration', EntityType::class, [
                 'class' => Administration::class,
                 'choice_label' => 'id',
-            ])
+            ])*/
         ;
     }
 
