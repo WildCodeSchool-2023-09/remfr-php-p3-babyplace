@@ -39,3 +39,4 @@ vich_uploader:
             uri_prefix: /uploads/documents/divorceDecree
             upload_destination: '%upload_divorceDecree_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
