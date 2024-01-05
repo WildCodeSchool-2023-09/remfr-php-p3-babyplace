@@ -17,10 +17,10 @@
 			class="div-right_login">
 			{# Redirection vers l'inscription #}
 			<p class="inscription_login">Vous n’avez pas de compte ?
-				<a href="">Inscrivez-vous</a>
+				<a href="/choix">Inscrivez-vous</a>
 			</p>
 			{# Login de connexion #}
-			
+		
 			<form class="form_login" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				<h4 class="title_login mb-5">Je me connecte</h4>

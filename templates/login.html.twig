@@ -30,10 +30,10 @@
             </div>
             <div class="div-right_login">
                 {# Redirection vers l'inscription #}
-                <p class="inscription_login">Vous n’avez pas de compte ? <a href={{path( "inscription" )}}>Inscrivez-vous</a></p>
+                <p class="inscription_login">Vous n’avez pas de compte ? <a href={{path( "register" )}}>Inscrivez-vous</a></p>
                 {# Login de connexion #}
                 {% if app.user %}
-                    <button type="submit" class="btn button_login mt-4 text-uppercase" href="{{ path('logout') }}">
+                    <button type="submit" class="btn button_login mt-4 text-uppercase" href="{{ path('app_logout')}}">
                         Se déconnecter
                     </button>
                 {% else %}

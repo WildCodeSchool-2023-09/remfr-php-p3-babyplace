@@ -19,8 +19,10 @@ class FamilyRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('roles', ChoiceType::class,
-            [
+            ->add(
+                'roles',
+                ChoiceType::class,
+                [
                 'choices' => [
                     'Parent' => 'ROLE_PARENT',
                     'creche' => 'ROLE_CRECHE',
@@ -28,7 +30,8 @@ class FamilyRegistrationFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'label' => 'Vous êtes :',
-            ])
+                ]
+            )
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:
                 'label' => 'Adresse email',

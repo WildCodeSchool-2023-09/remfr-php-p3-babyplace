@@ -19,15 +19,14 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('roles', ChoiceType::class, 
-            [
+            ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Parents' => 'ROLE_FAMILY',
-                    'Créche' => 'ROLE_CRECHE',
+                    'Parent' => 'ROLE_PARENT',
+                    'creche' => 'ROLE_CRECHE',
                 ],
                 'expanded' => true,
                 'multiple' => true,
-                'label' => 'Rôle',
+                'label' => 'Vous êtes :',
             ])
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:
