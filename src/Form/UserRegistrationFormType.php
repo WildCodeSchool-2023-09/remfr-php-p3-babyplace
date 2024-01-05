@@ -22,15 +22,12 @@ class UserRegistrationFormType extends AbstractType
         $builder
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'ROLE_CONTRIBUTOR' => 'ROLE_USER',
-                    'ROLE_CRECHE' => 'ROLE_CONTRIBUTOR',
-                    'ROLE_FAMILY' => 'ROLE_CONTRIBUTOR',
-                    'ROLE_ADMIN' => 'ROLE_CONTRIBUTOR',
-                    // Ajoutez d'autres rôles au besoin
+                    'Parent' => 'ROLE_PARENT',
+                    'creche' => 'ROLE_CRECHE',
                 ],
-                'label' => 'Rôles', // Label du champ
-                'expanded' => true, // Optionnel : afficher les choix sous forme de boutons radio
-                'multiple' => true, // Optionnel : permettre la sélection multiple
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Vous êtes :',
             ])
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:
@@ -42,7 +39,7 @@ class UserRegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                                // instead of being set onto the object directly,
+                // instead of being set onto the object directly,
                 // this is read and encoded in the controller
 
                 'label' => 'Mot de passe',
@@ -59,12 +56,12 @@ class UserRegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('avatar', VichFileType::class, [
+            /*->add('avatar', VichFileType::class, [
                 'label' => 'Photo de profil',
                 'required' => false,
                 'allow_delete'  => true,
                 'download_uri' => true,
-            ])
+            ])*/
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
