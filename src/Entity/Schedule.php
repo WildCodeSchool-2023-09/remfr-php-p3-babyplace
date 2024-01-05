@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScheduleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,12 +26,15 @@ class Schedule
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner les jours d\'ouverture de la crèche')]
     private ?string $weekdays = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner les horaires d\'ouverture de la crèche')]
     private ?string $openingHours = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner les horaires de fermeture de la crèche')]
     private ?string $closingHours = null;
 
     #[ORM\OneToOne(inversedBy: 'schedule', cascade: ['persist', 'remove'])]

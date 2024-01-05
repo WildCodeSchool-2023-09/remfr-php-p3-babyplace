@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TeamRepository;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
@@ -20,12 +21,18 @@ class Team
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le prénom de l\'équipier')]
+    #[Assert\Length(max: 255, maxMessage: 'Le prénom de l\'équipier ne peut pas dépasser 255 caractères')]
     private ?string $teamFirstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de l\'équipier')]
+    #[Assert\Length(max: 255, maxMessage: 'Le nom de l\'équipier ne peut pas dépasser 255 caractères')]
     private ?string $teamLastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner la fonction de l\'équipier')]
+    #[Assert\Length(max: 255, maxMessage: 'La fonction de l\'équipier ne peut pas dépasser 255 caractères')]
     private ?string $fonction = null;
 
     #[ORM\Column(type: 'string', length: 255)]
