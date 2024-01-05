@@ -5,6 +5,16 @@ vich_uploader:
         type: attribute
 
     mappings:
+        team_file:
+            uri_prefix: /uploads/images/teamAvatar
+            upload_destination: '%upload_team_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        creche_file:
+            uri_prefix: /uploads/images/crechePictures
+            upload_destination: '%upload_creche_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
         family_income_file:
             uri_prefix: /uploads/documents/familyIncome
             upload_destination: '%upload_familyIncome_directory%'
