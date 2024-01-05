@@ -34,17 +34,18 @@ class UserRegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 //permet de mettre les champs en français:
-                'placeholder' => 'Email',
+                'label' => 'Adresse email',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer une adresse email valide.',
+                        'message' => 'Veuillez entrer une adresse mail valide.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'placeholder' => 'Mot de passe',
+
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
