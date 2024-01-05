@@ -1,0 +1,31 @@
+.section_register-phone {
+    background-color: $bg-light-color;
+    min-height: 100vh;
+    height: auto;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.header_register-parent {
+    height: 15vh;
+    width:100%;
+    margin: 0;
+    display: flex;
+    justify-content:center;
+}
+
+.title_login {
+    font-size: $h5-font-size;
+    font-family: $headings-font-family;
+    color:$h-color;
+}
+
+.form-control {
+    margin-bottom: 2vh;
+}
+
+.form_register {
+    display:flex;
+    justify-content: center;
+}
