@@ -31,4 +31,20 @@ class FamilyController extends AbstractController
             'controller_name' => 'FamilyController',
         ]);
     }
+
+    #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
+    public function confirmationRegister(): Response
+    {
+        return $this->render('parent/confirmation-inscription.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    #[Route('/profil-parent', name: 'profil-parent')]
+    public function profilParent(): Response
+    {
+        return $this->render('parent/profil-parent.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
 }

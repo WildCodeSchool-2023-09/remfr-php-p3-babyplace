@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
         <title>
-            {% block title %}Tuto - Parent{% endblock %}
+            {% block title %}Confirmation d'inscription{% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -21,11 +21,11 @@
         <section class="section_home-parent">
             <div class="div_home-parent">
             <h4 class="h4_confirmation-inscription text-center">Bienvenue !</h4>
-                <img src="" class="logo">
-                <img src="{{ asset('build/images/nouvelle-mere-avec-enfant-bleu-jaune-rose-modifie.png') }}" class="illustration_home-parent mx-auto d-block mb-5">
-                <p class="accroche_home-parent mb-3">Votre compte a été avec succès !</p>
-                <p class="description_home-parent mb-5">L’accueil en structure collective nécessite que vous remplissiez des informations administratives obligatoires.</p>
+                <img src="{{ asset('build/images/nouvelle-mere-avec-enfant-bleu-jaune-rose-modifie.png') }}" class="illustration_home-parent mx-auto d-block mb-3">
+                <p class="accroche_home-parent mb-3">Votre compte a été créé avec succès !</p>
+                <p class="description_home-parent mb-3">L’accueil en structure collective nécessite que vous remplissiez des informations administratives obligatoires.</p>
                 <a href="/parent/dashboard" class="btn btn_confirmation-inscription">Compléter mon dossier</a>
+                <a href="/parent/dashboard" class="redirection_confirmation-inscription mt-5">Je compléterai plus tard<i class="fa-solid fa-circle-chevron-right"></i></a>
             </div>
         </section>
         {% endblock %}

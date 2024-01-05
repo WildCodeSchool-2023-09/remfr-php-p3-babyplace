@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+        <title>
+            {% block title %}Profil - Parent{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <section class="section_home-parent">
+            <div class="div_home-parent">
+                <img src="https://media.licdn.com/dms/image/D4E03AQGVdI45nlZyiw/profile-displayphoto-shrink_200_200/0/1702083596535?e=1709769600&v=beta&t=_Oflby1notjk32_utYQBmOWJ3zOTibemqYdloNJsI9E" class="avatar_profil-parent d-block mx-auto mb-3">
+                <h5 class="nom_profil-parent text-center mb-4">Julien PRIVAT</h5>
+                <p class="accroche_home-parent mb-3">Mettez toutes les chances de votre côté !</p>
+                <p class="description_home-parent mb-3">Un profil complet est nécessaire pour la majorité des crèches accueillantes, prenez le temps de remplir le votre et celui de votre/vos enfant(s) !</p>
+            </div>
+            <div>
+                <p>Dossier Enfants</p>
+                <p>80% compléte</p>
+            </div>
+        </section>
+        {% endblock %}
+    </body>
+</html>
