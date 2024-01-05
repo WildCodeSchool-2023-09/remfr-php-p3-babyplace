@@ -29,7 +29,6 @@ class FamilyType extends AbstractType
                     new notBlank(['message' => 'Veuillez indiquer votre nom de famille.'])
             ])
             ->add('firstname', TextType::class, [
-
                 'placeholder' => 'Prénom',
                 new notBlank(['message' => 'Veuillez indiquer votre prénom.'])
             ])
