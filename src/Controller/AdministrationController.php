@@ -18,7 +18,7 @@ class AdministrationController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
     public function index(): Response
     {
-        return $this->render('administration/index.html.twig');
+        return $this->render('dashboard-creche.html.twig');
     }
 
     #[Route('/add', name:'add')]
