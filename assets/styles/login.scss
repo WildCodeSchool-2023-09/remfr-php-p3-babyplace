@@ -113,3 +113,13 @@
     color: white;
     font-weight: 600;
 }
+
+.reset-password_login {
+    font-weight: 600;
+    color: $btn-color;
+    text-decoration: underline;
+
+    &:hover {
+        color: $btn-color-hover;
+    }
+}
