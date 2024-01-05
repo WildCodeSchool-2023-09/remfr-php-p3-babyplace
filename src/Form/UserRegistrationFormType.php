@@ -13,8 +13,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class RegistrationFormType extends AbstractType
+class UserRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -32,15 +33,18 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true, // Optionnel : permettre la sélection multiple
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
+                //permet de mettre les champs en français:
+                'placeholder' => 'Email',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer une adresse mail valide.',
+                        'message' => 'Veuillez entrer une adresse email valide.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Mot de passe',
+                                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'placeholder' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -53,6 +57,12 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('avatar', VichFileType::class, [
+                'label' => 'Photo de profil',
+                'required' => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
