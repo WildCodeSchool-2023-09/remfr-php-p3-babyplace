@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+        <title>
+            {% block title %}Connexion{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <section class="section_login">
+            <div class="div-left_login">
+                <div class="infos_login">
+                    <img src="logo">
+                    <p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
+                    <p class="infos-bg-white_login mb-3">tout-en-un</p>
+                    <p class="infos-bg_login">24h/24 et 7j/7</p>
+                </div>
+                <img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_login align-self-center">
+            </div>
+            <div class="div-right_login">
+                {# Redirection vers l'inscription #}
+                <p class="inscription_login">Vous n’avez pas de compte ? <a href="">Inscrivez-vous</a></p>
+                {# Login de connexion #}
+                {% if app.user %}
+                    <button type="submit" class="btn button_login mt-4 text-uppercase" href="{{ path('logout') }}">
+                        Se déconnecter
+                    </button>
+                {% else %}
+                <form class="form_login">
+                    <h4 class="title_login mb-5">Je me connecte</h4>
+                    <div class="form-group">                   
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Mot de passe">
+                    </div>
+                    <p>Mot de passe oublié ? <a href="/reset-password" class="reset-password_login">Cliquez-ici</a></p>
+                    <button type="submit" class="btn button_login mt-4 text-uppercase">Se connecter</button>
+                </form>
+                {% endif %}
+               {# Fin du login de connexion #}
+            </div>
+        </section>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+        <title>
+            {% block title %}Inscription{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <section class="register-phone">
+            <div class= "header_register-parent">
+                <h5 class="title_login mt-5 ml-2">Création de compte</h5>
+            </div>
+
+            <div class="form_register m-3">
+            {{ form_start(formRegister) }}
+
+                {{ form_row(formRegister.lastname) }}
+                {{ form_row(formRegister.firstname) }}
+                {{ form_row(formRegister.address) }}
+                {{ form_row(formRegister.postalCode) }}
+                {{ form_row(formRegister.city) }}
+                {{ form_row(formRegister.phone) }}
+
+                <button type="submit" class= "btn button_login mt-5 text-uppercase">Créer un compte</button>
+            {# Fin du formulaire  #}
+            {{ form_end(formRegister) }}
+            </div>
+        </section>
+    </body>
+</html>
