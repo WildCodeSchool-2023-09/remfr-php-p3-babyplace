@@ -1,33 +1,41 @@
 {% extends 'login.html.twig' %}
-        {% block body %}
-        {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-        <section class="section_login">
-            <div class="div-left_login">
-                <div class="infos_login">
-                    <img src="logo">
-                    <p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
-                    <p class="infos-bg-white_login mb-3">tout-en-un</p>
-                    <p class="infos-bg_login">24h/24 et 7j/7</p>
-                </div>
-                <img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_login align-self-center">
-            </div>
-            <div class="div-right_login">
-                {# Redirection vers l'inscription #}
-                <p class="inscription_login">Vous n’avez pas de compte ? <a href="">Inscrivez-vous</a></p>
-                {# Login de connexion #}
-                <form class="form_login">
-                    <h4 class="title_login mb-5">Je me connecte</h4>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Mot de passe">
-                    </div>
-                    <button type="submit" class="btn button_login mt-4 text-uppercase">Se connecter</button>
-                </form>
-                {# Fin du login de connexion #}
-            </div>
-        </section>
-        {% endblock %}
+{% block body %}
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<section class="section_login">
+		<div class="div-left_login">
+			<div class="infos_login">
+				<img src="logo">
+				<p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
+				<p class="infos-bg-white_login mb-3">tout-en-un</p>
+				<p class="infos-bg_login">24h/24 et 7j/7</p>
+			</div>
+			<img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_login align-self-center">
+		</div>
+		<div
+			class="div-right_login">
+			{# Redirection vers l'inscription user #}
+			<p class="inscription_login">Vous n’avez pas de compte ?
+				<a href="">Inscrivez-vous</a>
+			</p>
+			{# Login de connexion #}
+			{# rajout du hidden csrf pour le token #}			
+			<form class="form_login" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<h4 class="title_login mb-5">Je me connecte</h4>
+				<div class="form-group">
+					<input type="email" class="form-control" id="exampleDropdownFormEmail2" name="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" id="exampleDropdownFormPassword2" name="password" placeholder="Mot de passe">
+				</div>
+				<p>Mot de passe oublié ?
+					<a href="/reset-password" class="reset-password_login">Cliquez-ici</a>
+				</p>
+				<button type="submit" class="btn button_login mt-4 text-uppercase">Se connecter</button>
+			</form>
+			{# Fin du login de connexion #}
+		</div>
+	</section>
+{% endblock %}
