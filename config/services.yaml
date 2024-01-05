@@ -8,7 +8,15 @@ parameters:
     upload_creche_directory: '%kernel.project_dir%/public/uploads/images/crechePictures'
 
     mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
-    
+    upload_familyIncome_directory: '%kernel.project_dir%/public/uploads/documents/familyIncome'
+    upload_taxReturn_directory: '%kernel.project_dir%/public/uploads/documents/taxReturn'
+    upload_residencyProof_directory: '%kernel.project_dir%/public/uploads/documents/residencyProof'
+    upload_statusProof_directory: '%kernel.project_dir%/public/uploads/documents/statusProof'
+    upload_discharge_directory: '%kernel.project_dir%/public/uploads/documents/discharge'
+    upload_familyRecord_directory: '%kernel.project_dir%/public/uploads/documents/familyRecore'
+    upload_divorceDecree_directory: '%kernel.project_dir%/public/uploads/documents/divorceDecree'
+
+
 services:
     # default configuration for services in *this* file
     _defaults:

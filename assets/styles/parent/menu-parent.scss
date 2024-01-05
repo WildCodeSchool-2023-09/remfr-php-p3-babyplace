@@ -1,0 +1,73 @@
+.body_menu-parent {
+    background: $bg-light-color;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.header_menu-parent {
+    background-color: white;
+    height: 15vh;
+    width: 100%;
+    box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-div_menu-parent {
+    width: 90%;
+}
+
+.img-profil_menu-parent {
+    max-height: 10vh;
+    width: auto;
+    border-radius: 50%;
+}
+
+.name_menu-parent {
+    font-family: $headings-font-family;
+    font-weight: 600;
+    font-size: $btn-font-size;
+}
+
+.dossier_menu-parent {
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    font-size: $p-size-desktop;
+}
+
+.section_menu-parent {
+    margin-top: 3vh;
+}
+
+.div_menu-parent {
+    padding: 2%;
+}
+
+.ul_menu-parent {
+    width: 100%;
+}
+
+.liens_menu-parent {
+    text-decoration: none;
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    color: $h-color;
+
+    &:hover {
+        color: $btn-color-hover;
+        font-weight: 600;
+    }
+}
+
+.fa-ul {
+    line-height: 3.5rem;
+}
+
+.fas {
+    margin-right: 1.5rem;
+    color: $btn-color;
+}
+
