@@ -14,8 +14,8 @@
     </head>
     <body>
         <section class="register-phone">
-            <div class= "header_register-parent m-2">
-                <h4 class="title_login mb-5">Création de compte</h4>
+            <div class= "header_register-parent">
+                <h5 class="title_login mt-5 ml-2">Création de compte</h5>
             </div>
 
             <div class="form_register m-3">
@@ -28,10 +28,11 @@
                 {{ form_row(formRegister.city) }}
                 {{ form_row(formRegister.phone) }}
 
-                <button type="submit" class= "btn button_login mt-4 text-uppercase">Créer un compte</button>
+                <button type="submit" class= "btn button_login mt-5 text-uppercase">Créer un compte</button>
             {# Fin du formulaire  #}
             {{ form_end(formRegister) }}
             </div>
         </section>
+    {% include 'parent/_navbar-parent.html.twig' %} 
     </body>
 </html>
