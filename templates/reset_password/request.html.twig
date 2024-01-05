@@ -1,0 +1,40 @@
+{% extends 'login.html.twig' %}
+
+{% block title %}Reset your password
+{% endblock %}
+
+{% block body %}
+	{% for flash_error in app.flashes('reset_password_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+	<section class="section_login">
+		<div class="div-left_login">
+			<div class="infos_login">
+				<img src="logo">
+				<p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
+				<p class="infos-bg-white_login mb-3">tout-en-un</p>
+				<p class="infos-bg_login">24h/24 et 7j/7</p>
+			</div>
+			<img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_login align-self-center">
+		</div>
+		<div
+			class="div-right_login">
+			{# Redirection vers l'inscription #}
+			<p class="inscription_login">Vous n’avez pas de compte ?
+				<a href="/choix">Inscrivez-vous</a>
+			</p>
+			{# Form reset password #}			
+				<h4 class="title_login mb-5">Réinitialisez votre mot de passe</h4>
+				{{ form_start(requestForm) }}
+				{{ form_row(requestForm.email) }}
+				<div>
+					<small>
+						Entrez votre adresse email pour recevoir un lien pour réinitialiser votre mot de passe.
+					</small>
+				</div>
+				<button class="btn button_login mt-4 text-uppercase">Recevez un lien de réinitialisation</button>
+				{{ form_end(requestForm) }}			
+			{# Fin du form reset-password #}
+		</div>
+	</section>
+{% endblock %}

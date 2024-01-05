@@ -1,6 +1,14 @@
 //start coding by removing this file and adding yours ;)
 @import "variables.scss";
 @import "~bootstrap/scss/bootstrap";
+@import "nav/nav.scss";
 @import "login.scss";
 @import "register.scss";
-@import "calendar.scss";
+@import "choice.scss";
+@import "home.scss";
+@import "dashboard-creche.scss";
+@import "parent/home-parent.scss";
+@import "parent/menu-parent.scss";
+@import "parent/search-parent.scss";
+@import "parent/register-parent.scss";
+@import "parent/_navbar-parent.scss";
