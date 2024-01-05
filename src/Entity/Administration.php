@@ -168,7 +168,7 @@ class Administration
         return $this->familyIncome;
     }
 
-    public function setFamilyIncome(string $familyIncome): self
+    public function setFamilyIncome(string $familyIncome): static
     {
         $this->familyIncome = $familyIncome;
 
@@ -222,7 +222,7 @@ class Administration
         return $this->cafNumber;
     }
 
-    public function setCafNumber(string $cafNumber): self
+    public function setCafNumber(string $cafNumber): static
     {
         $this->cafNumber = $cafNumber;
 
@@ -234,7 +234,7 @@ class Administration
         return $this->socialNumber;
     }
 
-    public function setSocialNumber(string $socialNumber): self
+    public function setSocialNumber(string $socialNumber): static
     {
         $this->socialNumber = $socialNumber;
 
@@ -246,7 +246,7 @@ class Administration
         return $this->residencyProof;
     }
 
-    public function setResidencyProof(string $residencyProof): self
+    public function setResidencyProof(string $residencyProof): static
     {
         $this->residencyProof = $residencyProof;
 
@@ -273,7 +273,7 @@ class Administration
         return $this->statusProof;
     }
 
-    public function setStatusProof(string $statusProof): self
+    public function setStatusProof(string $statusProof): static
     {
         $this->statusProof = $statusProof;
 
@@ -300,7 +300,7 @@ class Administration
         return $this->bankingInfo;
     }
 
-    public function setBankingInfo(string $bankingInfo): self
+    public function setBankingInfo(string $bankingInfo): static
     {
         $this->bankingInfo = $bankingInfo;
 
@@ -339,7 +339,7 @@ class Administration
         return $this->familyRecord;
     }
 
-    public function setFamilyRecord(string $familyRecord): self
+    public function setFamilyRecord(string $familyRecord): static
     {
         $this->familyRecord = $familyRecord;
 
@@ -366,7 +366,7 @@ class Administration
         return $this->divorceDecree;
     }
 
-    public function setDivorceDecree(string $divorceDecree): self
+    public function setDivorceDecree(string $divorceDecree): static
     {
         $this->divorceDecree = $divorceDecree;
 
@@ -405,7 +405,7 @@ class Administration
         return $this->parent;
     }
 
-    public function setParent(Family $parent): self
+    public function setParent(Family $parent): static
     {
         $this->parent = $parent;
 
@@ -420,7 +420,7 @@ class Administration
         return $this->creche;
     }
 
-    public function addCreche(Creche $creche): self
+    public function addCreche(Creche $creche): static
     {
         if (!$this->creche->contains($creche)) {
             $this->creche->add($creche);
@@ -429,7 +429,7 @@ class Administration
         return $this;
     }
 
-    public function removeCreche(Creche $creche): self
+    public function removeCreche(Creche $creche): static
     {
         $this->creche->removeElement($creche);
 
