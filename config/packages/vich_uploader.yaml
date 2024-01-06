@@ -1,8 +1,55 @@
 vich_uploader:
     db_driver: orm
 
+    metadata:
+        type: attribute
+
     mappings:
         user_file:
             uri_prefix: /uploads/images/avatar
             upload_destination: '%upload_user_directory%'
+        team_file:
+            uri_prefix: /uploads/images/teamAvatar
+            upload_destination: '%upload_team_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        creche_file:
+            uri_prefix: /uploads/images/crechePictures
+            upload_destination: '%upload_creche_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
+        family_income_file:
+            uri_prefix: /uploads/documents/familyIncome
+            upload_destination: '%upload_familyIncome_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        tax_return_file:
+            uri_prefix: /uploads/documents/taxReturn
+            upload_destination: '%upload_taxReturn_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        residency_proof_file:
+            uri_prefix: /uploads/documents/residencyProof
+            upload_destination: '%upload_residencyProof_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        status_proof_file:
+            uri_prefix: /uploads/documents/statusProof
+            upload_destination: '%upload_statusProof_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        discharge_file:
+            uri_prefix: /uploads/documents/discharge
+            upload_destination: '%upload_discharge_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        family_record_file:
+            uri_prefix: /uploads/documents/familyRecord
+            upload_destination: '%upload_familyRecord_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        divorce_decree_file:
+            uri_prefix: /uploads/documents/divorceDecree
+            upload_destination: '%upload_divorceDecree_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            

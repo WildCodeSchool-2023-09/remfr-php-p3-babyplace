@@ -1,74 +1,43 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Type;
 
-use App\Entity\User;
+use App\Form\PhotoType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('role', ChoiceType::class)
-            ->add('email', EmailType::class, [
-                //permet de mettre les champs en français:
-                'placeholder' => 'Email',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une adresse email valide.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'placeholder' => 'Mot de passe',
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez choisir un mot de passe.',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au minimum {{ limit }} caractères.',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-            ->add('avatar', VichFileType::class, [
-                'label' => 'Photo de profil',
-                'required' => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-            ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions d\'utilisation
-                         afin de continuer votre inscription.',
-                    ]),
-                ],
-            ]);
+            ->add('creche', CrecheType::class)
+            ->add('schedules', ScheduleType::class)
+            ->add('photo', PhotoType::class)
+            ->add('team', TeamType::class);
     }
+    /*{
+        $builder
+            ->add('creche', CrecheType::class)
+            ->add('photo', PhotoType::class)
+            ->add('schedules', CollectionType::class, [
+                'entry_type' => ScheduleType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => '__schedule__',
+                'by_reference' => false,
+            ])
+            ->add('team', TeamType::class);
+    }*/
 
-    public function configureOptions(OptionsResolver $resolver): void
+
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => null, // This is important to allow handling multiple forms
         ]);
     }
 }

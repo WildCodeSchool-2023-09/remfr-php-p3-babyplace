@@ -17,26 +17,39 @@ class Family
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez indiquer votre nom de famille.'
+    )]
     private string $lastname;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message:'Veuillez indiquer votre prénom.'
+    )]
     private string $firstname;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez ajouter une adresse valide.'
+    )]
     private string $address;
 
     #[ORM\Column(length: 5)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez inscrire votre code postal.'
+    )]
     private string $postalCode;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'Veuillez ajouter votre ville.'
+    )]
     private string $city;
 
     #[ORM\Column(length: 10)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir votre numéro de téléphone valide.'
+    )]
     private string $phone;
 
     #[ORM\OneToOne(mappedBy: 'parent', cascade: ['persist', 'remove'])]
@@ -48,10 +61,18 @@ class Family
     #[ORM\OneToMany(mappedBy: 'family', targetEntity: EmergencyContact::class, orphanRemoval: true)]
     private Collection $emergencyContacts;
 
+    #[ORM\OneToMany(mappedBy: 'family', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->emergencyContacts = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +225,48 @@ class Family
                 $emergencyContact->setFamily(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setFamily($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getFamily() === $this) {
+                $reservation->setFamily(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
