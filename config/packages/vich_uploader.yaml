@@ -2,7 +2,7 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        products:
+        user_file:
             uri_prefix: /uploads/images/avatar
             upload_destination: '%upload_user_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
