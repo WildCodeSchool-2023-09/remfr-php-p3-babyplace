@@ -7,9 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\DBAL\Types\Types;
+use DateTimeInterface;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Un compte utilisant cette adresse mail existe déjà.')]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,7 +25,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    #[Assert\NotBlank(
+        message:'Veuillez insérer une adresse mail valide.'
+    )]
+    private string $email;
 
     #[ORM\Column]
     private array $roles = [];
@@ -27,10 +37,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    #[Assert\NotBlank]
+    private string $password;
 
     #[ORM\Column(length: 255)]
     private ?string $avatar = null;
+
+    #[Vich\UploadableField(mapping:'', fileNameProperty:'avatar')]
+    #[Assert\File(
+        maxSize:'1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png'],
+        mimeTypesMessage: 'Veuillez insérer une photo en format jpeg
+         ou png.'
+    )]
+    private ?File $avatarFile = null;
+
+    //Pour persister en BDD
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Creche $creche = null;
@@ -116,8 +142,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(string $avatar): static
     {
         $this->avatar = $avatar;
-
+        if ($avatar) {
+            $this->updatedAt = new DateTime('now');
+        }
         return $this;
+    }
+
+    public function setAvatarFile(File $avatar = null): User
+    {
+        $this->avatarFile = $avatar;
+        return $this;
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
     }
 
     public function getCreche(): ?Creche

@@ -14,9 +14,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true
+            lazy: true            
             provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
+            custom_authenticator: App\Security\UserAuthenticator                     
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -27,6 +27,7 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
+                
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -34,6 +35,11 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+    role_hierarchy:
+        ROLE_CONTRIBUTOR: ROLE_USER
+        ROLE_CRECHE: ROLE_CONTRIBUTOR
+        ROLE_FAMILY: ROLE_CONTRIBUTOR
+        ROLE_ADMIN: ROLE_CONTRIBUTOR
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:

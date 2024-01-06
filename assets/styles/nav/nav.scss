@@ -1,0 +1,108 @@
+// Define reusable variables
+$primary-color: #F1F5F7;
+$secondary-color: #ffffff;
+$accent-color: #4F4FFF;
+$gradient-start: #474FFF;
+$gradient-end: #E37ACC;
+$tertiary-color: #00ff55;
+$dropdown-bg: #a49898;
+$dropdown-menu-bg: #c0bdbd;
+$footer-text-color: #000;
+
+// Body styles
+.body_dashboard-creche {
+    background-color: $primary-color;
+}
+
+// Navigation styles
+.bg-dark {
+    background: linear-gradient(158deg, $gradient-start 0%, $gradient-end 100%);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    width: 15vw;
+}
+
+.navbar_dashboard-creche, .footer_dashboard-creche {
+    background-color: $secondary-color;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    width: 85vw;
+    height: 7vh;
+    right: 0;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.navbar_dashboard-creche {
+    top: 0;
+    justify-content: right;
+}
+
+.footer_dashboard-creche {
+    bottom: 0;
+    z-index: 0;
+    justify-content: space-between;
+}
+
+.nav-title_dashboard-creche {
+    font-size: 1rem;
+    color: #fff;
+    padding: 3px;
+    margin: 30px 0 15px;
+}
+
+.nav-link_dashboard-creche {
+    color: #fff;
+    padding: 10px;
+
+    &:hover {
+        color: #fff;
+        border-radius: 15px;
+        border: 1px solid #fff;
+    }
+}
+
+// Main content styles
+.main_dashboard-creche {
+    background-color: $primary-color;
+    display: flex;
+    text-align: right;
+    position: fixed;
+    top: 10vh;
+    bottom: 10vh;
+    margin-right: 3vw;
+    margin-left: 18vw;
+    height: auto;
+    width: 79vw;
+    z-index: 1;
+}
+
+// Dropdown styles
+.dropdown_dashboard-creche, .dropdown-menu_dashboard-creche {
+    color: #000;
+    border-radius: 15px;
+    border: 1px solid #fff;
+}
+
+.dropdown_dashboard-creche {
+    background-color: $dropdown-bg;
+}
+
+.dropdown-menu_dashboard-creche {
+    background-color: $dropdown-menu-bg;
+    z-index: 999;
+}
+
+// Additional styles
+.bg-body-tertiary_dashboard-creche {
+    background-color: $tertiary-color;
+}
+
+// Footer text color
+.footer_dashboard-creche {
+    color: $footer-text-color;
+}
