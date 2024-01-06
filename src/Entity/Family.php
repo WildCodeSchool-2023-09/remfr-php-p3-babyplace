@@ -17,27 +17,39 @@ class Family
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez indiquer votre nom de famille.'
+    )]
     private string $lastname;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message:'Veuillez indiquer votre prénom.'
+    )]
     private string $firstname;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez ajouter une adresse valide.'
+    )]
     private string $address;
 
     #[ORM\Column(length: 5)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez inscrire votre code postal.'
+    )]
     private string $postalCode;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez ajouter votre ville.'
+    )]
     private string $city;
 
     #[ORM\Column(length: 10)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir votre numéro de téléphone valide.'
+    )]
     private string $phone;
 
     #[ORM\OneToOne(mappedBy: 'parent', cascade: ['persist', 'remove'])]
