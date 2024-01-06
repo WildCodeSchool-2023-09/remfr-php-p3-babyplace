@@ -15,7 +15,11 @@ parameters:
     upload_discharge_directory: '%kernel.project_dir%/public/uploads/documents/discharge'
     upload_familyRecord_directory: '%kernel.project_dir%/public/uploads/documents/familyRecore'
     upload_divorceDecree_directory: '%kernel.project_dir%/public/uploads/documents/divorceDecree'
+    upload_birthCertificate_directory: '%kernel.project_dir%/public/uploads/documents/birthCertificate'
+    upload_vaccine_directory: '%kernel.project_dir%/public/uploads/documents/vaccine'
+    upload_insurance_directory: '%kernel.project_dir%/public/uploads/documents/insurance'
 
+    
 
 services:
     # default configuration for services in *this* file
