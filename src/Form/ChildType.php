@@ -44,19 +44,20 @@ class ChildType extends AbstractType
                     ])
                 ]
             ])
+            // Date de naissance
             ->add('birthdate', DateType::class, [
                 'widget' => 'choice',
-                'label' => 'Nom de famille',
-                    'class' => 'form-control',
+                'label' => 'Date de naissance',
+                'class' => 'form-control',
                 'constraints' => [
-                    new NotBlank(['message' => 'Veuillez indiquer le nom de famille de votre enfant.']),
+                    new NotBlank(['message' => 'Veuillez indiquer la date de naissance de votre enfant.']),
                 ]
             ])
             ->add('isWalking', CheckboxType::class, [
                 'label' => 'Votre enfant marche-t-il ?',
                 'class' => 'form-control',
                 'constraints' => [
-                    new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
+                    new NotBlank(['message' => 'Veuillez préciser si votre enfant marche.']),
                 ]
             ])
             ->add('allergy')
