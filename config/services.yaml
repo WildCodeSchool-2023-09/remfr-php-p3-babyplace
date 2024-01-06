@@ -18,7 +18,6 @@ parameters:
     upload_birthCertificate_directory: '%kernel.project_dir%/public/uploads/documents/birthCertificate'
     upload_vaccine_directory: '%kernel.project_dir%/public/uploads/documents/vaccine'
     upload_insurance_directory: '%kernel.project_dir%/public/uploads/documents/insurance'
-
     
 
 services:
