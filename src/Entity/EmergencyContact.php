@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\EmergencyContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmergencyRepository;
 
-#[ORM\Entity(repositoryClass: EmergencyContactRepository::class)]
+#[ORM\Entity(repositoryClass: EmergencyRepository::class)]
 class EmergencyContact
 {
     #[ORM\Id]

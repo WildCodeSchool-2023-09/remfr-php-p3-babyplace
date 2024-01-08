@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method EmergencyContact[]    findAll()
  * @method EmergencyContact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EmergencyContactRepository extends ServiceEntityRepository
+class EmergencyRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
