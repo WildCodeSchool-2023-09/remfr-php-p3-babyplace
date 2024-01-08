@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $avatar = null;
 
-    #[Vich\UploadableField(mapping:'', fileNameProperty:'avatar')]
+    #[Vich\UploadableField(mapping:'user_file', fileNameProperty:'avatar')]
     #[Assert\File(
         maxSize:'1M',
         maxSizeMessage: 'La taille du fichier ne
