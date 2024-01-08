@@ -7,8 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: ChildRepository::class)]
+#[Vich\Uploadable]
 class Child
 {
     #[ORM\Id]
@@ -40,14 +46,50 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $birthCertificate = null;
 
+    #[Vich\UploadableField(mapping: '', fileNameProperty: 'birthCertificate')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $birthCertificateFile = null;
+
     #[ORM\Column(length: 255)]
     private ?string $doctorName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $vaccine = null;
 
+    #[Vich\UploadableField(mapping: '', fileNameProperty: 'vaccine')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $vaccineFile = null;
+
     #[ORM\Column(length: 255)]
     private ?string $insurance = null;
+
+    #[Vich\UploadableField(mapping: '', fileNameProperty: 'insurance')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $insuranceFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'children')]
     #[ORM\JoinColumn(nullable: false)]
@@ -230,6 +272,92 @@ class Child
     public function removeCreche(Creche $creche): static
     {
         $this->creche->removeElement($creche);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of birthCertificateFile
+     */
+    public function getBirthCertificateFile(): ?File
+    {
+        return $this->birthCertificateFile;
+    }
+
+    /**
+     * Set the value of birthCertificateFile
+     *
+     * @return  self
+     */
+    public function setBirthCertificateFile(?File $birthCertificateFile): Child
+    {
+        $this->birthCertificateFile = $birthCertificateFile;
+        if ($birthCertificateFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of vaccineFile
+     */
+    public function getVaccineFile(): ?File
+    {
+        return $this->vaccineFile;
+    }
+
+    /**
+     * Set the value of vaccineFile
+     *
+     * @return  self
+     */
+    public function setVaccineFile(?File $vaccineFile): Child
+    {
+        $this->vaccineFile = $vaccineFile;
+        if ($vaccineFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of insuranceFile
+     */
+    public function getInsuranceFile(): ?File
+    {
+        return $this->insuranceFile;
+    }
+
+    /**
+     * Set the value of insuranceFile
+     *
+     * @return  self
+     */
+    public function setInsuranceFile(?File $insuranceFile): Child
+    {
+        $this->insuranceFile = $insuranceFile;
+        if ($insuranceFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): ?DatetimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(?DatetimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
