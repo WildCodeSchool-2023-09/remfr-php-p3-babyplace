@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Agenda{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
@@ -9,13 +9,49 @@
       document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar')
         const calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+          initialView: 'dayGridMonth',
+          locale : 'fr',
+          timeZone: 'Europe/Paris',
+          headerToolbar: {
+            start: 'prev,next',
+            center: 'title',
+            end: 'dayGridMonth,timeGridWeek,list',
+          },
+
+          events: {{ data|raw }},
+          editable: true,
+          eventResizableFromStart: true
+          
         })
+
+        calendar.on('eventChange', (e) => {
+          const url = `/rdv/${e.event.id}/edit`
+          const donnees = {
+            "title": e.event.title,
+            "description": e.event.extendedProps.description,
+            "start": e.event.start,
+            "end": e.event.end,
+            "backgroundColor": e.event.backgroundColor,
+            "borderColor": e.event.borderColor,
+            "textColor": e.event.textColor,
+            "allDay": e.event.allDay
+          }
+
+          const xhr = new XMLHttpRequest
+
+          xhr.open("PUT", url)
+          xhr.send(JSON.stringify(donnees))
+
+        })
+
         calendar.render()
+        
       })
 
     </script>
+    
     <div class="calendar_form">
+    <a href="/calendar/new">new</a>
     <div id='calendar'></div>
     </div>
 
