@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CrecheRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,27 +18,39 @@ class Creche
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner l\'introduction de la crèche')]
+    #[Assert\Length(min: 10, minMessage: 'L\'introduction doit contenir au moins 10 caractères'),
+    Assert\Length(max: 255, maxMessage: 'L\'introduction doit contenir au maximum 255 caractères')]
     private ?string $introduction = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de la crèche')]
+    #[Assert\Length(max: 255, maxMessage: 'Le nom de la crèche doit contenir au maximum 255 caractères')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner la localisation de la crèche')]
+    #[Assert\Length(max: 255, maxMessage: 'La localisation de la crèche doit contenir au maximum 255 caractères')]
     private ?string $localisation = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le code postal de la crèche')]
     private ?int $postCode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner la ville de la crèche')]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le numéro de téléphone de la crèche')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le numéro d\'assurance de la crèche')]
     private ?string $insuranceNumber = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le statut juridique de la crèche')]
     private ?string $legalStatus = null;
 
     #[ORM\OneToOne(inversedBy: 'creche', cascade: ['persist', 'remove'])]
