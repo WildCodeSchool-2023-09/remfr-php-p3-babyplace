@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}New Calendar{% endblock %}</title>
-    {% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
-</head>
-<body>
-    {% block body %}
-    <h1>Create new Calendar</h1>
-
+<div class="modal fade" id="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
     {{ include('calendar/_form.html.twig') }}
+    {#<a href="{{ path('app_calendar_index') }}">back to list</a>
+    <a href="{{ path('app_agenda') }}">back to calendar</a>#}
+    </div>
+  </div>
+</div>
 
-    <a href="{{ path('app_calendar_index') }}">back to list</a>
-    <a href="{{ path('app_agenda') }}">back to calendar</a>
-{% endblock %}
-</body>
-</html>
 
 
 

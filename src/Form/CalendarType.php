@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Calendar;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,9 @@ class CalendarType extends AbstractType
                 'date_widget' => 'single_text'
             ])
             ->add('description')
-            ->add('all_day')
+            ->add('all_day', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('background_color', ColorType::class)
             ->add('border_color', ColorType::class)
             ->add('text_color', ColorType::class)

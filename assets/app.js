@@ -11,5 +11,9 @@ import './styles/app.scss';
 require('bootstrap');
 // start the Stimulus application
 import 'bootstrap';
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+
 // Font Awesome
 require('@fortawesome/fontawesome-free/css/all.min.css');
+
+import './JS/calendar';

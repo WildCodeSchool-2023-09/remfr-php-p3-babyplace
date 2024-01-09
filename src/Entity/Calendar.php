@@ -36,7 +36,7 @@ class Calendar
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $allDay = null;
 
     #[ORM\Column(length: 7)]

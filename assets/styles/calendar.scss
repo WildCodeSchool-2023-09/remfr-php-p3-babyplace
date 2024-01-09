@@ -5,3 +5,13 @@
    margin-left: 18vw;
    background-color: rgb(214, 199, 199);
 }
+
+.button-ajout-calendar {
+   background-color: $btn-color;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;   
+}
