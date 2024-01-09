@@ -1,0 +1,49 @@
+.h4_confirmation-inscription {
+    color: white;
+    font-family: $tertiary-font;
+    font-size: $h4-font-size;
+}
+
+.btn_confirmation-inscription {
+    color: white;
+    font-family: $tertiary-font;
+    font-size: $btn-font-size;
+    background-color: $button-color-alert;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 2vw 1.5vh 2vw;
+    box-shadow: 0px 5px 15px 0px rgba(156, 105, 226, 0.3);
+    border-radius: 1rem;
+    width: auto;
+
+    &:hover {
+        color: white;
+        background-color: #8ecfd1;
+    }
+}
+
+.redirection_confirmation-inscription {
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    text-decoration: underline;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        color: #8ecfd1;
+    }
+}
+
+.fa-circle-chevron-right {
+    color: white;
+    margin-left: 2vw;
+
+    &:hover {
+        color: #8ecfd1;
+    }
+}

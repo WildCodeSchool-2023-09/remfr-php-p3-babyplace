@@ -21,7 +21,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', methods: ['GET', 'POST'], name:'parent_new')]
+    #[Route('/new', methods: ['GET', 'POST'], name: 'parent_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $family = new Family();
@@ -40,7 +40,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/menu-parent', name: 'menu')]
+    #[Route('/menu', name: 'menu')]
     public function menuParent(): Response
     {
         return $this->render('parent/menu.html.twig', [
@@ -52,6 +52,22 @@ class FamilyController extends AbstractController
     public function searchList(): Response
     {
         return $this->render('parent/search-list.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
+    public function confirmationRegister(): Response
+    {
+        return $this->render('parent/confirmation-inscription.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    #[Route('/profil', name: 'profil')]
+    public function profilParent(): Response
+    {
+        return $this->render('parent/profil-parent.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
