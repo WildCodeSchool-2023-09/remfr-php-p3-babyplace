@@ -41,7 +41,8 @@ class FamilyType extends AbstractType
                 'placeholder' => 'Code postal',
                 'constraints' =>
                 new notBlank(['message' => 'Veuillez inscrire votre code postal.']),
-                new Length(['message' => '.'])
+                new Length(['min' => 5, 'max' => 5,
+                    'exactMessage' => 'Le code postal doit être composé de 5 chiffres.'])
             ])
             ->add('city', TextType::class, [
                 'placeholder' => 'Ville',
