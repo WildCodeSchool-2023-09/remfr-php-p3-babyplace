@@ -1,3 +1,18 @@
-.footer_menu-parent{
+.footer_menu-parent {
     min-height: 5vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.bg-light {
+    justify-content: space-around;
+}
+
+.btn-parent {
+    color: #DFDEDE;
+}
+
+.btn-parent:active {
+    color: $gradient-color-main;
 }

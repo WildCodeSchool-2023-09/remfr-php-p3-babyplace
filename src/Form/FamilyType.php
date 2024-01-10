@@ -19,41 +19,66 @@ class FamilyType extends AbstractType
     {
         $builder
             ->add('lastname', TextType::class, [
-                'placeholder' => 'Nom de famille',
                 'label' => false,
                 'attr' => [
                 'placeholder' => 'Nom de famille',
                 'class' => 'form-control',
                 ],
-                'constraints' =>
+                'constraints' => [
                     new notBlank(['message' => 'Veuillez indiquer votre nom de famille.'])
+                ]
             ])
             ->add('firstname', TextType::class, [
+                'label' => false,
+                'attr' => [
                 'placeholder' => 'Prénom',
-                new notBlank(['message' => 'Veuillez indiquer votre prénom.'])
+                'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new notBlank(['message' => 'Veuillez indiquer votre prénom.'])
+                ]
             ])
             ->add('address', TextType::class, [
+                'label' => false,
+                'attr' => [
                 'placeholder' => 'Adresse',
-                'constraints' =>
-                new notBlank(['message' => 'Veuillez ajouter une adresse valide.'])
+                'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new notBlank(['message' => 'Veuillez ajouter une adresse valide.'])
+                ]
             ])
             ->add('postalCode', TextType::class, [
+                'label' => false,
+                'attr' => [
                 'placeholder' => 'Code postal',
-                'constraints' =>
-                new notBlank(['message' => 'Veuillez inscrire votre code postal.']),
-                new Length(['min' => 5, 'max' => 5,
+                'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new notBlank(['message' => 'Veuillez inscrire votre code postal.']),
+                    new Length(['min' => 5, 'max' => 5,
                     'exactMessage' => 'Le code postal doit être composé de 5 chiffres.'])
+                ]
             ])
             ->add('city', TextType::class, [
+                'label' => false,
+                'attr' => [
                 'placeholder' => 'Ville',
-                'constraints' =>
-                new notBlank(['message' => 'Veuillez ajouter votre ville.'])
+                'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new notBlank(['message' => 'Veuillez ajouter votre ville.'])
+                ]
             ])
             ->add('phone', TelType::class, [
+                'label' => false,
+                'attr' => [
                 'placeholder' => 'Numéro de téléphone',
-                'constraints' =>
-                new notBlank(['message' => 'Veuillez saisir votre numéro de téléphone valide.'])
-
+                'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new notBlank(['message' => 'Veuillez saisir votre numéro de téléphone valide.'])
+                ]
             ])
             /*->add('administration', EntityType::class, [
                 'class' => Administration::class,
