@@ -55,6 +55,7 @@ class CalendarController extends AbstractController
     #[Route('/{id}/edit', name: 'app_calendar_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Calendar $calendar, EntityManagerInterface $entityManager): Response
     {
+
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
@@ -78,6 +79,6 @@ class CalendarController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_calendar_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_agenda', [], Response::HTTP_SEE_OTHER);
     }
 }

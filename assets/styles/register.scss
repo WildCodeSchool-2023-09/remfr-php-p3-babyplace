@@ -1,3 +1,15 @@
+// Define reusable variables
+$primary-color: #F1F5F7;
+$secondary-color: #ffffff;
+$accent-color: #4F4FFF;
+$gradient-start: #474FFF;
+$gradient-end: #E37ACC;
+$tertiary-color: #00ff55;
+$dropdown-bg: #a49898;
+$dropdown-menu-bg: #c0bdbd;
+$footer-text-color: #000;
+
+
 .section_register {
     display: flex;
     flex-direction: row;
@@ -66,4 +78,120 @@
 
 .module-info_register {
     width: 70%;
+}
+
+// modal
+
+.form-control {
+    font-family: $font-family-sans-serif;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 100vw;
+        width: 30vw !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.div-form_form-calendar {
+    padding: 10%;   
+}
+
+div#calendar_end.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div#calendar_end_time {
+    display: inline-flex;
+    width: 100%;
+}
+
+div#calendar_start_time {
+    display: inline-flex;
+    width: 100%;
+}
+
+.div-hour_form-calendar {
+    width: 100%;
+}
+
+.div-hour-start_form-calendar, .div-hour-end_form-calendar {
+    width: 50%;
+}
+
+select#calendar_end_time_hour {
+    width: 50%;
+}
+
+select#calendar_end_time_minute {
+    width: 50%;
+}
+
+select#calendar_start_time_hour {
+    width: 50%;
+}
+
+select#calendar_start_time_minute {
+    width: 50%;
+}
+
+input#calendar_start_date {
+    width: 100%;
+}
+
+input#calendar_end_date {
+    width: 100%;
+}
+
+.div-background-color_form-calendar {    
+    width: 100%;
+}
+
+.div-allday_form-calendar {
+    margin-bottom: 5%;
+}
+
+input#calendar_all_day.nom-lambda {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;   
+}
+
+.button-update_form-calendar {
+    background: linear-gradient(158deg, $gradient-start 0%, $gradient-end 100%);
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+
+.button-update_form-calendar:hover {
+    background: $btn-color-hover;
+    color: white;
+    font-weight: 600;
+}
+
+.button-delete_form-calendar {    
+    color: $button-color-danger;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    border: 2px solid $button-color-danger;
+}
+
+.button-delete_form-calendar:hover {
+    background: $button-color-danger;
+    color: white;
+    font-weight: 600;
 }

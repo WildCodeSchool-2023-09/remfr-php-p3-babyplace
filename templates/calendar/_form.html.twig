@@ -1,4 +1,24 @@
-{{ form_start(form, {'attr': {'id': 'myFormInModal'}}) }}
-    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
-    <button class="btn button_login mt-4 text-uppercase">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div >
+	{{ form_start(form, {'attr': {'id': 'myFormInModal'}}) }}
+	{{ form_row(form.title) }}
+	<div class="d-inline-flex justify-content-between div-hour_form-calendar">
+		<div class="div-hour-start_form-calendar">
+			{{ form_row(form.start) }}
+		</div>
+		<div class="div-hour-end_form-calendar">
+			{{ form_row(form.end) }}
+		</div>
+	</div>
+	<div class="div-allday_form-calendar">
+	{{ form_row(form.all_day) }}
+	</div>
+	{{ form_row(form.description) }}
+	<div class="div-background-color_form-calendar">
+		{{ form_row(form.background_color) }}
+	</div>	
+	<div class="div-text-color_form-calendar">
+		{{ form_row(form.text_color) }}
+	</div>
+	<button class="btn button-update_form-calendar mt-4 text-uppercase">{{ button_label|default('Save') }}</button>
+	{{ form_end(form) }}
+</div>

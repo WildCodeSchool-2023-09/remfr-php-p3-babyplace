@@ -51,13 +51,6 @@ class Calendar
         pattern:"/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/",
         message:"La couleur de fond doit être au format hexadécimal (#RRGGBB ou #RGB)"
     )]
-    private ?string $borderColor = null;
-
-    #[ORM\Column(length: 7)]
-    #[Assert\Regex(
-        pattern:"/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/",
-        message:"La couleur de fond doit être au format hexadécimal (#RRGGBB ou #RGB)"
-    )]
     private ?string $textColor = null;
 
     public function getId(): ?int
@@ -133,18 +126,6 @@ class Calendar
     public function setBackgroundColor(string $backgroundColor): static
     {
         $this->backgroundColor = $backgroundColor;
-
-        return $this;
-    }
-
-    public function getBorderColor(): ?string
-    {
-        return $this->borderColor;
-    }
-
-    public function setBorderColor(string $borderColor): static
-    {
-        $this->borderColor = $borderColor;
 
         return $this;
     }
