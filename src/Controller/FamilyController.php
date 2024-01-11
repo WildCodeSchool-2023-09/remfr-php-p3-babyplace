@@ -40,7 +40,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/menu-parent', name: 'menu')]
+    #[Route('/menu', name: 'menu')]
     public function menuParent(): Response
     {
         return $this->render('parent/menu.html.twig', [

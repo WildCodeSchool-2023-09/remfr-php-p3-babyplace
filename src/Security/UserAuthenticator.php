@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 // phpcs:ignoreFile
 /** 
  * @SuppressWarnings(PHPMD)
-*/
+ */
 
 class UserAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -52,9 +52,17 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        if (in_array('ROLE_CRECHE', $token->getRoleNames())) {
+            return new RedirectResponse($this->urlGenerator->generate('creche_registration'));
+        }
+        elseif (in_array('ROLE_PARENT', $token->getRoleNames()))
+        {
+            return new RedirectResponse($this->urlGenerator->generate('parent_parent_new'));
+        }
+        elseif (in_array('[]', $token->getRoleNames()))
+        {
+            throw new \Exception('Encore raté');
+        }
         //throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 

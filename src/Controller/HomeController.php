@@ -17,6 +17,9 @@ class HomeController extends AbstractController
     #[Route('/choix', methods: ['GET', 'POST'], name: 'choix')]
     public function choice(): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
         return $this->render('choice.html.twig');
     }
 
