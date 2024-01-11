@@ -21,7 +21,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', methods: ['GET', 'POST'], name:'parent_new')]
+    #[Route('/new', methods: ['GET', 'POST'], name: 'parent_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $family = new Family();
@@ -68,6 +68,15 @@ class FamilyController extends AbstractController
     public function profilParent(): Response
     {
         return $this->render('parent/profil-parent.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Filtres présents sur la partie Recherche - Parents
+    #[Route('/filtres', name: 'filtres')]
+    public function filtersParent(): Response
+    {
+        return $this->render('parent/filters.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }

@@ -7,17 +7,71 @@
 
 .header_search-parent {
     background-color: white;
-    height: 15vh;
+    height: auto;
     width: 100%;
     box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
 
 .header-div_search-parent {
     width: 90%;
+}
+
+/* Top et sub navbar */
+
+.top-navbar_search-parent {
+    background-color: white;
+    padding: 1vh 5% 1vh 5%;
+    box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+}
+
+.sub-navbar_search-parent {
+    background-color: #eeeeee;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 5% 2vh 5%;
+}
+
+.div-searchbar_search-parent {
+    width: 100%;
+}
+
+input.searchbar_search-parent {
+    color: #9c9ca0;
+    background-color: #fefefe;
+    border-radius: 0.5rem;
+    border: 0px;
+    width: 100%;
+
+    &:focus {
+        color: $p-color;
+    }
+}
+
+:focus-visible {
+    outline: none;
+}
+
+.mode_search-parent {
+    color: #9c9ca0;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.icon-filter_search-parent {
+    color: #9c9ca0;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-right: 2vw;
+}
+
+.filter_search-parent {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
 }
 
 .img-profil_search-parent {
@@ -35,12 +89,16 @@
     padding: 5%;
 }
 
+/* Cards pour chaque crèche */
+
 .card {
     border-radius: 1rem 1rem 0rem 0rem;
+    box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
 }
 
-.card-header {
+.card-header_creche {
     padding: 0;
+    border-radius: 1rem 1rem 0rem 0rem !important;
 }
 
 .card-img-top {
@@ -48,13 +106,24 @@
     height: 25vh;
     object-fit: cover;
     border-radius: 1rem 1rem 0rem 0rem;
-    background: -webkit-linear-gradient(0deg, #3D7EAA 10%, #FFE47A 90%);
+    z-index: 9;
+}
+
+.div-card-img-top {
+    position: absolute;
+    width: 100%;
+    height: 25vh;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+    background: linear-gradient(rgba(71, 79, 255, 0.1), rgba(172, 60, 147, 0.7));
+    z-index: 99;
 }
 
 .card-title {
     color: white;
     font-weight: 800;
     margin: 4%;
+    z-index: 999;
 }
 
 .rate_search-parent {
@@ -64,12 +133,14 @@
     margin: 4%;
     padding: 2% 3% 2% 3%;
     border-radius: 1.5rem;
+    z-index: 999;
 }
 
 .favoris_search_parent {
     color: $btn-color;
     margin-right: 4%;
     margin-top: 6%;
+    z-index: 999;
 }
 
 .lieu_search-parent {
@@ -80,4 +151,30 @@
     font-weight: 600;
     margin-top: 4%;
     margin-right: 4%;
+}
+
+/* Jours - Créneaux disponibles */
+
+.reservations_search-list {
+    background-color: transparent;
+    margin-bottom: 0;
+    border-bottom: 0px;
+}
+
+.reservations_search-list td {
+    border: 0.5rem solid white;
+}
+
+.day_search-list {
+    color: white;
+    text-align: center;
+    background-color: #d6d6d6 !important;
+    border-bottom: 0;
+}
+
+.day-active_search-list {
+    color: white !important;
+    background-color: $button-color-success !important;
+    font-weight: 600;
+    text-align: center;
 }
