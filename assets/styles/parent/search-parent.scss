@@ -7,9 +7,12 @@
 
 .header_search-parent {
     background-color: white;
+    position: fixed;
+    top: 0;
     height: auto;
     width: 100%;
     box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+    z-index: 9999;
 }
 
 .header-div_search-parent {
@@ -69,6 +72,10 @@ input.searchbar_search-parent {
 }
 
 .filter_search-parent {
+    color: #9c9ca0;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
     margin-bottom: 0;
@@ -81,6 +88,7 @@ input.searchbar_search-parent {
 }
 
 .section_search-parent {
+    margin-top: 15vh;
     min-height: 85vh;
     background: linear-gradient(rgba(71, 79, 255, 0.3), rgba(227, 122, 204, 0.3));
 }
