@@ -12,9 +12,27 @@
 }
 
 .progress_profil-parent {
-    
+    background-color: $gradient-color-green;
+    height: 5vh;
+    width: 80%;
+    border-radius: 0;
 }
 
 .progress-bar_profil-parent {
+    background-color: $gradient-color-green;
+    height: 5vh;
+}
 
+.dossier_profil-parent {
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    font-size: $p-size-desktop;
+}
+
+.pourcentage_profil-parent {
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    font-size: $p-size-desktop;
 }
