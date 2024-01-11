@@ -27,23 +27,43 @@ class Administration
     private string $familyIncome;
 
     #[Vich\UploadableField(mapping: 'family_income_file', fileNameProperty:'familyIncome')]
+    #[Assert\File(
+        maxSize:'1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $familyIncomeFile = null;
 
     #[ORM\Column(length: 255)]
     private string $taxReturn;
 
     #[Vich\UploadableField(mapping: 'tax_return_file', fileNameProperty:'taxReturn')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $taxReturnFile = null;
 
     #[ORM\Column(length: 7)]
-    #[Assert\EqualTo(
-        value: 7,
+    #[Assert\Length(
+        min: 15,
+        max: 15,
+        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
     private string $cafNumber;
 
     #[ORM\Column(length: 15)]
-    #[Assert\EqualTo(
-        value: 15,
+    #[Assert\Length(
+        min: 15,
+        max: 15,
+        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
     private string $socialNumber;
 
@@ -51,33 +71,76 @@ class Administration
     private string $residencyProof;
 
     #[Vich\UploadableField(mapping: 'residency_proof_file', fileNameProperty:'residencyProof')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $residencyProofFile = null;
 
     #[ORM\Column(length: 255)]
     private string $statusProof;
 
     #[Vich\UploadableField(mapping: 'status_proof_file', fileNameProperty:'statusProof')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $statusProofFile = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Iban(
+        message: 'Le numéro IBAN n\'est pas valide',
+    )]
     private string $bankingInfo;
 
     #[ORM\Column(length: 255)]
     private string $discharge;
 
     #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $dischargeFile = null;
 
     #[ORM\Column(length: 255)]
     private string $familyRecord;
 
     #[Vich\UploadableField(mapping: 'family_record_file', fileNameProperty:'familyRecord')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $familyRecordFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $divorceDecree = null;
 
     #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty:'divorceDecree')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
     private ?File $divorceDecreeFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -249,7 +312,7 @@ class Administration
         return $this->discharge;
     }
 
-    public function setDischarge(string $discharge): static
+    public function setDischarge(string $discharge): self
     {
         $this->discharge = $discharge;
 
