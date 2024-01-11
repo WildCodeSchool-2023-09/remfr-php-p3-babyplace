@@ -1,16 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard-creche.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block content %}
+<!-- Bouton pour ouvrir le modal -->
+	<div class="button-ajout-calendar-form">
+		<button class="btn button-ajout-calendar mt-4 text-uppercase" id="calendarModalButton">+ Ajouter</button>
+	</div> 
+    {# id="openModalButton" #}
+	<div class="calendar_form">		
+		<div id='calendar' data-edit-url=""></div>
+	</div>
+{% endblock %}
 
 {% block javascripts %}
 
-{{ parent() }}
-	<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
     
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('calendar');
 	    const modalEdit = document.getElementById('myModal');  
+        console.log(modalEdit)
     
     
         const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -113,20 +121,6 @@ calendar.render();
 
 })
 	</script>
-{% endblock %}
-{% block content %}
 
-
-	<div class="calendar_form">
-		<a href="/calendar/new">new</a>
-		<div id='calendar' data-edit-url=""></div>
-	</div>
-
-	<!-- Bouton pour ouvrir le modal -->
-	<div>
-		<button class="btn button_login mt-4 text-uppercase" id="openModalButton">+ Ajouter</button>
-	</div> 
-	
-
-
+    {{ parent() }}
 {% endblock %}

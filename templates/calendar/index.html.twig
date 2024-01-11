@@ -14,8 +14,7 @@
                 <th>End</th>
                 <th>Description</th>
                 <th>All_day</th>
-                <th>Background_color</th>
-                <th>Border_color</th>
+                <th>Background_color</th>                
                 <th>Text_color</th>
                 <th>actions</th>
             </tr>
@@ -29,8 +28,7 @@
                 <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.description }}</td>
                 <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
-                <td>{{ calendar.backgroundColor }}</td>
-                <td>{{ calendar.borderColor }}</td>
+                <td>{{ calendar.backgroundColor }}</td>                
                 <td>{{ calendar.textColor }}</td>
                 <td>
                     <a href="{{ path('app_calendar_show', {'id': calendar.id}) }}">show</a>

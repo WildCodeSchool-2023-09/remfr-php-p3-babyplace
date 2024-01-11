@@ -172,12 +172,13 @@ input#calendar_all_day.nom-lambda {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     width: 100%;
+    border: 0px;
 }
 
 .button-update_form-calendar:hover {
-    background: $btn-color-hover;
+    background: $button-color-success;
     color: white;
-    font-weight: 600;
+    font-weight: 600;    
 }
 
 .button-delete_form-calendar {    
