@@ -12,6 +12,7 @@
     height: auto;
     width: 100%;
     box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+    z-index: 9999;
 }
 
 .header-div_filters {
@@ -80,6 +81,7 @@
 }
 
 .section_filters {
+    margin-top: 10vh;
     min-height: 85vh;
 }
 
