@@ -13,3 +13,8 @@ require('bootstrap');
 import 'bootstrap';
 // Font Awesome
 require('@fortawesome/fontawesome-free/css/all.min.css');
+
+import a2lix_lib from '@a2lix/symfony-collection/dist/a2lix_sf_collection.min'
+// import a2lix_lib from 'https://esm.run/@a2lix/symfony-collection/dist/a2lix_sf_collection.min';
+
+a2lix_lib.sfCollection.init()

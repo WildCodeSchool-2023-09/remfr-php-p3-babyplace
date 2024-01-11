@@ -56,7 +56,12 @@ class CrecheType extends AbstractType
             ->add('legalStatus', TextType::class, array_merge($commonOptions, [
                 'attr' => ['placeholder' => 'Statut juridique',
                 'class' => 'form-control'],
-            ]));
+            ]))
+            ->add('rules', TextType::class, array_merge($commonOptions, [
+                'attr' => ['placeholder' => 'Règlement intérieur',
+                'class' => 'form-control'],
+            ]))
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
