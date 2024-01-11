@@ -21,12 +21,13 @@ class UserFixtures extends Fixture
         // Création d’un utilisateur de type “contributeur” (= auteur)
         $contributor = new User();
         $contributor->setEmail('contributor@monsite.com');
-        $contributor->setRoles(['ROLE_USER']);
+        $contributor->setRoles(['ROLE_CRECHE']);
         $contributor->setAvatar('null');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $contributor,
             'contributorpassword'
         );
+        $this->addReference('user1', $contributor);
 
         $contributor->setPassword($hashedPassword);
         $manager->persist($contributor);
