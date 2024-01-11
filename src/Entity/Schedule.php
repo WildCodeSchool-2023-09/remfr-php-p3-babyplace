@@ -37,7 +37,7 @@ class Schedule
     #[Assert\NotBlank(message: 'Veuillez renseigner les horaires de fermeture de la crèche')]
     private ?string $closingHours = null;
 
-    #[ORM\OneToOne(inversedBy: 'schedule', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'schedule', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Creche $creche = null;
 

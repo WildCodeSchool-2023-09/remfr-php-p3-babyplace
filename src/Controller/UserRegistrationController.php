@@ -39,12 +39,17 @@ class UserRegistrationController extends AbstractController
         EntityManagerInterface $entityManager,
         MailerInterface $mailer
     ): Response {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
         $user = new User();
         $form = $this->createForm(UserRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $userRole = $request->request->get('roles');
+            $user->setRoles([$userRole]);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
