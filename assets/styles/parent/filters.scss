@@ -1,0 +1,157 @@
+.body_filters {
+    background: $bg-light-color;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.header_filters {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    height: auto;
+    width: 100%;
+    box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+    z-index: 9999;
+}
+
+.header-div_filters {
+    width: 90%;
+}
+
+/* Navbar avec retour */
+
+.top-navbar_filters {
+    background-color: white;
+    padding: 1vh 5% 1vh 5%;
+    box-shadow: 0px 10px 25px -5px rgba(177, 177, 177, 0.6);
+}
+
+.div-searchbar_filters {
+    background-color: white;
+    width: 100%;
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    padding: 2vh 5% 2vh 5%;
+}
+
+.title_filters {
+    color: $h-color;
+    font-family: $font-family-sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 0;
+}
+
+.icon-filter_filters {
+    color: $btn-color;
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-right: 5vw;
+
+    &:hover {
+        color: $btn-color-hover;
+    }
+}
+
+.filter_filters {
+    color: #9c9ca0;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.title-filter_filters {
+    color: $h-color;
+    font-size: $btn-font-size;
+    font-family: $font-family-sans-serif;
+    font-weight: 900;
+}
+
+.name-filter_filters {
+    color: $h-color;
+    font-size: 1rem;
+    margin-bottom: 0px;
+}
+
+.section_filters {
+    margin-top: 10vh;
+    min-height: 85vh;
+}
+
+.div_filters {
+    padding: 10%;
+}
+
+.row_filters {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Bouton toggle switch */
+
+input[type="checkbox"].switch_1 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 3.5em;
+    height: 1.5em;
+    background: #D9D9D9;
+    border-radius: 3em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked {
+    background-color: lighten($btn-color, 20%);
+}
+
+input[type="checkbox"].switch_1:after {
+    position: absolute;
+    content: "";
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-box-shadow: 0 0 .25em rgba(0, 0, 0, .3);
+    box-shadow: 0 0 .25em rgba(0, 0, 0, .3);
+    -webkit-transform: scale(.7);
+    transform: scale(.7);
+    left: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked:after {
+    left: calc(100% - 1.5em);
+    background-color: $btn-color;
+}
+
+/* Bouton submit */
+
+.button_filters {
+    font-family: $font-family-sans-serif;
+    background-color: $btn-color;
+    color: white;
+    font-weight: 900;
+    padding-top: 0.5rem;
+    padding-bottom: 0.65rem;
+    width: 100%;
+}
+
+.button_filters:hover {
+    background-color: $btn-color-hover;
+    color: white;
+}
