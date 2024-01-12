@@ -1,0 +1,29 @@
+
+
+.calendar_form {
+   width: 60%;
+   margin-left: 18vw;   
+}
+
+.button-ajout-calendar {
+   background-color: $btn-color;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 10%;
+    
+}
+
+.button-ajout-calendar:hover {
+   background: $btn-color-hover;
+    color: white;
+    font-weight: 600;
+}
+
+.button-ajout-calendar-form {
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-start;
+}
