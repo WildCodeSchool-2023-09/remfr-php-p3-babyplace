@@ -5,105 +5,74 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
         <title>
-            {% block title %}Choix du type de compte{% endblock %}
+            {% block title %}Gestion - Crèche{% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
+        {% block javascripts %}		
             {{ encore_entry_script_tags('app') }}
+			<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
         {% endblock %}
     </head>
-    <body>
+    <body class="body_dashboard-creche">
         {% block body %}
-        <nav class="navbar navbar_dashboard-creche bg-body-tertiary">
-  <!-- Searchbar -->
-  <!--<div>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Rechercher</button>
-    </form>
-  </div>-->
-  <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>My Profil</strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-</nav>
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-	<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-		<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-		<span class="fs-4">BabyPlace</span>
-	</a>
-	<hr>
-	<ul class="nav nav-pills flex-column mb-auto">
-		<li class="nav-item">
-		<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white" aria-current="page">
-				Tableau de bord
-			</a>
-		</li>
-		<h3 class="nav-title_dashboard-creche">RESERVATION</h3>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-				Liste des demandes
-			</a>
-		</li>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-				Agenda
-			</a>
-		</li>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-				Ajouter une place
-			</a>
-		</li>
-		<h3 class="nav-title_dashboard-creche">APPS</h3>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-				Email
-			</a>
-		</li>
-		<h3 class="nav-title_dashboard-creche">ADMINISTRATION</h3>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-				Authentification
-			</a>
-		</li>
-		<li>
-			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
-				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-				Paramètre de réservation
-			</a>
-		</li>
-	</ul>
-</div>
-
-{% block content %}
-<main>
-{% endblock %}
-
-
-<footer class="footer_dashboard-creche">
-	<p>2023 Babyplace</p>
-	<p>Crée avec <3 Wild Code School x BabyPlace</p>
-</footer>
-        {% endblock %}
+        {# Header #}
+        <header>
+            {# Navbar top #}
+            <nav class="navbar navbar_dashboard-creche bg-body-tertiary">
+            <i class="fa-regular fa-bell fa-lg"></i>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="50" height="50" class="rounded-circle">
+                </a>
+                <ul class="dropdown_dashboard-creche dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" {# href="{{ path(creche/gestion/informations-personnelles) }}" #}>Informations personnelles</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
+                </ul>
+                </div>
+            </nav>
+            {# Aside #}
+            <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
+                <a href="/" class="d-flex align-items-center md-auto text-white text-decoration-none">
+                    <h4 class="logo_dashboard-creche">BabyPlace</h4>
+                </a>
+                <hr>
+                <ul class="div_aside nav nav-pills flex-column mb-auto">
+                    <h3 class="nav-title_dashboard-creche">Réservations</h3>
+                    <li>
+                        <a {# href="{{ path(creche/gestion/liste-des-demandes) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-border-all fa-gestion"></i>Liste des demandes</a>
+                    </li>
+                    <li>
+                        <a {# href="{{ path(creche/gestion/agenda) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar fa-gestion"></i>Agenda</a>
+                    </li>
+                    <li>
+                        <a {# href="{{ path(creche/gestion/ajouter-une-place) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar-plus fa-gestion"></i>Ajouter une place</a>
+                    </li>
+                    <h3 class="nav-title_dashboard-creche">Profil</h3>
+                    <li>
+                        <a {# href="{{ path(creche/gestion/informations-personnelles) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-circle-user fa-gestion"></i>Informations personnelles</a>
+                    </li>
+                    <li>
+                        <a {# href="{{ path(creche/gestion/notifications) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-bell fa-gestion"></i>Notifications</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        	<main class="main_dashboard-creche">
+                {% block content %}
+                    {# Insérez votre contenu ici #}
+                {% endblock %}
+            </main>
+        {# Footer #}
+        <footer class="footer_dashboard-creche">
+            <p>2023 Babyplace</p>
+            <p>Crée avec<i class="fa-solid fa-heart icon_footer"></i>Wild Code School x BabyPlace</p>
+        </footer>
+        {% endblock %}		
     </body>
+
 </html>
