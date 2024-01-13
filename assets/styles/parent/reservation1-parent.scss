@@ -46,5 +46,6 @@ Hide the browser's default checkbox
 }
 
 .button_reservation:hover {
-  color: $btn-color-hover;
+  background-color: $btn-color-hover;
+  color: $bg-light-color;
 }

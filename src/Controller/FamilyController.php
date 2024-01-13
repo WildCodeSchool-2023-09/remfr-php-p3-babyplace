@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Family;
 use App\Form\FamilyType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,6 +36,10 @@ class FamilyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Créer une entité family en récupérant l'id user créé à l'étape précédente
+            $family->setUser($this->getUser());
+
+            //Faire persister le parent
             $entityManager->persist($family);
             $entityManager->flush();
 
@@ -80,14 +85,19 @@ class FamilyController extends AbstractController
     }
     //Il faudrait qu'on édite cette méthode de façon à la link avec user,
     //de cette façon, le compte serait supprimé. Donc renvoi à la page d'accueil.
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'deleteParent', methods: ['POST'])]
     public function deleteParent(
         Request $request,
         Family $family,
+        User $user,
         EntityManagerInterface $entityManager
     ): Response {
-        if ($this->isCsrfTokenValid('delete' . $family->getId(), $request->request->get('_token'))) {
+        if (
+            $this->isCsrfTokenValid('delete' . $family->getId() .
+            '_' . $user->getId(), $request->request->get('_token'))
+        ) {
             $entityManager->remove($family);
+            $entityManager->remove($user);
             $entityManager->flush();
         }
 
