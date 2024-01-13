@@ -4,10 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    upload_user_directory: '%kernel.project_dir%/public/uploads/images/avatar'
     upload_team_directory: '%kernel.project_dir%/public/uploads/images/teamAvatar'
     upload_creche_directory: '%kernel.project_dir%/public/uploads/images/crechePictures'
-
-    mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
     upload_familyIncome_directory: '%kernel.project_dir%/public/uploads/documents/familyIncome'
     upload_taxReturn_directory: '%kernel.project_dir%/public/uploads/documents/taxReturn'
     upload_residencyProof_directory: '%kernel.project_dir%/public/uploads/documents/residencyProof'
@@ -15,7 +14,11 @@ parameters:
     upload_discharge_directory: '%kernel.project_dir%/public/uploads/documents/discharge'
     upload_familyRecord_directory: '%kernel.project_dir%/public/uploads/documents/familyRecore'
     upload_divorceDecree_directory: '%kernel.project_dir%/public/uploads/documents/divorceDecree'
+    upload_birthCertificate_directory: '%kernel.project_dir%/public/uploads/documents/birthCertificate'
+    upload_vaccine_directory: '%kernel.project_dir%/public/uploads/documents/vaccine'
+    upload_insurance_directory: '%kernel.project_dir%/public/uploads/documents/insurance'
 
+    mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
 
 services:
     # default configuration for services in *this* file

@@ -1,0 +1,126 @@
+{% extends 'dashboard-creche.html.twig' %}
+
+{% block content %}
+<!-- Bouton pour ouvrir le modal -->
+	<div class="button-ajout-calendar-form">
+		<button class="btn button-ajout-calendar mt-4 text-uppercase" id="calendarModalButton">+ Ajouter</button>
+	</div> 
+    {# id="openModalButton" #}
+	<div class="calendar_form">		
+		<div id='calendar' data-edit-url=""></div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+
+    
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+	    const modalEdit = document.getElementById('myModal');  
+        console.log(modalEdit)
+    
+    
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'fr',
+        timeZone: 'Europe/Paris',
+        headerToolbar: {
+            start: 'prev,next',
+            center: 'title',
+            end: 'dayGridMonth,timeGridWeek,list'
+        },
+		
+        eventClick: function(info) {
+            // Récupérer l'ID de l'événement cliqué
+            const eventId = info.event.id;          
+
+            // Construire l'URL pour l'édition de l'événement
+            const editEventURL = `/calendar/${eventId}/edit`;
+
+            fetch(`/calendar/${eventId}/edit`)
+                .then(response => response.text())
+                .then(html => {
+                 // Insérer le contenu de la modal dans le corps du document
+                document.body.insertAdjacentHTML('beforeend', html);
+
+                // Activer la modal après avoir ajouté son contenu au DOM
+                const modal = new bootstrap.Modal(document.getElementById('myModal'));
+                modal.show();
+                
+                modal._element.addEventListener('shown.bs.modal', editSubmitHandler);
+        }); 
+        
+    function editSubmitHandler() {
+    // Récupérer le formulaire de la modal
+    const formInModal = document.getElementById('myFormInModal');
+
+    formInModal.addEventListener('submit', function (event) {
+        event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+
+        // Récupérer les données du formulaire
+        const formData = new FormData(formInModal);
+
+        // Configuration de la requête fetch pour soumettre les données du formulaire au serveur
+        fetch(`/calendar/${eventId}/edit`, {
+            method: 'POST',
+            body: formData // Les données du formulaire (FormData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la requête');
+                }
+                // Soumission réussie du formulaire, fermer la modal après un court délai
+                setTimeout(function () {
+                    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+                    modal.hide();
+                    // Recharger la page après la fermeture de la modal
+                    window.location.reload();
+                }, 500); // Attendre 500ms avant de fermer la modal et recharger la page (à des fins de démonstration)
+            })
+            .catch(error => {
+                console.error('Erreur lors de la soumission du formulaire :', error);
+                // Gérer les erreurs ici (afficher un message d'erreur, etc.)
+            });
+    });
+}
+
+            
+            
+        },
+
+events: {{ data|raw }},
+editable: true,
+eventResizableFromStart: true
+})
+
+calendar.on('eventChange', (e) => {
+const url = `/rdv/${
+e.event.id
+}/edit`
+const donnees = {
+"title": e.event.title,
+"description": e.event.extendedProps.description,
+"start": e.event.start,
+"end": e.event.end,
+"backgroundColor": e.event.backgroundColor,
+"borderColor": e.event.borderColor,
+"textColor": e.event.textColor,
+"allDay": e.event.allDay
+}
+
+const xhr = new XMLHttpRequest()
+
+xhr.open("PUT", url)
+xhr.send(JSON.stringify(donnees))
+
+})
+
+calendar.render();
+
+
+})
+	</script>
+
+    {{ parent() }}
+{% endblock %}
