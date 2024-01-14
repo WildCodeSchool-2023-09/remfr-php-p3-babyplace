@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Family;
 use App\Form\FamilyType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,14 +22,24 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', methods: ['GET', 'POST'], name: 'parent_new')]
+    #[Route('/new', methods: ['GET', 'POST'], name: 'new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        } elseif (in_array('ROLE_PARENT', $this->getUser()->getRoles()) && $this->getUser()->getFamily()) {
+            return $this->redirectToRoute('parent_edit', ['id' => $this->getUser()->getFamily()->getId()]);
+        }
+
         $family = new Family();
         $form = $this->createForm(FamilyType::class, $family);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Créer une entité family en récupérant l'id user créé à l'étape précédente
+            $family->setUser($this->getUser());
+
+            //Faire persister le parent
             $entityManager->persist($family);
             $entityManager->flush();
 
@@ -42,7 +53,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'parent_edit', methods:['GET','POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods:['GET','POST'])]
     public function editParent(Request $request, Family $family, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(FamilyType::class, $family);
@@ -65,7 +76,7 @@ class FamilyController extends AbstractController
     }
 
     //Voir le profil parent
-    #[Route('/{id}/profil', methods:['GET'], name:'parent_profil')]
+    #[Route('profil', methods:['GET'], name:'profil')]
     public function showProfil(Family $family): Response
     {
         return $this->render('parent/parent-profil.html.twig', [
@@ -74,14 +85,19 @@ class FamilyController extends AbstractController
     }
     //Il faudrait qu'on édite cette méthode de façon à la link avec user,
     //de cette façon, le compte serait supprimé. Donc renvoi à la page d'accueil.
-    #[Route('/{id}', name: 'parent_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'deleteParent', methods: ['POST'])]
     public function deleteParent(
         Request $request,
         Family $family,
+        User $user,
         EntityManagerInterface $entityManager
     ): Response {
-        if ($this->isCsrfTokenValid('delete' . $family->getId(), $request->request->get('_token'))) {
+        if (
+            $this->isCsrfTokenValid('delete' . $family->getId() .
+            '_' . $user->getId(), $request->request->get('_token'))
+        ) {
             $entityManager->remove($family);
+            $entityManager->remove($user);
             $entityManager->flush();
         }
 
@@ -120,6 +136,14 @@ class FamilyController extends AbstractController
         ]);
     }
 
+    //Voir la page de réservation
+    #[Route('/reservation', methods:['GET','POST'], name:'parent_reservation1')]
+    public function showReservation(): Response
+    {
+        return $this->render('parent/reservation1-parent.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
     // Filtres présents sur la partie Recherche - Parents
     #[Route('/filtres', name: 'filtres')]
     public function filtersParent(): Response
