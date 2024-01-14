@@ -49,7 +49,7 @@ class FamilyController extends AbstractController
         }
 
         return $this->render('parent/register-parent.html.twig', [
-            'formRegister' => $form,
+            'formFamily' => $form,
         ]);
     }
 
@@ -71,7 +71,7 @@ class FamilyController extends AbstractController
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
 
         return $this->render('parent/edit-parent.html.twig', [
-            'formEdit' => $form
+            'formFamily' => $form
         ]);
     }
 
