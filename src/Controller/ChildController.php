@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Child;
 use App\Form\ChildType;
+use App\Form\SearchChildType;
 use App\Repository\ChildRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -77,5 +78,33 @@ class ChildController extends AbstractController
         }
 
         return $this->redirectToRoute('app_child_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('search', name: 'app_child_search', methods: ['GET'])]
+    public function searchChildren(Request $request, ChildRepository $childRepository): Response
+    {
+        $form = $this->createForm(SearchChildType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer les données du formulaire
+            $data = $form->getData();
+
+            //Effectuer la 1e requête
+            $result1 = $childRepository->findLikeName($data);
+
+            // Effectuer la deuxième requête
+            $result2 = $childRepository->findDisability();
+
+            return $this->render('your_template.html.twig', [
+            'result1' => $result1,
+            'result2' => $result2,
+            ]);
+        }
+
+        return $this->render('your_search_form_template.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
