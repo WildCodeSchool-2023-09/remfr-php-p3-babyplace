@@ -69,7 +69,7 @@ class CrecheController extends AbstractController
 
     #[Route('/gestion/{id}', methods: ['GET'], name: 'edit_index')]
     public function editIndex(#[MapEntity(mapping: ['id' => 'id'])]
-        Creche $creche, EntityManagerInterface $entityManager): Response
+        Creche $creche): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -80,35 +80,32 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/gestion/info/{id}', methods: ['GET', 'POST'], name: 'edit_creche')]
-    public function editCreche(Request $request, EntityManagerInterface $entityManager): Response
+    public function editCreche(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CrecheType::class);
+        $form = $this->createForm(CrecheType::class, $creche);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $entityManager->flush();
 
-            $creche = $data['creche'];
-            $entityManager->persist($creche);
-
-            return $this->redirectToRoute('registration_success');
+            return $this->redirectToRoute('creche_edit_index', ['id' => $creche->getId()]);
         }
+
         return $this->render('creche/edit/creche.html.twig', [
             'form' => $form->createView(),
+            'creche' => $creche,
         ]);
     }
 
+
     #[Route('/gestion/planning/{id}', methods: ['GET', 'POST'], name: 'edit_schedule')]
-    public function editSchedule(Request $request, EntityManagerInterface $entityManager): Response
+    public function editSchedule(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(ScheduleType::class);
+        $form = $this->createForm(ScheduleType::class, $creche->getSchedule());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $schedule = $data['schedule'];
-            $entityManager->persist($schedule);
+            $entityManager->flush();
 
             return $this->redirectToRoute('registration_success');
         }
@@ -118,6 +115,7 @@ class CrecheController extends AbstractController
         ]);
     }
 
+
     #[Route('/gestion/photo/{id}', methods: ['GET', 'POST'], name: 'edit_photo')]
     public function editPhoto(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -125,10 +123,7 @@ class CrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $photo = $data['photo'];
-            $entityManager->persist($photo);
+            $entityManager->flush();
 
             return $this->redirectToRoute('registration_success');
         }
@@ -139,16 +134,13 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/gestion/equipe/{id}', methods: ['GET', 'POST'], name: 'edit_team')]
-    public function editTeam(Request $request, EntityManagerInterface $entityManager): Response
+    public function editTeam(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TeamType::class);
+        $form = $this->createForm(TeamType::class, $creche->getTeams());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $team = $data['team'];
-            $entityManager->persist($team);
+            $entityManager->flush();
 
             return $this->redirectToRoute('registration_success');
         }
@@ -156,5 +148,11 @@ class CrecheController extends AbstractController
         return $this->render('creche/edit/team.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/demandes/{id}', methods: ['GET', 'POST'], name: 'demandes')]
+    public function demandes(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('creche/demandes.html.twig');
     }
 }

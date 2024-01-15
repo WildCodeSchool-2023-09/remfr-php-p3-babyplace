@@ -1,8 +1,12 @@
 {% extends "dashboard-creche.html.twig" %}
 
+{% block title %}Edit photo Creche{% endblock %}
+
 {% block content %}
-    <h1>Vos informations</h1>
-    {{form_start(form)}}
-        {{form_widget(form)}}
-    {{form_end(form)}}
+	<h1>Edit Schedule</h1>
+	<a href="javascript: history.go(-1)">Retour</a>
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button class="form-control"  type="submit">Save</button>
+	{{ form_end(form) }}
 {% endblock %}

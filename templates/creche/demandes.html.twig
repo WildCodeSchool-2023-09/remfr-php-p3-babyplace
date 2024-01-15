@@ -1,0 +1,50 @@
+{% extends "dashboard-creche.html.twig" %}
+
+{% block content %}
+	<h6>Toutes les réservations</h6>
+	<div class="card">
+		<div class="row">
+			<div class="col-md-1">
+				<div class="pastille refuse"></div>
+			</div>
+			<div class="col-md-2">
+				<ul>
+					<li>Nom de l'enfant</li>
+					<li>Age de l'enfant</li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul>
+					<li>Nom du parent</li>
+					<li>Profil 100%</li>
+					<li>Date d'arrivée</li>
+					<li>Date</li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul>
+					<li>Statut de la demande</li>
+					<li>Date de départ</li>
+					<li>Date</li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul>
+					<li>Nombre d'heures</li>
+					<li>Heure</li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul>
+					<div class="col s6">
+						<a href="#" class="btn waves-effect waves-light green">Accepter</a>
+					</div>
+					<div class="col s6">
+						<a href="#" class="btn waves-effect waves-light red">Refuser</a>
+					</div>
+					<a>Modifier</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock %}
