@@ -39,7 +39,8 @@ class UserRegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                    'class' => 'form-control'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez choisir un mot de passe.',
@@ -52,6 +53,7 @@ class UserRegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Vous devez accepter nos conditions d\'utilisation afin de continuer',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
