@@ -45,4 +45,26 @@ class ChildRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findLikeName(string $name): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.childLastname LIKE :childLastname')
+            ->setParameter('c.childLastname', '%' . $name . '%')
+            ->orderBy('c.childLastname', 'ASC')
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
+
+    public function findDisability(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.isDisabled = true')
+            ->orderBy('c.childLastname', 'ASC')
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
 }
