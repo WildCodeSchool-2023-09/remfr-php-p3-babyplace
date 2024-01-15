@@ -1,8 +1,9 @@
-{% extends "base.html.twig" %}
+{% extends "dashboard-creche.html.twig" %}
 
 {% block body %}
     <h1>Vos informations</h1>
     {{form_start(form)}}
         {{form_widget(form)}}
+        <button type="submit" class="btn btn-success">Modifier</button>
     {{form_end(form)}}
 {% endblock %}
