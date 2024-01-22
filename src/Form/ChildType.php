@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\Length;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class ChildType extends AbstractType
 {
@@ -68,7 +70,11 @@ class ChildType extends AbstractType
                     new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
                 ]
             ])
-            ->add('disability')
+            ->add('disability', TextType::class, [
+                'label' => 'Si oui, quel est-il ?',
+                'required' => false,
+                'class' => 'form-control',
+            ])
             ->add('birthCertificate', VichFileType::class, [
                 'label' => 'Certificat de naissance',
                 'required' => true,
@@ -106,6 +112,23 @@ class ChildType extends AbstractType
                 'choice_label' => 'id',
                 'multiple' => true,
             ]);
+
+            $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                // Vérifier si 'isDisabled' est vrai
+                $isDisabled = isset($data['isDisabled']) && $data['isDisabled'];
+
+                // Rendre 'disability' obligatoire si 'isDisabled' est vrai
+                $form->add('disability', TextType::class, [
+                    'required' => $isDisabled,
+                    'constraints' => [
+                        new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
+                    ],
+                    'class' => 'form-control',
+                ]);
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

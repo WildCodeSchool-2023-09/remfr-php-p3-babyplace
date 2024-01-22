@@ -19,18 +19,7 @@
             </div>
 
             <div class="form_register m-3">
-            {{ form_start(formRegister) }}
-
-                {{ form_row(formRegister.lastname) }}
-                {{ form_row(formRegister.firstname) }}
-                {{ form_row(formRegister.address) }}
-                {{ form_row(formRegister.postalCode) }}
-                {{ form_row(formRegister.city) }}
-                {{ form_row(formRegister.phone) }}
-
-                <button type="submit" class= "btn button_login mt-5 text-uppercase">Créer un compte</button>
-            {# Fin du formulaire  #}
-            {{ form_end(formRegister) }}
+                {% include 'parent/_form-parent.html.twig' %}
             </div>
         </section>
     </body>
