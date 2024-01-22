@@ -32,14 +32,18 @@
             {% endfor %}
             </div>
 
-            <h1>S'inscrire</h1>
+            <h1 class = "stepone-title">S'inscrire</h1>
+            <div class="stepone-register">
             {{ form_errors(registrationForm) }}
 
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.plainPassword) }}
-                {{ form_row(registrationForm.agreeTerms) }}
+                    <div class= "agree-terms">
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
                 <input id="roles" name="roles" type="hidden" value=""/>
-                <button type="submit" class="btn">S'inscrire sur BabyPlace</button>
+                <button type="submit" class="btn button_reservation mt-5 text-uppercase">S'inscrire sur BabyPlace</button>
+            </div>
         </div>
     </section>
 
