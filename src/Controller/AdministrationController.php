@@ -45,7 +45,7 @@ class AdministrationController extends AbstractController
         $this->addFlash('failAdministration', 'Il y a eu un problème dans la mise en ligne de vos informations.');
 
         return $this->render('adminFile/index-file.html.twig', [
-            'form' => $form,
+            'formFile' => $form,
         ]);
     }
 
@@ -70,7 +70,7 @@ class AdministrationController extends AbstractController
         $this->addFlash('fileFail', 'Il y a eu un problème dans la modification de votre dossier administratif.');
 
         return $this->render('AdminFile/edit-file.html.twig', [
-            'formEdit' => $form
+            'formFile' => $form
         ]);
     }
 

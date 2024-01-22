@@ -1,0 +1,15 @@
+{{ form_start(formChild) }}
+    {{ form_row(formChild.childFistname)}}
+    {{ form_row(formChild.childLastname)}}
+    {{ form_row(formChild.birthdate)}}
+    {{ form_row(formChild.isWalking)}}
+    {{ form_row(formChild.allergy)}}
+    {{ form_row(formChild.isDisabled)}}
+    {{ form_row(formChild.disability)}}
+    {{ form_row(formChild.birthCertificate)}}
+    {{ form_row(formChild.doctorName)}}
+    {{ form_row(formChild.vaccine)}}
+    {{ form_row(formChild.insurance)}}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(formChild) }}

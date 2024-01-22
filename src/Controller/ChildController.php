@@ -22,7 +22,7 @@ class ChildController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_child_new', methods: ['GET', 'POST'])]
+    #[Route('new', name: 'app_child_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $child = new Child();
@@ -37,8 +37,7 @@ class ChildController extends AbstractController
         }
 
         return $this->render('child/new.html.twig', [
-            'child' => $child,
-            'form' => $form,
+            'formChild' => $form,
         ]);
     }
 
