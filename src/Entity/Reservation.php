@@ -21,9 +21,11 @@ class Reservation
     #[ORM\JoinColumn(nullable: false)]
     private ?Family $family = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Schedule $schedule = null;
+    #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
+    private ?Calendar $Calendar = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Status = null;
 
     public function getId(): ?int
     {
@@ -54,14 +56,26 @@ class Reservation
         return $this;
     }
 
-    public function getAgenda(): ?Schedule
+    public function getCalendar(): ?Calendar
     {
-        return $this->schedule;
+        return $this->Calendar;
     }
 
-    public function setAgenda(?Schedule $schedule): static
+    public function setCalendar(?Calendar $Calendar): static
     {
-        $this->schedule = $schedule;
+        $this->Calendar = $Calendar;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(string $Status): static
+    {
+        $this->Status = $Status;
 
         return $this;
     }

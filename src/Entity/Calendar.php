@@ -53,6 +53,12 @@ class Calendar
     )]
     private ?string $textColor = null;
 
+    #[ORM\ManyToOne(inversedBy: 'calendars')]
+    private ?creche $Creche = null;
+
+    #[ORM\OneToOne(mappedBy: 'Calendar', cascade: ['persist', 'remove'])]
+    private ?Reservation $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,5 +154,39 @@ class Calendar
     public function getAllDay(): ?bool
     {
         return $this->allDay;
+    }
+
+    public function getCreche(): ?creche
+    {
+        return $this->Creche;
+    }
+
+    public function setCreche(?creche $Creche): static
+    {
+        $this->Creche = $Creche;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($reservation === null && $this->reservation !== null) {
+            $this->reservation->setCalendar(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($reservation !== null && $reservation->getCalendar() !== $this) {
+            $reservation->setCalendar($this);
+        }
+
+        $this->reservation = $reservation;
+
+        return $this;
     }
 }
