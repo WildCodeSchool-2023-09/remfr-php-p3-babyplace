@@ -151,7 +151,7 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/demandes/{id}', methods: ['GET', 'POST'], name: 'demandes')]
-    public function demandes(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
+    public function demandes(): Response
     {
         return $this->render('creche/demandes.html.twig');
     }

@@ -18,7 +18,7 @@ class CrecheFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
-        
+
         $creche = new Creche();
         $creche->setUser($this->getReference('user_1'));
         $creche->setIntroduction($faker->text());
