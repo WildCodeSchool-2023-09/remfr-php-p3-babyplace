@@ -8,8 +8,6 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-;
-
 class CalendarFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
@@ -21,16 +19,20 @@ class CalendarFixtures extends Fixture implements DependentFixtureInterface
             $calendar->setCreche($this->getReference('creche_1'));
             $calendar->setTitle($faker->sentence());
             $this->setReference('calendar_' . $i, $calendar);
-            for ($j = 0; $j < 7; $j++) {
-                $calendar->setStart($faker->dateTime());
-                $calendar->setEnd($faker->dateTime());
-                $calendar->setDescription($faker->text());
-                $calendar->setAllDay($faker->boolean());
-                $calendar->setBackgroundColor($faker->hexcolor());
-                $calendar->setTextColor($faker->hexcolor());
-            }
+
+            $startDate = $faker->dateTimeThisMonth;
+            $endDate = $faker->dateTimeBetween($startDate, $startDate->modify('+' . random_int(1, 7) . ' days'));
+
+            $calendar->setStart($startDate);
+            $calendar->setEnd($endDate);
+            $calendar->setDescription($faker->text());
+            $calendar->setAllDay($faker->boolean());
+            $calendar->setBackgroundColor($faker->hexcolor());
+            $calendar->setTextColor($faker->hexcolor());
+
             $manager->persist($calendar);
         }
+
         $manager->flush();
     }
 

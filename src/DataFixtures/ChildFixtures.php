@@ -6,7 +6,7 @@ use App\Entity\Child;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-;
+
 
 class ChildFixtures extends Fixture implements DependentFixtureInterface
 {

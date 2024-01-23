@@ -21,7 +21,7 @@ class FamilyFixtures extends Fixture implements DependentFixtureInterface
         $family->setAddress($faker->streetAddress());
         $family->setPostalCode($faker->postcode());
         $family->setCity($faker->city());
-        $family->setPhone(0666666666);
+        $family->setPhone('0666666666');
         $this->addReference('family_1', $family);
         $manager->persist($family);
 
