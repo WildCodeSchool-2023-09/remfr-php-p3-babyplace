@@ -1,29 +1,110 @@
+//header calendar
 
+.entete_calendar {
+   background-color: $btn-color;
+   color: $bg-light-color;
+   text-align: center;
+   border-radius: $arrondi;
+   padding: 1%;  
+}
+
+.header-container_calendar {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;   
+   align-items: center;
+   height: 5vh;   
+}
+
+.div-links_calendar {
+   display: inline-flex;
+   justify-content: flex-end;   
+}
+
+.nav-links_calendar {
+   font-size: $btn-font-size;
+   font-weight: 600;
+   color: $bg-light-color;   
+   letter-spacing: 1px;
+   margin-left: 1vw;
+   &:hover {
+      text-decoration: underline;
+   }
+}
+
+.titre-header_calendar {
+   font-size: $h4-font-size;
+   font-family: $headings-font-family;
+   font-weight: 600;
+   letter-spacing: 1px;
+}
+
+// calendar body
 
 .calendar_form {
-   width: 60%;
-   margin-left: 18vw;   
+   width: 90%;
+   height: 70%;   
 }
 
-.button-ajout-calendar {
+table.fc-col-header a {
+   color: $btn-color;
+   font-size: 1.5rem;
+   font-weight: 600;
+   font-family: $headings-font-family;
+}
+
+table.fc-scrollgrid-sync-table a {
+   color: $h-color;
+   font-size: 1.5rem;
+   text-decoration: none;
+   font-family: $headings-font-family;
+   
+}
+
+.fc-toolbar-title {
+   font-size: $h5-font-size;
+   font-family: $headings-font-family;
+   font-weight: 600;
+   letter-spacing: 1px;
+}
+
+// bouton d'ajout calendar
+
+.button-ajout_calendar {
    background-color: $btn-color;
     color: white;
+    font-family: $headings-font-family;
     font-weight: 600;
     letter-spacing: 0.15rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    width: 10%;
-    
+    font-size: $btn-font-size;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border: 0px;
+    border-radius: 0.35rem;
+    width: 15%;
+
+    &:hover {
+        background-color: $btn-color-hover;
+        color: white;
+        font-weight: 600;
+    }
 }
 
-.button-ajout-calendar:hover {
+.button-ajout_calendar:hover {
    background: $btn-color-hover;
-    color: white;
-    font-weight: 600;
+   color: $bg-light-color;
+   font-weight: 600;
 }
 
-.button-ajout-calendar-form {
+.button-ajout_calendar-form {
    display: flex;
    justify-content: flex-start;
-   align-items: flex-start;
+   align-items: flex-end;   
+   margin-bottom: 2vh;
+   margin-top: 2vh;
 }

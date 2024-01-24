@@ -32,4 +32,14 @@ class AgendaController extends AbstractController
 
         return $this->render('agenda/agenda.html.twig', compact('data'));
     }
+
+    #[Route('/creneaux', name: 'app_creneaux')]
+    public function listReservation(CalendarRepository $calendarRepository): Response
+    {
+        $events = $calendarRepository->findAll();
+
+        return $this->render('agenda/creneaux.html.twig', [
+            "events" => $events
+        ]);
+    }
 }
