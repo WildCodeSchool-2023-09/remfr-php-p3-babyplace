@@ -8,6 +8,7 @@
 @import "home.scss";
 // Creche
 @import "dashboard-creche.scss";
+@import "creche_reservation.scss";
 // Parent
 @import "parent/home-parent.scss";
 @import "parent/menu-parent.scss";
@@ -16,3 +17,10 @@
 @import "parent/profil-parent.scss";
 @import "parent/register-parent.scss";
 @import "parent/_navbar-parent.scss";
+@import "parent/reservation1-parent.scss";
+
+@import "calendar.scss";
+
+
+@import "parent/filters.scss";
+

@@ -4,34 +4,36 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('roles', ChoiceType::class, [
+            /*->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Parent' => 'ROLE_PARENT',
-                    'creche' => 'ROLE_CRECHE',
+                    'Vous êtes une crèche' => 'ROLE_CRECHE',
+                    'Vous êtes un parent' => 'ROLE_PARENT',
                 ],
                 'expanded' => true,
                 'multiple' => true,
                 'label' => 'Vous êtes :',
-            ])
+            ])*/
             ->add('email', EmailType::class, [
-                //permet de mettre les champs en français:
-                'label' => 'Adresse email',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Adresse email',
+                    'class' => 'form-control'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer une adresse mail valide.',
@@ -39,12 +41,12 @@ class UserRegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-
-                'label' => 'Mot de passe',
+                'label' => false,
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'placeholder' => 'Mot de passe',
+                    'autocomplete' => 'new-password',
+                    'class' => 'form-control'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez choisir un mot de passe.',
@@ -56,18 +58,13 @@ class UserRegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            /*->add('avatar', VichFileType::class, [
-                'label' => 'Photo de profil',
-                'required' => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-            ])*/
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Vous devez accepter nos conditions d\'utilisation afin de continuer',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions d\'utilisation
-                         afin de continuer votre inscription.',
+                        'message' => 'Vous devez accepter nos conditions
+                        d\'utilisation afin de continuer votre inscription.',
                     ]),
                 ],
             ]);

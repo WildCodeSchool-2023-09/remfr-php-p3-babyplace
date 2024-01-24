@@ -1,0 +1,14 @@
+{% extends "dashboard-creche.html.twig" %}
+
+{% block content %}
+	<h3>Votre compte {{creche.name}}</h3>
+	{{creche.id}}
+	<h5>Infomation de la creche</h5>
+	<a href="{{ path('creche_edit_creche', {id: app.user.id}) }}">Modifer les informations de la creche</a>
+	<h5>Jours d'ouverture</h5>
+	<a href="{{ path('creche_edit_schedule', {id: app.user.id}) }}">Modifier les jours d'ouverture</a>
+	<h5>Photos de la creche</h5>
+	<a href="{{ path('creche_edit_photo', {id: app.user.id}) }}">Ajouter/Modifier des photos</a>
+	<h5>Membre de l'equipe</h5>
+	<a href="{{ path('creche_edit_team', {id: app.user.id}) }}">Modifier les infomation des equipes</a>
+{% endblock %}

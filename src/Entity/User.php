@@ -37,13 +37,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
+    #[Assert\PasswordStrength]
     private string $password;
 
     #[ORM\Column(length: 255)]
     private ?string $avatar = null;
 
-    #[Vich\UploadableField(mapping:'', fileNameProperty:'avatar')]
+    #[Vich\UploadableField(mapping:'user_file', fileNameProperty:'avatar')]
     #[Assert\File(
         maxSize:'1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Creche $creche = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Family $family = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
@@ -171,6 +174,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->creche = $creche;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(Family $family): static
+    {
+        // set the owning side of the relation if necessary
+        if ($family->getUser() !== $this) {
+            $family->setUser($this);
+        }
+
+        $this->family = $family;
 
         return $this;
     }

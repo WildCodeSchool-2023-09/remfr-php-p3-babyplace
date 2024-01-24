@@ -64,8 +64,7 @@ class EmergencyContactController extends AbstractController
         }
 
         return $this->render('emergency-contact/edit.html.twig', [
-            'emergency_contact' => $emergencyContact,
-            'form' => $form,
+            'emergencyForm' => $form,
         ]);
     }
 
