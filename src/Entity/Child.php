@@ -46,7 +46,7 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $birthCertificate = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'birthCertificate')]
+    #[Vich\UploadableField(mapping: 'birthcertificate_file', fileNameProperty: 'birthCertificate')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -63,7 +63,7 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $vaccine = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'vaccine')]
+    #[Vich\UploadableField(mapping: 'vaccine_file', fileNameProperty: 'vaccine')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -77,7 +77,7 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $insurance = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'insurance')]
+    #[Vich\UploadableField(mapping: 'insurance_file', fileNameProperty: 'insurance')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne

@@ -39,8 +39,8 @@
                 <td>{{ child.vaccine }}</td>
                 <td>{{ child.insurance }}</td>
                 <td>
-                    <a href="{{ path('app_child_show', {'id': child.id}) }}">show</a>
-                    <a href="{{ path('app_child_edit', {'id': child.id}) }}">edit</a>
+                    <a href="{{ path('child_show', {'id': child.id}) }}">show</a>
+                    <a href="{{ path('child_edit', {'id': child.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -51,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_child_new') }}">Create new</a>
+    <a href="{{ path('child_new') }}">Create new</a>
 {% endblock %}

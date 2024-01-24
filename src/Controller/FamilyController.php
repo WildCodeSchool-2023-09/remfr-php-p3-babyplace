@@ -207,4 +207,10 @@ class FamilyController extends AbstractController
             'controller_name' => 'FamilyController',
         ]);
     }
+
+    #[Route('/results', methods: ['GET'], name:'results')]
+    public function showCrecheResults()
+    {
+        return $this->render('parent/presentation-creche.html.twig');
+    }
 }
