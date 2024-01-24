@@ -28,7 +28,6 @@ class Child
     #[ORM\Column(length: 100)]
     private ?string $childLastname = null;
 
-    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?DateTimeInterface $birthdate = null;
 
