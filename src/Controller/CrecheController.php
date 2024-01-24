@@ -8,8 +8,12 @@ use App\Form\PhotoType;
 use App\Form\Type\TeamType;
 use App\Form\Type\CrecheType;
 use App\Form\Type\ScheduleType;
+use App\Repository\CrecheRepository;
+use App\Repository\FamilyRepository;
+use App\Repository\CalendarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\RegistrationCrecheType;
+use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,7 +73,7 @@ class CrecheController extends AbstractController
 
     #[Route('/gestion/{id}', methods: ['GET'], name: 'edit_index')]
     public function editIndex(#[MapEntity(mapping: ['id' => 'id'])]
-        Creche $creche): Response
+    Creche $creche): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -82,6 +86,9 @@ class CrecheController extends AbstractController
     #[Route('/gestion/info/{id}', methods: ['GET', 'POST'], name: 'edit_creche')]
     public function editCreche(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
         $form = $this->createForm(CrecheType::class, $creche);
         $form->handleRequest($request);
 
@@ -97,10 +104,12 @@ class CrecheController extends AbstractController
         ]);
     }
 
-
     #[Route('/gestion/planning/{id}', methods: ['GET', 'POST'], name: 'edit_schedule')]
     public function editSchedule(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
         $form = $this->createForm(ScheduleType::class, $creche->getSchedule());
         $form->handleRequest($request);
 
@@ -115,10 +124,13 @@ class CrecheController extends AbstractController
         ]);
     }
 
-
     #[Route('/gestion/photo/{id}', methods: ['GET', 'POST'], name: 'edit_photo')]
     public function editPhoto(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(PhotoType::class);
         $form->handleRequest($request);
 
@@ -136,6 +148,10 @@ class CrecheController extends AbstractController
     #[Route('/gestion/equipe/{id}', methods: ['GET', 'POST'], name: 'edit_team')]
     public function editTeam(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(TeamType::class, $creche->getTeams());
         $form->handleRequest($request);
 
@@ -151,8 +167,22 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/demandes/{id}', methods: ['GET', 'POST'], name: 'demandes')]
-    public function demandes(): Response
-    {
-        return $this->render('creche/demandes.html.twig');
+    public function demandes(
+        CrecheRepository $crecheRepository,
+        FamilyRepository $familyRepository,
+        ReservationRepository $reservationRepository,
+        CalendarRepository $calendarRepository
+    ): Response {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $family = $familyRepository->findAll();
+        $reservation = $reservationRepository->findAll();
+        $calendar = $calendarRepository->findAll();
+
+        return $this->render('creche/demandes.html.twig', [
+            'reservations' => $reservation,
+        ]);
     }
 }
