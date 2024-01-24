@@ -1,0 +1,51 @@
+.creche-list {
+    list-style: none;
+}
+
+.search-creche {
+    background: $gradient-color-main;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.title_card-creche {
+    font-size: $h5-font-size;
+    color: $h-color;
+    font-weight: 600;
+}
+
+.section_card-creche {
+    min-height:85vh;
+    width: 100%;
+}
+
+.results-creche {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: $gradient-color-main;
+}
+
+.div_search-creche {
+    padding: 0 5% 0 5%;
+}
+
+.card-creche-infos {
+    background-color: $bg-light-color;
+    justify-content: center;
+}
+
+/*.card_creche-intro {
+    padding: 1rem;
+}*/
+
+.creche-contact {
+    background: linear-gradient(rgba(71, 79, 255, 0.3), rgba(227, 122, 204, 0.3));
+}
+
+.legend_creche {
+    color: $bg-light-color;
+    padding: 0 0.5rem 0 0.5rem;
+}
