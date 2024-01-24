@@ -1,0 +1,68 @@
+{% extends "dashboard-creche.html.twig" %}
+
+{% block content %}
+	<h6>Toutes les réservations</h6>
+	{#<pre>
+		{{ dump(reservations) }}
+	</pre>#}
+	{% for reservation in reservations %}
+		<div class="card card-gap">
+			<div class="row">
+				<div class="col-md-1">
+				{% if reservation.Status == "en attente" %}
+					<div class="pastille attente"></div>
+				{% elseif reservation.status == "accepte" %}
+					<div class="pastille accept"></div>
+				{% elseif reservation.status == "refuse" %}
+					<div class="pastille refuse"></div>
+				{% elseif reservation.status == "annule" %}
+					<div class="pastille annule"></div>
+				{% endif %}
+				</div>
+				<div class="col-md-2">
+					<ul>
+						<li>Nom de l'enfant</li>
+						<li>Age de l'enfant</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<ul>
+						<li>{{reservation.family.lastname}}</li>
+						<li>Profil 100%</li>
+						<li>Date d'arrivée</li>
+						<li>Date</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<ul>
+						<li>{{reservation.Status}}</li>
+						<li>date de reservation</li>
+						<li>Date</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<ul>
+						<li>Nombre d'heures</li>
+						<li>Heure</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<ul>
+						{% if reservation.Status == "en attente" %}
+							<div class="col s6">
+								<a href="#" class="btn waves-effect waves-light green">Accepter</a>
+							</div>
+							<div class="col s6">
+								<a href="#" class="btn waves-effect waves-light red">Refuser</a>
+							</div>
+						{% else %}
+							<div class="col s6">
+								<a href="#" class="btn waves-effect waves-light red">Modifier</a>
+							</div>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

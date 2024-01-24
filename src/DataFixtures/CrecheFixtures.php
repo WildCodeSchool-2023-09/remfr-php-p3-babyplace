@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\Team;
 use App\Entity\User;
 use App\Entity\Creche;
@@ -14,14 +15,13 @@ class CrecheFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Récupérer un utilisateur depuis la base de données
-        $user = $manager->getRepository(User::class)->findOneBy(['email' => 'contributor@monsite.com']);
+
+        $faker = Factory::create('fr_FR');
+
 
         $creche = new Creche();
-        $creche->setUser($user);
-        $creche->setIntroduction('Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Sed non risus. Suspendisse lectus tortor,
-        dignissim sit amet, adipiscing nec, ultricies sed, dolor.');
+        $creche->setUser($this->getReference('user_1'));
+        $creche->setIntroduction($faker->text());
         $creche->setName('Crèche des petits');
         $creche->setLocalisation('1 rue de la crèche');
         $creche->setPostCode(75000);
@@ -30,6 +30,7 @@ class CrecheFixtures extends Fixture implements DependentFixtureInterface
         $creche->setInsuranceNumber('123456789');
         $creche->setLegalStatus('SARL');
         $creche->setRules('Lorem ipsum dolor sit amet, consectetur');
+        $this->addReference('creche_1', $creche);
         $manager->persist($creche);
         $manager->flush();
 
