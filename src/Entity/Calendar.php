@@ -54,7 +54,7 @@ class Calendar
     private ?string $textColor = null;
 
     #[ORM\ManyToOne(inversedBy: 'calendars')]
-    private ?creche $Creche = null;
+    private ?Creche $creche = null;
 
     #[ORM\OneToOne(mappedBy: 'Calendar', cascade: ['persist', 'remove'])]
     private ?Reservation $reservation = null;
@@ -156,14 +156,14 @@ class Calendar
         return $this->allDay;
     }
 
-    public function getCreche(): ?creche
+    public function getCreche(): ?Creche
     {
-        return $this->Creche;
+        return $this->creche;
     }
 
-    public function setCreche(?creche $Creche): static
+    public function setCreche(?Creche $creche): static
     {
-        $this->Creche = $Creche;
+        $this->creche = $creche;
 
         return $this;
     }
