@@ -170,7 +170,7 @@ class CrecheController extends AbstractController
     public function demandes(
         CrecheRepository $crecheRepository,
         FamilyRepository $familyRepository,
-        ReservationRepository $reservationRepository,
+        ReservationRepository $reservationRepo,
         CalendarRepository $calendarRepository
     ): Response {
         if (!$this->getUser()) {
@@ -178,7 +178,7 @@ class CrecheController extends AbstractController
         }
         $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
         $family = $familyRepository->findAll();
-        $reservation = $reservationRepository->findAll();
+        $reservation = $reservationRepo->findAll();
         $calendar = $calendarRepository->findAll();
 
         return $this->render('creche/demandes.html.twig', [
