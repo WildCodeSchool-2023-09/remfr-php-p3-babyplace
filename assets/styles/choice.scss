@@ -41,17 +41,19 @@
     font-size: 1.25rem;
     font-weight: 900;
     text-decoration: none;
-}
 
-.inscription_choice a:hover {
-    font-size: 1.25rem;
-    color: $btn-color-hover;
-    font-weight: 900;
-    text-decoration: none;
+    &:hover {
+        font-size: 1.25rem;
+        color: $btn-color-hover;
+        font-weight: 900;
+        text-decoration: none;
+    }
 }
 
 .title-creche_choice {
-    font-family: 'Adamina';
+    font-family: $headings-font-family;
+    font-size: $h4-font-size;
+    font-weight: 600;
     color: #562894;
 }
 
@@ -60,19 +62,20 @@
     color: white;
     font-weight: 600;
     letter-spacing: 0.15rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    width: 50%;
+    padding: 1% 2% 1% 2%;
+    width: auto;
 }
 
 .button-creche_choice:hover {
-    background-color: #00c6a6;
+    background-color: $btn-color-hover;
     color: white;
     font-weight: 600;
 }
 
 .title-parent_choice {
-    font-family: 'Adamina';
+    font-family: $headings-font-family;
+    font-size: $h4-font-size;
+    font-weight: 600;
     color: #212353;
 }
 
@@ -81,13 +84,89 @@
     color: white;
     font-weight: 600;
     letter-spacing: 0.15rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    width: 50%;
+    padding: 1% 2% 1% 2%;
+    width: auto;
 }
 
 .button-parent_choice:hover {
-    background-color: #00c6a6;
+    background-color: $btn-color-hover;
     color: white;
     font-weight: 600;
+}
+
+
+
+/* Responsive mobile */
+@media only screen and (max-width: 600px) {
+    .section_choice {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .div-left_choice {
+        background: linear-gradient(135deg, rgba(126, 114, 242, 1) 0%, rgba(255, 255, 255, 1) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 50vh;
+        width: 100%;
+    }
+
+    .div-right_choice {
+        background: linear-gradient(135deg, rgba(71, 79, 255, 1) 0%, rgba(227, 122, 204, 1) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        width: 100%;
+    }
+
+    .illustration_choice {
+        width: 80%;
+    }
+
+    .title-creche_choice {
+        font-family: $headings-font-family;
+        font-size: $btn-font-size;
+        font-weight: 600;
+        color: #562894;
+    }
+
+    .button-creche_choice {
+        background-color: #562894;
+        color: white;
+        font-size: 0.75rem;
+        padding: 3% 2% 3% 2%;
+        font-weight: 600;
+        width: 90%;
+    }
+
+    .button-creche_choice:hover {
+        background-color: $btn-color-hover;
+        color: white;
+    }
+
+    .title-parent_choice {
+        font-family: $headings-font-family;
+        font-size: $btn-font-size;
+        font-weight: 600;
+        color: #212353;
+    }
+
+    .button-parent_choice {
+        background-color: #212353;
+        color: white;
+        font-size: 0.75rem;
+        padding: 3% 2% 3% 2%;
+        font-weight: 600;
+        width: 90%;
+    }
+
+    .button-parent_choice:hover {
+        background-color: $btn-color-hover;
+        color: white;
+    }
 }

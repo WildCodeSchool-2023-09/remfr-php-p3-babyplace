@@ -20,16 +20,16 @@
         {% block body %}
         <section class="section_choice">
             <div class="div-left_choice">
-                    <h4 class="title-creche_choice mb-5">Êtes-vous une crèche ?</h4>
-                    <img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_choice align-self-center">
+                    <h4 class="title-creche_choice">Êtes-vous une crèche ?</h4>
+                    <img src="{{ asset('build/images/choix-creche.png') }}" class="illustration_choice align-self-center">
                     {# Redirection vers l'inscription des crèches #}
-                    <a type="submit" class="btn button-creche_choice mt-4 text-uppercase" href="/register">Je m’inscris en tant que crèche</a>
+                    <a type="submit" class="btn button-creche_choice text-uppercase" href="/register">Je m’inscris en tant que crèche</a>
             </div>
             <div class="div-right_choice">
-                    <h4 class="title-parent_choice mb-5">Êtes-vous un parent ?</h4>
-                    <img src="{{ asset('build/images/illustration-login.png') }}" class="illustration_choice align-self-center">
+                    <h4 class="title-parent_choice">Êtes-vous un parent ?</h4>
+                    <img src="{{ asset('build/images/choix-parents.png') }}" class="illustration_choice align-self-center">
                     {# Redirection vers l'inscription des parents #}
-                    <a type="submit" class="btn button-parent_choice mt-4 text-uppercase" href="/register">Je m’inscris en tant que parent</a>
+                    <a type="submit" class="btn button-parent_choice text-uppercase" href="/register">Je m’inscris en tant que parent</a>
             </div>
         </section>
         {% endblock %}

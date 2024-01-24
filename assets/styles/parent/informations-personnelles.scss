@@ -1,7 +1,23 @@
-.div-btn-parents_dossiers-inscriptions {
+.top-navbar_informations-personelles {
+    background-color: white;
+    padding: 1vh 5% 1vh 5%;
+}
+
+.div-searchbar_informations-personelles {
+    background-color: white;
+    width: 100%;
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    padding: 2vh 5% 2vh 5%;
+}
+
+.infos-header_informations-personelles {
+    font-family: $font-family-sans-serif;
+    color: $h-color;
+    font-weight: 600;
+    background-color: white;
     height: auto;
-    display: flex;
-    flex-direction: row;
     width: 100%;
 }
 
@@ -65,9 +81,9 @@
     margin-right: 2vw;
 }
 
-.section_dossiers-inscriptions {
+.section_informations-personnelles {
     margin-top: 20vh;
-    min-height: 83vh;
+    height: auto;
 }
 
 .crud-enfant_dossiers-inscriptions {
@@ -101,7 +117,7 @@
     width: 30%;
 }
 
-.form-text_dossiers-enfants {
+.form-text_informations-personnelles {
     background-color: white;
     color: $h-color;
     border-radius: 0.5rem;
@@ -127,31 +143,27 @@ input#file-upload-button {
 
 /* Input file - Thibault Mahé */
 
-.choose-a-file_dossiers-enfants {
-    background-color: white;
-    font-family: $font-family-sans-serif;
-    color: $h-color;
-    padding: 3% 4% 3% 4%;
-    border-radius: 0.5rem;
+.btn-tertiary {
+    color: #555;
+    padding: 0;
+    line-height: 40px;
+    width: 300px;
     margin: auto;
     display: block;
-    text-align: center;
+    border: 2px solid #555;
 
     &:hover,
     &:focus {
-        color: lighten($h-color, 20%);
+        color: lighten(#555, 20%);
+        border-color: lighten(#555, 20%);
     }
 }
 
 /* input file style */
 
-.input-file_dossiers-enfants {
-    background-color: white;
-    border-radius: 0.5rem;
-    border: 0;
-    padding: 3% 4% 3% 4%;
-    font-weight: 600;
-    width: 100%;
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
@@ -159,7 +171,9 @@ input#file-upload-button {
 
     +.js-labelFile {
         overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
+        padding: 0 10px;
         cursor: pointer;
 
         .icon:before {
@@ -175,4 +189,9 @@ input#file-upload-button {
             }
         }
     }
+}
+
+.input-file_dossiers-enfants {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
 }

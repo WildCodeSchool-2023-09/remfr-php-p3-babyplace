@@ -96,10 +96,20 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/recherches', name: 'recherches')]
+    // Listes de recherches
+    #[Route('/liste-de-recherches', name: 'liste-de-recherches')]
     public function searchList(): Response
     {
         return $this->render('parent/search-list.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Recherches
+    #[Route('/recherches', name: 'recherches')]
+    public function search(): Response
+    {
+        return $this->render('parent/search.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -129,7 +139,7 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    // Layout des dossiers d'inscriptions - Parents
+    // Dossiers d'inscriptions - Parents
     #[Route('/dossiers-inscriptions', name: 'dossiers-inscriptions')]
     public function foldersRegister(): Response
     {
@@ -138,11 +148,38 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    // Layout des dossiers d'inscriptions - Parents
+    // Dossiers enfants - Parents
     #[Route('/dossiers-enfants', name: 'dossiers-enfants')]
     public function childRegister(): Response
     {
         return $this->render('parent/dossiers-enfants.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Dossiers parents - Parents
+    #[Route('/dossiers-parents', name: 'dossiers-parents')]
+    public function parentRegister(): Response
+    {
+        return $this->render('parent/dossiers-parents.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Informations personnelles - Parents
+    #[Route('/informations-personnelles', name: 'informations-personnelles')]
+    public function infosFamily(): Response
+    {
+        return $this->render('parent/informations-personnelles.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Réservations - Parents
+    #[Route('/reservations', name: 'reservations')]
+    public function reservations(): Response
+    {
+        return $this->render('parent/reservations.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
