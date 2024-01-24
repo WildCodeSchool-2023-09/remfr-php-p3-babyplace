@@ -28,4 +28,10 @@ class HomeController extends AbstractController
     {
         return $this->render('/dashboard-creche.html.twig');
     }
+
+    #[Route('/results', methods: ['GET'], name:'_results')]
+    public function showCrecheResults()
+    {
+        return $this->render('creche/presentation-creche.html.twig');
+    }
 }
