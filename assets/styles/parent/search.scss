@@ -1,0 +1,50 @@
+.body_search {
+    background: $gradient-color-main;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+.section_search {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.div_search {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.title_search {
+    color: white;
+    font-size: $h5-font-size;
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    line-height: $h4-font-size;
+    text-align: center;
+    width: 70%;
+}
+
+.form-text_search {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    border: 0;
+    padding: 3% 4% 3% 4%;
+    width: 100%;
+    z-index: 99;
+}
+
+.form_search input {
+    color: white;
+}
+
+.input-file_search::placeholder {
+    color: white;
+    font-family: $font-family-sans-serif;
+}

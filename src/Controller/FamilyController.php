@@ -53,14 +53,14 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods:['GET','POST'])]
+    #[Route('/{id}/edit', name: 'parent_edit', methods: ['GET', 'POST'])]
     public function editParent(Request $request, Family $family, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(FamilyType::class, $family);
-        $form-> handleRequest($request);
+        $form->handleRequest($request);
 
-        if ($form-> isSubmitted() && $form-> isValid()) {
-            $entityManager ->persist($family);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($family);
             $entityManager->flush();
 
             $this->addFlash('familySuccess', 'Vos informations personnelles ont bien été mises à jour.');
@@ -76,7 +76,7 @@ class FamilyController extends AbstractController
     }
 
     //Voir le profil parent
-    #[Route('profil', methods:['GET'], name:'profil')]
+    #[Route('/{id}/profil', methods: ['GET'], name: 'parent_profil')]
     public function showProfil(Family $family): Response
     {
         return $this->render('parent/parent-profil.html.twig', [
@@ -112,10 +112,20 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/recherches', name: 'recherches')]
+    // Listes de recherches
+    #[Route('/liste-de-recherches', name: 'liste-de-recherches')]
     public function searchList(): Response
     {
         return $this->render('parent/search-list.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Recherches
+    #[Route('/recherches', name: 'recherches')]
+    public function search(): Response
+    {
+        return $this->render('parent/search.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -149,6 +159,51 @@ class FamilyController extends AbstractController
     public function filtersParent(): Response
     {
         return $this->render('parent/filters.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Dossiers d'inscriptions - Parents
+    #[Route('/dossiers-inscriptions', name: 'dossiers-inscriptions')]
+    public function foldersRegister(): Response
+    {
+        return $this->render('parent/dossiers-inscriptions.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Dossiers enfants - Parents
+    #[Route('/dossiers-enfants', name: 'dossiers-enfants')]
+    public function childRegister(): Response
+    {
+        return $this->render('parent/dossiers-enfants.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Dossiers parents - Parents
+    #[Route('/dossiers-parents', name: 'dossiers-parents')]
+    public function parentRegister(): Response
+    {
+        return $this->render('parent/dossiers-parents.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Informations personnelles - Parents
+    #[Route('/informations-personnelles', name: 'informations-personnelles')]
+    public function infosFamily(): Response
+    {
+        return $this->render('parent/informations-personnelles.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Réservations - Parents
+    #[Route('/reservations', name: 'reservations')]
+    public function reservations(): Response
+    {
+        return $this->render('parent/reservations.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
