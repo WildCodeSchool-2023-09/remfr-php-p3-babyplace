@@ -45,7 +45,7 @@ class FamilyController extends AbstractController
 
             //Il ne faudrait pas mettre de addFlash ici,
             //mais renvoyer à une page invitant à consulter ses mails
-            return $this->redirectToRoute('parent_new');
+            return $this->redirectToRoute('parent_index');
         }
 
         return $this->render('parent/register-parent.html.twig', [
