@@ -27,8 +27,8 @@ class CalendarFixtures extends Fixture implements DependentFixtureInterface
             $calendar->setEnd($endDate);
             $calendar->setDescription($faker->text());
             $calendar->setAllDay($faker->boolean());
-            $calendar->setBackgroundColor($faker->hexcolor());
-            $calendar->setTextColor($faker->hexcolor());
+            $calendar->setBackgroundColor($faker->hexColor());
+            $calendar->setTextColor($faker->hexColor());
 
             $manager->persist($calendar);
         }
