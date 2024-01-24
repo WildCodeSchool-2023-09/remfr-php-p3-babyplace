@@ -1,0 +1,51 @@
+/*ATTENTION LES NOMS SONT A CHANGER EN FONCTION
+DU FORMULAIRE QUI SERA GENERE A LA CREATION DE L'ENTITE
+
+Hide the browser's default checkbox 
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  Create a custom checkbox 
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    
+  border-radius: 15px;
+  }
+*/
+.form_reservation {
+  display: flex;
+  flex-direction: column;
+}
+.check-reservation {
+  color: $button-color-success;
+  padding:5%;
+}
+
+.p-reservation {
+  font-family: $font-family-sans-serif;
+  line-height: 0.5rem;
+
+}
+
+.button_reservation {
+  font-size: 1rem;
+  background-color: $btn-color;
+  color: $bg-light-color;
+  font-weight: 600;
+  letter-spacing: 0.10rem;
+}
+
+.button_reservation:hover {
+  background-color: $btn-color-hover;
+  color: $bg-light-color;
+}

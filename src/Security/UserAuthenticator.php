@@ -57,7 +57,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         }
         elseif (in_array('ROLE_PARENT', $token->getRoleNames()))
         {
-            return new RedirectResponse($this->urlGenerator->generate('parent_parent_new'));
+            return new RedirectResponse($this->urlGenerator->generate('parent_new'));
         }
         elseif (in_array('[]', $token->getRoleNames()))
         {
