@@ -2,10 +2,11 @@
 
 {% block content %}
 	<h6>Toutes les réservations</h6>
-	{#<pre>
-		{{ dump(reservations) }}
-	</pre>#}
+
 	{% for reservation in reservations %}
+		<pre>
+		{{ dump(reservation.family.children) }}
+	</pre>
 		<div class="card card-gap">
 			<div class="row">
 				<div class="col-md-1">

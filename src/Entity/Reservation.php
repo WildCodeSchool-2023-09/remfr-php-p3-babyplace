@@ -22,10 +22,10 @@ class Reservation
     private ?Family $family = null;
 
     #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
-    private ?Calendar $Calendar = null;
+    private ?Calendar $calendar = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Status = null;
+    private ?string $status = null;
 
     public function getId(): ?int
     {
@@ -58,24 +58,24 @@ class Reservation
 
     public function getCalendar(): ?Calendar
     {
-        return $this->Calendar;
+        return $this->calendar;
     }
 
-    public function setCalendar(?Calendar $Calendar): static
+    public function setCalendar(?Calendar $calendar): static
     {
-        $this->Calendar = $Calendar;
+        $this->calendar = $calendar;
 
         return $this;
     }
 
     public function getStatus(): ?string
     {
-        return $this->Status;
+        return $this->status;
     }
 
-    public function setStatus(string $Status): static
+    public function setStatus(string $status): static
     {
-        $this->Status = $Status;
+        $this->status = $status;
 
         return $this;
     }
