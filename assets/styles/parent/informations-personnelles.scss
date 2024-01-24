@@ -1,0 +1,197 @@
+.top-navbar_informations-personelles {
+    background-color: white;
+    padding: 1vh 5% 1vh 5%;
+}
+
+.div-searchbar_informations-personelles {
+    background-color: white;
+    width: 100%;
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    padding: 2vh 5% 2vh 5%;
+}
+
+.infos-header_informations-personelles {
+    font-family: $font-family-sans-serif;
+    color: $h-color;
+    font-weight: 600;
+    background-color: white;
+    height: auto;
+    width: 100%;
+}
+
+.btn-parents_dossiers-enfants {
+    background: $gradient-color-blue;
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        opacity: 1;
+    }
+}
+
+.btn-enfants_dossiers-enfants {
+    background: $gradient-color-green;
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.button_dossiers-inscriptions {
+    background-color: $btn-color;
+    color: white;
+    font-family: $headings-font-family;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border: 0px;
+    border-radius: 0.35rem;
+    width: 100%;
+
+    &:hover {
+        background-color: $btn-color-hover;
+        color: white;
+        font-weight: 600;
+    }
+}
+
+.icon_dossiers-inscriptions {
+    margin-right: 2vw;
+}
+
+.section_informations-personnelles {
+    margin-top: 20vh;
+    height: auto;
+}
+
+.crud-enfant_dossiers-inscriptions {
+    background-color: white;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vh 5% 1vh 5%;
+    border-radius: 0.35rem;
+    width: 100%;
+}
+
+.name-crud-enfant_dossiers-inscriptions {
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    font-weight: 800;
+    margin-bottom: 0px;
+}
+
+.subtitle_dossiers-enfants {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+}
+
+.label_dossiers-enfants {
+    background-color: $btn-color-hover;
+    color: white;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 30%;
+}
+
+.form-text_informations-personnelles {
+    background-color: white;
+    color: $h-color;
+    border-radius: 0.5rem;
+    border: 0;
+    padding: 3% 4% 3% 4%;
+    width: 100%;
+    z-index: 99;
+}
+
+.div-file_dossiers-enfants {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-check_dossiers-enfants {
+    z-index: 999;
+}
+
+input#file-upload-button {
+    opacity: 0;
+}
+
+/* Input file - Thibault Mahé */
+
+.btn-tertiary {
+    color: #555;
+    padding: 0;
+    line-height: 40px;
+    width: 300px;
+    margin: auto;
+    display: block;
+    border: 2px solid #555;
+
+    &:hover,
+    &:focus {
+        color: lighten(#555, 20%);
+        border-color: lighten(#555, 20%);
+    }
+}
+
+/* input file style */
+
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    +.js-labelFile {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 10px;
+        cursor: pointer;
+
+        .icon:before {
+            //font-awesome
+            content: "\f093";
+        }
+
+        &.has-file {
+            .icon:before {
+                //font-awesome
+                content: "\f00c";
+                color: #5AAC7B;
+            }
+        }
+    }
+}
+
+.input-file_dossiers-enfants {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+}

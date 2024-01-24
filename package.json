@@ -25,8 +25,9 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-        "@a2lix/symfony-collection": "^0.6.1",
+    "@a2lix/symfony-collection": "^0.6.1",
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.2"
+    "bootstrap": "^5.3.2",
+    "bootstrap-select": "^1.13.18"
   }
 }

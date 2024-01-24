@@ -1,0 +1,82 @@
+/* Options du select */
+
+.text-warning_reservations {
+    color: white;
+    background-color: $button-color-alert;
+}
+
+.text-success_reservations {
+    color: white;
+    background-color: $button-color-success;
+}
+
+.text-muted_reservations {
+    color: white;
+    background-color: #b1b1b1;
+}
+
+.label_reservations {
+    background-color: $btn-color-hover;
+    color: white;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: auto;
+}
+
+/* Cards */
+
+.card_reservations {
+    background-color: white;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.horaires_reservations {
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Modals */
+
+.div-modal_reservations {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-modal_reservations {
+    width: 90%;
+}
+
+/* Labels */
+
+.label-attente_reservations {
+    background-color: $button-color-alert;
+    color: white;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: auto;
+}
+
+.label-accepte_reservations {
+    background-color: $button-color-success;
+    color: white;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: auto;
+}
+
+.label-refuse_reservations {
+    background-color: $button-color-danger;
+    color: white;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: auto;
+}
