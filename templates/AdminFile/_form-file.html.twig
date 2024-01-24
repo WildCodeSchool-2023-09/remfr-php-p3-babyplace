@@ -1,0 +1,14 @@
+{{ form_start(formFile) }}
+    {{ form_row(formFile.familyIncomeFile)}}
+    {{ form_row(formFile.taxReturnFile)}}
+    {{ form_row(formFile.cafNumber)}}
+    {{ form_row(formFile.socialNumber)}}
+    {{ form_row(formFile.residencyProofFile)}}
+    {{ form_row(formFile.statusProofFile)}}
+    {{ form_row(formFile.bankingInfo)}}
+    {{ form_row(formFile.dischargeFile)}}
+    {{ form_row(formFile.familyRecordFile)}}
+    {{ form_row(formFile.divorceDecreeFile)}}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(formFile) }}
