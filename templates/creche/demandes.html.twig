@@ -1,64 +1,114 @@
 {% extends "dashboard-creche.html.twig" %}
 
+{% macro calculateAge(birthdate) %}
+	{# birthdate doit être une instance de DateTime dans votre code PHP #}
+	{{ 'now'|date('Y') - birthdate|date('Y') - (birthdate|date('md') > 'now'|date('md') ? 1 : 0) }}
+{% endmacro %}
+{% macro calculateHour(hourStart, hourEnd) %}
+    {% set startTimestamp = hourStart|date('U') %}
+    {% set endTimestamp = hourEnd|date('U') %}
+
+ {{ ((endTimestamp - startTimestamp) / 3600) | round(0)}}
+{% endmacro %}
+
 {% block content %}
 	<h6>Toutes les réservations</h6>
 
 	{% for reservation in reservations %}
-		<pre>
-		{{ dump(reservation.family.children) }}
-	</pre>
 		<div class="card card-gap">
 			<div class="row">
 				<div class="col-md-1">
-				{% if reservation.Status == "en attente" %}
-					<div class="pastille attente"></div>
-				{% elseif reservation.status == "accepte" %}
-					<div class="pastille accept"></div>
-				{% elseif reservation.status == "refuse" %}
-					<div class="pastille refuse"></div>
-				{% elseif reservation.status == "annule" %}
-					<div class="pastille annule"></div>
-				{% endif %}
+					{% if reservation.status == "en attente" %}
+						<div class="pastille attente"></div>
+					{% elseif reservation.status == "accepté" %}
+						<div class="pastille accept"></div>
+					{% elseif reservation.status == "refusé" %}
+						<div class="pastille refuse"></div>
+					{% elseif reservation.status == "annulé" %}
+						<div class="pastille annule"></div>
+					{% endif %}
 				</div>
 				<div class="col-md-2">
 					<ul>
-						<li>Nom de l'enfant</li>
-						<li>Age de l'enfant</li>
+						<li>{{ reservation.child.childFirstname }}</li>
+						<li>âge :{{ _self.calculateAge(reservation.child.birthdate) }} ans</li>
+						<li>Date de naissance
+							{{ reservation.child.birthdate|date('d-m-Y') }}</li>
 					</ul>
 				</div>
 				<div class="col-md-2">
 					<ul>
 						<li>{{reservation.family.lastname}}</li>
-						<li>Profil 100%</li>
-						<li>Date d'arrivée</li>
-						<li>Date</li>
+						<li>Profil complété à :</li>
+
+							{% if app.user %}
+								{% set var = 100 %}
+							{% endif %}
+							{% if reservation.family.administration.familyIncome == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.taxReturn == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.cafNumber == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.socialNumber == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.residencyProof == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.statusProof == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.bankingInfo == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.discharge == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.familyRecord == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.divorceDecree == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{{var}}{{' %'}}
+
+
+						<li>Date de debut </li>
+						{{ reservation.calendar.start|date('d-m-Y') }}
 					</ul>
 				</div>
 				<div class="col-md-2">
 					<ul>
-						<li>{{reservation.Status}}</li>
-						<li>date de reservation</li>
-						<li>Date</li>
+						<li>{{reservation.status}}</li>
+						<li>Date de fin</li>
+						{{ reservation.calendar.end|date('d-m-Y') }}
 					</ul>
 				</div>
 				<div class="col-md-2">
 					<ul>
 						<li>Nombre d'heures</li>
-						<li>Heure</li>
+						{{ _self.calculateHour(reservation.calendar.start, reservation.calendar.end) }}
 					</ul>
 				</div>
 				<div class="col-md-2">
 					<ul>
-						{% if reservation.Status == "en attente" %}
+						{% if reservation.status == "en attente" %}
 							<div class="col s6">
-								<a href="#" class="btn waves-effect waves-light green">Accepter</a>
+								<a href="{{ path('creche_demande_accepter', {id:reservation.id} ) }}" class="btn waves-effect waves-light green">Accepter</a>
 							</div>
 							<div class="col s6">
-								<a href="#" class="btn waves-effect waves-light red">Refuser</a>
+								<a href="{{ path('creche_demande_refuser', {id:reservation.id} )}}" class="btn waves-effect waves-light red">Refuser</a>
 							</div>
 						{% else %}
 							<div class="col s6">
-								<a href="#" class="btn waves-effect waves-light red">Modifier</a>
+								<a href="{{ path('creche_demande_modifier', {id:reservation.id})}}" class="btn waves-effect waves-light red">Modifier</a>
+							</div>
+							<div class="col s6">
+								<a href="{{ path('creche_demande_annuler', {id:reservation.id})}}" class="btn waves-effect waves-light red">Annuler</a>
 							</div>
 						{% endif %}
 					</ul>

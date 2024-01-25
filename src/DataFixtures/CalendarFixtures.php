@@ -18,17 +18,17 @@ class CalendarFixtures extends Fixture implements DependentFixtureInterface
             $calendar = new Calendar();
             $calendar->setCreche($this->getReference('creche_1'));
             $calendar->setTitle($faker->sentence());
-            $this->setReference('calendar_' . $i, $calendar);
+            $this->addReference('calendar_' . $i, $calendar);
 
-            $startDate = $faker->dateTimeThisMonth;
-            $endDate = $faker->dateTimeBetween($startDate, $startDate->modify('+' . random_int(1, 7) . ' days'));
+            $startDate = $faker->dateTimeThisMonth();
+            $endDate = $faker->dateTimeBetween($startDate, $startDate->format('Y-m-d H:i:s') . ' +7 days');
 
             $calendar->setStart($startDate);
             $calendar->setEnd($endDate);
             $calendar->setDescription($faker->text());
             $calendar->setAllDay($faker->boolean());
-            $calendar->setBackgroundColor($faker->hexcolor());
-            $calendar->setTextColor($faker->hexcolor());
+            $calendar->setBackgroundColor($faker->hexColor());
+            $calendar->setTextColor($faker->hexColor());
 
             $manager->persist($calendar);
         }
