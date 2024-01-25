@@ -20,7 +20,7 @@ class CrecheFixtures extends Fixture implements DependentFixtureInterface
 
 
         $creche = new Creche();
-        $creche->setUser($this->getReference('user_1'));
+        $creche->setUser($this->getReference('user_24'));
         $creche->setIntroduction($faker->text());
         $creche->setName('Crèche des petits');
         $creche->setLocalisation('1 rue de la crèche');
