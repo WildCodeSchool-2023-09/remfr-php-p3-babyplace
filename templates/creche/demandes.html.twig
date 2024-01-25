@@ -11,11 +11,11 @@
 				<div class="col-md-1">
 				{% if reservation.Status == "en attente" %}
 					<div class="pastille attente"></div>
-				{% elseif reservation.Status == "accepte" %}
+				{% elseif reservation.status == "accepte" %}
 					<div class="pastille accept"></div>
-				{% elseif reservation.Status == "refuse" %}
+				{% elseif reservation.status == "refuse" %}
 					<div class="pastille refuse"></div>
-				{% elseif reservation.Status == "annule" %}
+				{% elseif reservation.status == "annule" %}
 					<div class="pastille annule"></div>
 				{% endif %}
 				</div>

@@ -56,7 +56,7 @@ class Calendar
     #[ORM\ManyToOne(inversedBy: 'calendars')]
     private ?Creche $creche = null;
 
-    #[ORM\OneToOne(mappedBy: 'Calendar', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'calendar', cascade: ['persist', 'remove'])]
     private ?Reservation $reservation = null;
 
     public function getId(): ?int
