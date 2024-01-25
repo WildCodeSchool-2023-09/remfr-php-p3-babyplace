@@ -8,12 +8,14 @@ use App\Form\PhotoType;
 use App\Form\Type\TeamType;
 use App\Form\Type\CrecheType;
 use App\Form\Type\ScheduleType;
+use App\Repository\ChildRepository;
 use App\Repository\CrecheRepository;
 use App\Repository\FamilyRepository;
 use App\Repository\CalendarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\RegistrationCrecheType;
 use App\Repository\ReservationRepository;
+use App\Repository\AdministrationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -171,7 +173,9 @@ class CrecheController extends AbstractController
         CrecheRepository $crecheRepository,
         FamilyRepository $familyRepository,
         ReservationRepository $reservationRepo,
-        CalendarRepository $calendarRepository
+        CalendarRepository $calendarRepository,
+        ChildRepository $childRepository,
+        AdministrationRepository $administrationRepo
     ): Response {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -180,9 +184,84 @@ class CrecheController extends AbstractController
         $family = $familyRepository->findAll();
         $reservation = $reservationRepo->findAll();
         $calendar = $calendarRepository->findAll();
+        $children = $childRepository->findAll();
+        $administration = $administrationRepo->findAll();
 
         return $this->render('creche/demandes.html.twig', [
             'reservations' => $reservation,
+            'family' => $family,
         ]);
+    }
+
+    #[Route('/demandes/accepter/{id}', methods: ['GET', 'POST'], name: 'demande_accepter')]
+    public function demandeAccepter(
+        ReservationRepository $reservationRepo,
+        EntityManagerInterface $entityManager,
+        CrecheRepository $crecheRepository,
+        int $id
+    ): Response {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $reservation = $reservationRepo->findOneBy(['id' => $id]);
+        $reservation->setStatus('accepté');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('creche_demandes', ['id' => $creche->getId()]);
+    }
+
+    #[Route('/demandes/refuser/{id}', methods: ['GET', 'POST'], name: 'demande_refuser')]
+    public function demandeRefuser(
+        ReservationRepository $reservationRepo,
+        EntityManagerInterface $entityManager,
+        CrecheRepository $crecheRepository,
+        int $id
+    ): Response {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $reservation = $reservationRepo->findOneBy(['id' => $id]);
+        $reservation->setStatus('refusé');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('creche_demandes', ['id' => $creche->getId()]);
+    }
+
+    #[Route('/demandes/modifier/{id}', methods: ['GET', 'POST'], name: 'demande_modifier')]
+    public function demandeModifier(
+        ReservationRepository $reservationRepo,
+        EntityManagerInterface $entityManager,
+        CrecheRepository $crecheRepository,
+        int $id
+    ): Response {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $reservation = $reservationRepo->findOneBy(['id' => $id]);
+        $reservation->setStatus('en attente');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('creche_demandes', ['id' => $creche->getId()]);
+    }
+
+    #[Route('/demandes/annuler/{id}', methods: ['GET', 'POST'], name: 'demande_annuler')]
+    public function demandeAnnuler(
+        ReservationRepository $reservationRepo,
+        EntityManagerInterface $entityManager,
+        CrecheRepository $crecheRepository,
+        int $id
+    ): Response {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $reservation = $reservationRepo->findOneBy(['id' => $id]);
+        $reservation->setStatus('annulé');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('creche_demandes', ['id' => $creche->getId()]);
     }
 }
