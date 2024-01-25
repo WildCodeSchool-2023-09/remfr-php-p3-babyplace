@@ -36,21 +36,22 @@
         <section class="section_search-parent">
             <div class="div_search-parent">
                 <!-- Cards des crèches (penser à activer la boucle) -->
-                {# {% for item in items %} #}
+                {% for creche in creches %}
+                {{ dump(creche.reservations) }}
                 <div class="card mb-5">
                     <div class="card-header_creche card-header position-relative">
                         <div class="div-card-img-top"></div>
                         <img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
-                        <h5 class="card-title position-absolute bottom-0 start-0">Nom de la crèche</h5>
+                        <h5 class="card-title position-absolute bottom-0 start-0">{{ creche.name }}</h5>
                         <i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
                         <p class="rate_search-parent position-absolute bottom-0 end-0">4,8  <i class="fa-solid fa-star"></i></p>
                     </div>
                     <div class="card-body position-relative">
-                        <p class="lieu_search-parent card-text">Bordeaux, 500m</p>
+                        <p class="lieu_search-parent card-text">{{ creche.city }}, 500m</p>
                         <p class="prix_search-parent card-text position-absolute top-0 end-0">3,5€/j</p>
                         <table class="table reservations_search-list">
                             <tr>
-                                <td class="day_search-list day-active_search-list">Lun. 14</td> {# vert #}
+                                <td class="day_search-list day-active_search-list"></td> {# vert #}
                                 <td class="day_search-list">Mar. 15</td>
                                 <td class="day_search-list">Mer. 16</td>
                             </tr>
@@ -62,7 +63,7 @@
                         </table>
                     </div>
                 </div>
-                {# {% endfor %} #}
+                {% endfor %}
                 <!-- Fin des Cards des crèches (penser à activer la boucle) -->
             </div>
         </section>
