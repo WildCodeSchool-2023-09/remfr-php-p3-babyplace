@@ -81,6 +81,9 @@ class Creche
     #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\OneToMany(mappedBy: 'Creche', targetEntity: Calendar::class)]
+    private Collection $calendars;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -89,6 +92,7 @@ class Creche
         $this->children = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->calendars = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -401,6 +405,36 @@ class Creche
             // set the owning side to null (unless already changed)
             if ($reservation->getCreche() === $this) {
                 $reservation->setCreche(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Calendar>
+     */
+    public function getCalendars(): Collection
+    {
+        return $this->calendars;
+    }
+
+    public function addCalendar(Calendar $calendar): static
+    {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars->add($calendar);
+            $calendar->setCreche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): static
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getCreche() === $this) {
+                $calendar->setCreche(null);
             }
         }
 
