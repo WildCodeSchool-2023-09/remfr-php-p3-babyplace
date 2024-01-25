@@ -29,7 +29,7 @@ class Child
     private ?string $childLastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $birthdate = null;
+    private ?DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
     private ?bool $isWalking = null;
@@ -132,12 +132,12 @@ class Child
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getBirthdate(): ?DateTimeInterface
     {
         return $this->birthdate;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): static
+    public function setBirthdate(DateTimeInterface $birthdate): static
     {
         $this->birthdate = $birthdate;
 

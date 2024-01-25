@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary">
+        <nav class="navbar navbar_dashboard-creche bg-body-tertiary">
   <!-- Searchbar -->
   <!--<div>
     <form class="d-flex" role="search">
@@ -29,52 +29,58 @@
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li class="nav-item">
 		<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-			<a href="#" class="nav-link text-white" aria-current="page">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white" aria-current="page">
 				Tableau de bord
 			</a>
 		</li>
-		<h3 class="nav-title">RESERVATION</h3>
+		<h3 class="nav-title_dashboard-creche">RESERVATION</h3>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
 				Liste des demandes
 			</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
 				Agenda
 			</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
 				Ajouter une place
 			</a>
 		</li>
-		<h3 class="nav-title">APPS</h3>
+		<h3 class="nav-title_dashboard-creche">APPS</h3>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
 				Email
 			</a>
 		</li>
-		<h3 class="nav-title">ADMINISTRATION</h3>
+		<h3 class="nav-title_dashboard-creche">ADMINISTRATION</h3>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
 				Authentification
 			</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link text-white">
+			<a href="#" class="nav-link nav-link_dashboard-creche text-white">
 				<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
 				Paramètre de réservation
 			</a>
 		</li>
 	</ul>
 </div>
-<footer>
+
+{% block content %}
+<main>
+{% endblock %}
+
+
+<footer class="footer_dashboard-creche">
 	<p>2023 Babyplace</p>
 	<p>Crée avec <3 Wild Code School x BabyPlace</p>
 </footer>
