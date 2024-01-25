@@ -7,7 +7,7 @@
 			<div class="titre-header_calendar col text-start">Réservations</div>
 			<div class="div-links_calendar col text-end">
 				<a href="#" class="nav-links_calendar">Liste</a>
-				<a href=" {{ path('app_agenda') }}" class="nav-links_calendar">Calendrier</a>
+				<a href=" {{ path('app_agenda', {id:app.user.id}) }}" class="nav-links_calendar">Calendrier</a>
 			</div>
 		</div>
 	</div>
