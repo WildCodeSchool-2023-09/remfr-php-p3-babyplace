@@ -17,6 +17,7 @@ class ChildFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 5; $i++) {
             $child = new Child();
             $child->setFamily($this->getReference('family_' . rand(0, 1)));
+            $child->setChildFirstname($faker->firstName());
             $child->setChildLastname($faker->lastName());
             $child->setBirthdate($faker->dateTimeBetween('-3 years', '-1 years'));
             $child->setIsWalking(true);
