@@ -30,7 +30,7 @@ class FamilyController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         } elseif (in_array('ROLE_PARENT', $this->getUser()->getRoles()) && $this->getUser()->getFamily()) {
-            return $this->redirectToRoute('parent_edit', ['id' => $this->getUser()->getFamily()->getId()]);
+            return $this->redirectToRoute('parent_parent_edit', ['id' => $this->getUser()->getFamily()->getId()]);
         }
 
         $family = new Family();
