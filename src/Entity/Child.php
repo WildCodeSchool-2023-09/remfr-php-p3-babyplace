@@ -43,7 +43,7 @@ class Child
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $disability = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $birthCertificate = null;
 
     #[Vich\UploadableField(mapping: 'birthcertificate_file', fileNameProperty: 'birthCertificate')]
@@ -60,7 +60,7 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $doctorName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $vaccine = null;
 
     #[Vich\UploadableField(mapping: 'vaccine_file', fileNameProperty: 'vaccine')]
@@ -74,7 +74,7 @@ class Child
     )]
     private ?File $vaccineFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $insurance = null;
 
     #[Vich\UploadableField(mapping: 'insurance_file', fileNameProperty: 'insurance')]

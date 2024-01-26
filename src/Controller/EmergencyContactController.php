@@ -11,10 +11,10 @@ use App\Repository\EmergencyRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/emergency-contact')]
+#[Route('/emergency-contact', name: 'emergency_')]
 class EmergencyContactController extends AbstractController
 {
-    #[Route('/', name: 'emergencycontact_index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(EmergencyRepository $emergencyRepository): Response
     {
         return $this->render('emergency-contact/index.html.twig', [
@@ -22,7 +22,7 @@ class EmergencyContactController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'emergencycontact_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $emergencyContact = new EmergencyContact();
@@ -33,7 +33,7 @@ class EmergencyContactController extends AbstractController
             $entityManager->persist($emergencyContact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('emergencycontact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('emergency_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('emergency-contact/new.html.twig', [
@@ -42,7 +42,7 @@ class EmergencyContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'emergencycontact_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function showEmergency(EmergencyContact $emergencyContact): Response
     {
         return $this->render('emergency-contact/show.html.twig', [
@@ -50,7 +50,7 @@ class EmergencyContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'emergencycontact_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function editEmergency(Request $request, EntityManagerInterface $entityManager): Response
     {
         $emergencyContact = new EmergencyContact();
@@ -60,7 +60,7 @@ class EmergencyContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('emergencycontact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('emergency_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('emergency-contact/edit.html.twig', [
@@ -68,7 +68,7 @@ class EmergencyContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'emergency_contact_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function deleteEmergency(
         Request $request,
         EmergencyContact $emergencyContact,
@@ -79,6 +79,6 @@ class EmergencyContactController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('emergencycontact_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('emergency_index', [], Response::HTTP_SEE_OTHER);
     }
 }

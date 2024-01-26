@@ -1,0 +1,18 @@
+<div{{ attributes }}>
+    <!-- component html -->
+    {{ form_start(form) }}
+    {{ form_row(form.childFirstname)}}
+    {{ form_row(form.childLastname)}}
+    {{ form_row(form.birthdate)}}
+    {{ form_row(form.isWalking)}}
+    {{ form_row(form.allergy)}}
+    {{ form_row(form.isDisabled)}}
+    {# {{ form_row(formChild.disability)}} #}
+    {{ form_row(form.birthCertificateFile)}}
+    {{ form_row(form.doctorName)}}
+    {{ form_row(form.vaccineFile)}}
+    {{ form_row(form.insuranceFile)}}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>

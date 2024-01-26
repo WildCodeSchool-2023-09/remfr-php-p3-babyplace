@@ -29,8 +29,8 @@ class ChildController extends AbstractController
         $child = new Child();
         $form = $this->createForm(ChildType::class, $child);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            //dd($form->getData());
             $entityManager->persist($child);
             $entityManager->flush();
 
