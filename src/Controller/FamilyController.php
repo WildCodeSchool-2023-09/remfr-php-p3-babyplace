@@ -67,7 +67,7 @@ class FamilyController extends AbstractController
 
             $this->addFlash('familySuccess', 'Vos informations personnelles ont bien été mises à jour.');
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('app_home');
         }
 
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');

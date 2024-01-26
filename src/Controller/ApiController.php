@@ -53,15 +53,15 @@ class ApiController extends AbstractController
     {
 
         $events = $this->calendarRepository->findAll();
-        $creche = new Creche();
-        $var = $creche->getId();
+        //$creche = new Creche();
+        //$var = $creche->getId();
 
         $rdvs = [];
 
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
-                'crecheId' => $var,
+                'crecheId' => 1,
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitle(),
