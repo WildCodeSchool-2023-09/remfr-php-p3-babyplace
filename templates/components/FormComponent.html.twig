@@ -7,7 +7,7 @@
     {{ form_row(form.isWalking)}}
     {{ form_row(form.allergy)}}
     {{ form_row(form.isDisabled)}}
-    {% if form.disability is defined %}
+    {% if form.isDisabled.vars.value == true %}
         {{ form_row(form.disability)}}
     {% endif %}
     {{ form_row(form.birthCertificateFile)}}

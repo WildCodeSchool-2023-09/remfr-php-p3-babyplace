@@ -16,8 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Length;
 use Vich\UploaderBundle\Form\Type\VichFileType;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfonycasts\DynamicForms\DependentField;
 use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
@@ -99,16 +97,16 @@ class ChildType extends AbstractType
                     new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
                 ]*/
                 ])
-            ->addDependent('disability', 'isDisabled', function (DependentField $disabilityDepend, $isDisabledValue) {
-                if ($isDisabledValue !== true) {
-                    return;
-                }
-                $disabilityDepend->add(TextareaType::class, [
+            ->addDependent('disability', 'isDisabled', function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
+                if ($isDisabledValue == true) {
+                    $disabilityDepend->add(TextareaType::class, [
                         'label' => false,
                         'attr' => [
+                            'class' => 'form-control',
                             'placeholder' => 'Quel est-il ?'
                         ],
-                ]);
+                    ]);
+                }
             })
             ->add('birthCertificateFile', VichFileType::class, [
                 'label' => 'Certificat de naissance',

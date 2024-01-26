@@ -123,3 +123,59 @@
         color: $btn-color-hover;
     }
 }
+
+/* Responsive mobile */
+@media only screen and (max-width: 600px) {
+
+    .section_login {
+        background: linear-gradient(rgba(71, 79, 255, 0.3), rgba(227, 122, 204, 0.3));
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .div-left_login {
+        display: none;
+    }
+
+    .div-right_login {
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        width: 100%;
+        margin: auto;
+    }
+
+    .infos_login {
+        display: none;
+    }
+
+    .inscription_login {
+        position: static;
+        top: 10%;
+        left: 10%;
+        font-size: 1.25rem;
+        width: 80%;
+    }
+
+    .form_login {
+        position: static;
+        margin: auto;
+        width: 80%;
+    }
+
+    .button_login {
+        background-color: $btn-color;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+    }
+}
