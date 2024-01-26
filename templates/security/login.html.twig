@@ -6,7 +6,6 @@
 	<section class="section_login">
 		<div class="div-left_login">
 			<div class="infos_login">
-				<img src="logo">
 				<p class="infos-bg-white_login mb-2">Gérez votre crèche</p>
 				<p class="infos-bg-white_login mb-3">tout-en-un</p>
 				<p class="infos-bg_login">24h/24 et 7j/7</p>
@@ -20,7 +19,7 @@
 				<a href="/register">Inscrivez-vous</a>
 			</p>
 			{# Login de connexion #}
-			{# rajout du hidden csrf pour le token #}			
+			{# rajout du hidden csrf pour le token #}
 			<form class="form_login" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				<h4 class="title_login mb-5">Je me connecte</h4>
