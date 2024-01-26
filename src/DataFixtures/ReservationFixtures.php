@@ -14,9 +14,12 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 10; $i++) {
             $reservation = new Reservation();
             $reservation->setCreche($this->getReference('creche_1'));
-            $reservation->setFamily($this->getReference('family_1'));
+            $reservation->setFamily($this->getReference('family_' . rand(0, 1)));
+            $reservation->setChild($this->getReference('child_' . rand(0, 4)));
             $reservation->setCalendar($this->getReference('calendar_' . $i));
-            $reservation->setStatus('en attente');
+            $reservation->setStatus(
+                ['en attente', 'accepté', 'refusé' , 'annulé'][rand(0, 3)]
+            );
 
             $manager->persist($reservation);
         }

@@ -7,7 +7,9 @@
     {{ form_row(form.isWalking)}}
     {{ form_row(form.allergy)}}
     {{ form_row(form.isDisabled)}}
-    {# {{ form_row(formChild.disability)}} #}
+    {% if form.disability is defined %}
+        {{ form_row(form.disability)}}
+    {% endif %}
     {{ form_row(form.birthCertificateFile)}}
     {{ form_row(form.doctorName)}}
     {{ form_row(form.vaccineFile)}}

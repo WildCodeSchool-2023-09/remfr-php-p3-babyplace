@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Length;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormEvent;
@@ -86,39 +86,30 @@ class ChildType extends AbstractType
             ->add('isDisabled', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
-                 'required' => false,
-                            'attr' => [
-                                'class' => 'form-control',
-                        ],
-                        'placeholder' => 'Votre enfant présente-t-il un handicap',
+                'required' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                    'placeholder' => 'Votre enfant présente-t-il un handicap',
                     'choices' => [
                         'Oui' => true,
                         'Non' => false,
                     ]
-                         ])
                 /*'constraints' => [
                     new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
                 ]*/
-            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-                    $form = $event->getForm();
-                    $data = $event->getData();
-    
-                    // Vérifier si 'isDisabled' est vrai
-                    // $isDisabled = isset($data['isDisabled']) && $data['isDisabled'];
-    
-                    if ($data['isDisabled'] === true) {
-                    // Rendre 'disability' obligatoire si 'isDisabled' est vrai
-                    $form->add('disability', TextType::class, [
-                        'required' => true,
-                        /*'constraints' => [
-                            new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
-                        ],*/
+                ])
+            ->addDependent('disability', 'isDisabled', function (DependentField $disabilityDepend, $isDisabledValue) {
+                if ($isDisabledValue !== true) {
+                    return;
+                }
+                $disabilityDepend->add(TextareaType::class, [
+                        'label' => false,
                         'attr' => [
-                        'class' => 'form-control',
-                        ]
+                            'placeholder' => 'Quel est-il ?'
+                        ],
                 ]);
-            }
-            })    
+            })
             ->add('birthCertificateFile', VichFileType::class, [
                 'label' => 'Certificat de naissance',
                 'required' => false,
