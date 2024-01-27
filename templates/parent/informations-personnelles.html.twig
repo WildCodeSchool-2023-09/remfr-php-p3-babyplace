@@ -17,6 +17,7 @@
         {% endblock %}
     </head>
     <body class="body_search-parent">
+        {% include 'parent/_navbar-parent.html.twig' %}
         <!-- Searchbar -->
         <header class="header_search-parent">
              <nav class="navbar top-navbar_informations-personelles">
@@ -32,16 +33,18 @@
         {% block body %}
         <section class="section_informations-personnelles">
             <div class="div_search-parent">
-                <form>
-                    <input type="text" class="form-text_informations-personnelles mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom">
-                    <input type="text" class="form-text_informations-personnelles mb-3" id="exampleInputPassword1" placeholder="Nom">
-                    <input type="email" class="form-text_informations-personnelles mb-3" id="exampleInputPassword1" placeholder="Email">
-                    <input type="password" class="form-text_informations-personnelles mb-3" id="exampleInputPassword1" placeholder="Mot de passe">
-                    <input type="phone" class="form-text_informations-personnelles mb-3" id="exampleInputPassword1" placeholder="Téléphone">
-                    <input type="text" class="form-text_informations-personnelles mb-3" id="exampleInputPassword1" placeholder="Adresse">
-                    <input type="text" class="form-text_informations-personnelles" id="exampleInputPassword1" placeholder="Ville, Code postal">
+                {{ form_start(formFamily) }}
+                    {{ form_row(formFamily.firstname, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {{ form_row(formFamily.lastname, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {# {{ form_row(formUser.email, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {{ form_row(formUser.password, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }} #}
+                    {{ form_row(formFamily.phone, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {{ form_row(formFamily.address, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {{ form_row(formFamily.postalCode, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    {{ form_row(formFamily.city, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}) }}
+                    
                     <button type="submit" class="button_dossiers-inscriptions mt-5">Appliquer mes changements</button>
-                </form>
+                {{ form_end(formFamily) }}
             </div>
         </section>
         <script>

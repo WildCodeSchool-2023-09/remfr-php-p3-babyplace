@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard-creche.html.twig' %}
 
 {% block title %}Votre enfant{% endblock %}
 
@@ -6,6 +6,6 @@
     <h1>Ajoutez votre enfant</h1>
 
     {{ include('child/_form-child.html.twig') }}
-
-    <a href="{{ path('app_child_index') }}">back to list</a>
+    
+    <a href="{{ path('child_index') }}">back to list</a>
 {% endblock %}

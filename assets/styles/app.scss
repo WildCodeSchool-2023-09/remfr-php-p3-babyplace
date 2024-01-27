@@ -8,6 +8,9 @@
 @import "home.scss";
 // Creche
 @import "dashboard-creche.scss";
+
+@import "creche/_header-creche.scss";
+@import "creche/presentation-creche.scss";
 @import "creche_reservation.scss";
 // Calendar
 @import "calendar.scss";

@@ -30,17 +30,17 @@
                 <td>{{ child.childFirstname }}</td>
                 <td>{{ child.childLastname }}</td>
                 <td>{{ child.birthdate ? child.birthdate|date('Y-m-d') : '' }}</td>
-                <td>{{ child.isWalking ? 'Yes' : 'No' }}</td>
+                <td>{{ child.isWalking ? 'Oui' : 'Non' }}</td>
                 <td>{{ child.allergy }}</td>
-                <td>{{ child.isDisabled ? 'Yes' : 'No' }}</td>
+                <td>{{ child.isDisabled ? 'Oui' : 'Non' }}</td>
                 <td>{{ child.disability }}</td>
                 <td>{{ child.birthCertificate }}</td>
                 <td>{{ child.doctorName }}</td>
                 <td>{{ child.vaccine }}</td>
                 <td>{{ child.insurance }}</td>
                 <td>
-                    <a href="{{ path('app_child_show', {'id': child.id}) }}">show</a>
-                    <a href="{{ path('app_child_edit', {'id': child.id}) }}">edit</a>
+                    <a href="{{ path('child_show', {'id': child.id}) }}">show</a>
+                    <a href="{{ path('child_edit', {'id': child.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -51,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_child_new') }}">Create new</a>
+    <a href="{{ path('child_new') }}">Create new</a>
 {% endblock %}

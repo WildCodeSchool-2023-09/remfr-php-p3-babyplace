@@ -12,20 +12,26 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Length;
 use Vich\UploaderBundle\Form\Type\VichFileType;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
+use Symfonycasts\DynamicForms\DependentField;
+use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
 class ChildType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder = new DynamicFormBuilder($builder);
+
         $builder
             ->add('childFirstname', TextType::class, [
-                'label' => 'Prénom',
-                'class' => 'form-control',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Prénom',
+                    'class' => 'form-control',
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le prénom de votre enfant.']),
                     new Length([
@@ -36,8 +42,11 @@ class ChildType extends AbstractType
                 ]
             ])
             ->add('childLastname', TextType::class, [
-                'label' => 'Nom de famille',
-                'class' => 'form-control',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom de famille',
+                    'class' => 'form-control',
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le nom de famille de votre enfant.']),
                     new Length([
@@ -49,35 +58,63 @@ class ChildType extends AbstractType
             // Date de naissance
             ->add('birthdate', DateType::class, [
                 'widget' => 'choice',
-                'label' => 'Date de naissance',
-                'class' => 'form-control',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Date de naissance',
+                    'class' => 'form-control',
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer la date de naissance de votre enfant.']),
                 ]
             ])
-            ->add('isWalking', CheckboxType::class, [
-                'label' => 'Votre enfant marche-t-il ?',
-                'class' => 'form-control',
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez préciser si votre enfant marche.']),
-                ]
+            ->add('isWalking', ChoiceType::class, [
+                'label' => false,
+                'multiple' => false,
+                'attr' => [
+                    /*'placeholder' => 'Votre enfant marche-t-il ?',*/
+                    'class' => 'form-control',
+                ],
+                'placeholder' => 'Votre enfant marche-t-il ?',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
             ])
             ->add('allergy')
-            ->add('isDisabled', CheckboxType::class, [
-                'label' => 'Votre enfant présente-t-il un handicap ?',
-                'class' => 'form-control',
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
-                ]
-            ])
-            ->add('disability', TextType::class, [
-                'label' => 'Si oui, quel est-il ?',
+            ->add('isDisabled', ChoiceType::class, [
+                'label' => false,
+                'multiple' => false,
                 'required' => false,
-                'class' => 'form-control',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'placeholder' => 'Votre enfant présente-t-il un handicap',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ]
+                /*'constraints' => [
+                    new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
+                ]*/
             ])
-            ->add('birthCertificate', VichFileType::class, [
+            ->addDependent(
+                'disability',
+                'isDisabled',
+                function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
+                    if ($isDisabledValue == true) {
+                        $disabilityDepend->add(TextareaType::class, [
+                            'label' => false,
+                            'attr' => [
+                                'class' => 'form-control',
+                                'placeholder' => 'Quel est-il ?'
+                            ],
+                        ]);
+                    }
+                }
+            )
+            ->add('birthCertificateFile', VichFileType::class, [
                 'label' => 'Certificat de naissance',
-                'required' => true,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
             ])
@@ -91,44 +128,22 @@ class ChildType extends AbstractType
                     new NotBlank(['message' => 'Veuillez indiquer le Prénom et NOM de votre docteur.']),
                 ]
             ])
-            ->add('vaccine', VichFileType::class, [
+            ->add('vaccineFile', VichFileType::class, [
                 'label' => 'Carnet de vaccination',
-                'required' => true,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
             ])
-            ->add('insurance', VichFileType::class, [
+            ->add('insuranceFile', VichFileType::class, [
                 'label' => 'Attestation d\'assurance de l\'enfant',
-                'required' => true,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
             ])
             ->add('family', EntityType::class, [
                 'class' => Family::class,
                 'choice_label' => 'id',
-            ])
-            ->add('creche', EntityType::class, [
-                'class' => Creche::class,
-                'choice_label' => 'id',
-                'multiple' => true,
             ]);
-
-            $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-                $data = $event->getData();
-                $form = $event->getForm();
-
-                // Vérifier si 'isDisabled' est vrai
-                $isDisabled = isset($data['isDisabled']) && $data['isDisabled'];
-
-                // Rendre 'disability' obligatoire si 'isDisabled' est vrai
-                $form->add('disability', TextType::class, [
-                    'required' => $isDisabled,
-                    'constraints' => [
-                        new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
-                    ],
-                    'class' => 'form-control',
-                ]);
-            });
     }
 
     public function configureOptions(OptionsResolver $resolver): void
