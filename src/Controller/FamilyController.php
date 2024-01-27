@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Family;
 use App\Form\FamilyType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,14 +22,24 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', methods: ['GET', 'POST'], name: 'parent_new')]
+    #[Route('/new', methods: ['GET', 'POST'], name: 'new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        } elseif (in_array('ROLE_PARENT', $this->getUser()->getRoles()) && $this->getUser()->getFamily()) {
+            return $this->redirectToRoute('parent_edit', ['id' => $this->getUser()->getFamily()->getId()]);
+        }
+
         $family = new Family();
         $form = $this->createForm(FamilyType::class, $family);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Créer une entité family en récupérant l'id user créé à l'étape précédente
+            $family->setUser($this->getUser());
+
+            //Faire persister le parent
             $entityManager->persist($family);
             $entityManager->flush();
 
@@ -38,7 +49,7 @@ class FamilyController extends AbstractController
         }
 
         return $this->render('parent/register-parent.html.twig', [
-            'formRegister' => $form,
+            'formFamily' => $form,
         ]);
     }
 
@@ -60,7 +71,7 @@ class FamilyController extends AbstractController
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
 
         return $this->render('parent/edit-parent.html.twig', [
-            'formEdit' => $form
+            'formFamily' => $form
         ]);
     }
 
@@ -74,14 +85,19 @@ class FamilyController extends AbstractController
     }
     //Il faudrait qu'on édite cette méthode de façon à la link avec user,
     //de cette façon, le compte serait supprimé. Donc renvoi à la page d'accueil.
-    #[Route('/{id}', name: 'parent_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'deleteParent', methods: ['POST'])]
     public function deleteParent(
         Request $request,
         Family $family,
+        User $user,
         EntityManagerInterface $entityManager
     ): Response {
-        if ($this->isCsrfTokenValid('delete' . $family->getId(), $request->request->get('_token'))) {
+        if (
+            $this->isCsrfTokenValid('delete' . $family->getId() .
+            '_' . $user->getId(), $request->request->get('_token'))
+        ) {
             $entityManager->remove($family);
+            $entityManager->remove($user);
             $entityManager->flush();
         }
 
@@ -130,6 +146,14 @@ class FamilyController extends AbstractController
         ]);
     }
 
+    //Voir la page de réservation
+    #[Route('/reservation', methods:['GET','POST'], name:'parent_reservation1')]
+    public function showReservation(): Response
+    {
+        return $this->render('parent/reservation1-parent.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
     // Filtres présents sur la partie Recherche - Parents
     #[Route('/filtres', name: 'filtres')]
     public function filtersParent(): Response

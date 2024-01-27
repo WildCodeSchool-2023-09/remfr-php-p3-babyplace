@@ -1,3 +1,28 @@
-.nav-icons {
-        color: #DFDEDE;
-    }
+.bg-light {
+    height: 10vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    justify-content: space-around;
+    padding: 0 5% 0% 5%;
+}
+
+.btn-parent {
+    color: #DFDEDE;
+    font-size: 1.5rem;
+
+}
+
+.lien_nav-parent{
+    padding: 15px 20px 15px 20px;
+}
+
+.lien_nav-parent:active {
+    border-radius: 5px;
+    background: linear-gradient(rgba(71, 79, 255, 0.3), rgba(227, 122, 204, 0.3));
+}
+
+.btn-parent:active {
+    color: $btn-color;
+}
