@@ -10,7 +10,7 @@ $dropdown-menu-bg: #c0bdbd;
 $footer-text-color: #000;
 
 // Body styles
-body {
+.body_dashboard-creche {
     background-color: $primary-color;
 }
 
@@ -24,7 +24,7 @@ body {
     width: 15vw;
 }
 
-.navbar, footer {
+.navbar_dashboard-creche, .footer_dashboard-creche {
     background-color: $secondary-color;
     display: inline-flex;
     text-align: center;
@@ -37,25 +37,25 @@ body {
     padding-right: 3vw;
 }
 
-.navbar {
+.navbar_dashboard-creche {
     top: 0;
     justify-content: right;
 }
 
-footer {
+.footer_dashboard-creche {
     bottom: 0;
     z-index: 0;
     justify-content: space-between;
 }
 
-.nav-title {
+.nav-title_dashboard-creche {
     font-size: 1rem;
     color: #fff;
     padding: 3px;
     margin: 30px 0 15px;
 }
 
-.nav-link {
+.nav-link_dashboard-creche {
     color: #fff;
     padding: 10px;
 
@@ -67,45 +67,42 @@ footer {
 }
 
 // Main content styles
-main {
+.main_dashboard-creche {
     background-color: $primary-color;
     display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
-    position: absolute;
+    text-align: right;
+    position: fixed;
     top: 10vh;
     bottom: 10vh;
     margin-right: 3vw;
     margin-left: 18vw;
     height: auto;
-    min-height: 80vh;
     width: 79vw;
     z-index: 1;
 }
 
 // Dropdown styles
-.dropdown, .dropdown-menu {
+.dropdown_dashboard-creche, .dropdown-menu_dashboard-creche {
     color: #000;
     border-radius: 15px;
     border: 1px solid #fff;
 }
 
-.dropdown {
+.dropdown_dashboard-creche {
     background-color: $dropdown-bg;
 }
 
-.dropdown-menu {
+.dropdown-menu_dashboard-creche {
     background-color: $dropdown-menu-bg;
     z-index: 999;
 }
 
 // Additional styles
-.bg-body-tertiary {
+.bg-body-tertiary_dashboard-creche {
     background-color: $tertiary-color;
 }
 
 // Footer text color
-footer {
+.footer_dashboard-creche {
     color: $footer-text-color;
 }

@@ -29,7 +29,7 @@
                     <img src="https://github.com/mdo.png" alt="" width="50" height="50" class="rounded-circle">
                 </a>
                 <ul class="dropdown_dashboard-creche dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" {# href="{{ path(creche/gestion/informations-personnelles) }}" #}>Informations personnelles</a></li>
+                    <li><a class="dropdown-item" href="{{ path('creche_edit_index', {id:app.user.id}) }}">Informations personnelles</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
                 </ul>
@@ -44,17 +44,17 @@
                 <ul class="div_aside nav nav-pills flex-column mb-auto">
                     <h3 class="nav-title_dashboard-creche">Réservations</h3>
                     <li>
-                        <a {# href="{{ path(creche/gestion/liste-des-demandes) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-border-all fa-gestion"></i>Liste des demandes</a>
+                        <a href="{{ path('creche_demandes', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-border-all fa-gestion"></i>Liste des demandes</a>
                     </li>
                     <li>
-                        <a {# href="{{ path(creche/gestion/agenda) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar fa-gestion"></i>Agenda</a>
+                        <a href="{{ path('app_agenda', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar fa-gestion"></i>Agenda</a>
                     </li>
                     <li>
                         <a {# href="{{ path(creche/gestion/ajouter-une-place) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar-plus fa-gestion"></i>Ajouter une place</a>
                     </li>
                     <h3 class="nav-title_dashboard-creche">Profil</h3>
                     <li>
-                        <a {# href="{{ path(creche/gestion/informations-personnelles) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-circle-user fa-gestion"></i>Informations personnelles</a>
+                        <a href="{{ path('creche_edit_index', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-circle-user fa-gestion"></i>Informations personnelles</a>
                     </li>
                     <li>
                         <a {# href="{{ path(creche/gestion/notifications) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-bell fa-gestion"></i>Notifications</a>

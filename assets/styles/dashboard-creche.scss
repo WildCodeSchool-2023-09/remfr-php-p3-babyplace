@@ -75,8 +75,6 @@ $footer-text-color: #000;
     padding-left: 1vw;
 }
 
-.dropdown_dashboard-creche {}
-
 .logo_dashboard-creche {
     height: 5vh;
     width: auto;
@@ -95,6 +93,7 @@ $footer-text-color: #000;
     height: auto;
     width: 79vw;
     z-index: 1;
+    display: block;
 }
 
 // Dropdown styles
@@ -129,6 +128,8 @@ $footer-text-color: #000;
     border: 0px;
     content: none;
 }
+
+
 
 // Additional styles
 .bg-body-tertiary {
