@@ -235,23 +235,30 @@ class FamilyController extends AbstractController
         return $this->redirectToRoute('parent_results', ['id' => $this->getUser()->getFamily()->getId()]);
     }*/
 
-    #[Route('/reservations', name: 'reservations')]
-    public function reservations(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        // Récupérer les données du formulaire
+    #[Route('/reservations/{id}', name: 'reservations')]
+    public function reservations(
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response {
+        // Récupérer les données du formulaire        
         $crecheId = $request->request->get('creche');
         $childId = $request->request->get('child');
         $calendarId = $request->request->get('calendar');
         $status = $request->request->get('status');
-    
-        // Supposons que vous ayez déjà l'objet Family à partir du contexte de l'utilisateur
-        $family = $this->getUser()->getFamily();
-    
-        // Récupérer les entités à partir de leur ID
+
+        // Vérifier l'existence des entités
         $creche = $entityManager->getRepository(Creche::class)->find($crecheId);
         $child = $entityManager->getRepository(Child::class)->find($childId);
         $calendar = $entityManager->getRepository(Calendar::class)->find($calendarId);
-    
+
+        if (!$creche || !$child || !$calendar) {
+            // Gérer le cas où une des entités n'est pas trouvée
+            throw $this->createNotFoundException('Certaines entités n\'ont pas été trouvées.');
+        }
+
+        // Supposons que vous ayez déjà l'objet Family à partir du contexte de l'utilisateur
+        $family = $this->getUser()->getFamily();
+
         // Créer une nouvelle instance de réservation
         $reservation = new Reservation();
         $reservation->setFamily($family);
@@ -259,11 +266,16 @@ class FamilyController extends AbstractController
         $reservation->setChild($child);
         $reservation->setCalendar($calendar);
         $reservation->setStatus($status);
-    
-        // Enregistrer la réservation dans la base de données
-        $entityManager->persist($reservation);
-        $entityManager->flush();
-    
+
+        try {
+            // Enregistrer la réservation dans la base de données
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            // Gérer l'erreur de sauvegarde
+            return new Response('Erreur lors de la sauvegarde de la réservation: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         // Redirection vers une autre page, par exemple, la page des résultats des parents
         return $this->redirectToRoute('parent_results', ['id' => $family->getId()]);
     }
@@ -271,8 +283,8 @@ class FamilyController extends AbstractController
     #[Route('/{id}/results/{id_creche}', methods: ['GET', 'POST'], name: 'results')]
     public function showCrecheResults(
         Request $request,
-        #[MapEntity(mapping:['id' => 'id'])] Family $family,
-        #[MapEntity(mapping:['id_creche' => 'id'])] Creche $creche,
+        #[MapEntity(mapping: ['id' => 'id'])] Family $family,
+        #[MapEntity(mapping: ['id_creche' => 'id'])] Creche $creche,
         FamilyRepository $familyRepository,
         CrecheRepository $crecheRepository,
         CalendarRepository $calendarRepository,

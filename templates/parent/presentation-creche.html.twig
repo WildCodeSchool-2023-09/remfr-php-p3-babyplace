@@ -75,7 +75,7 @@
 				<div class="modal fade" id="ModalReserver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="div-modal_reservations modal-dialog modal-dialog-centered">
 						<div class="modal-content card card-modal_reservations">
-							<form action="#" method="POST">
+							<form action="{{ path('parent_reservations', {id: family.id}) }}" method="POST">
 								<div class="card-header_creche card-header position-relative">
 									<div class="div-card-img-top"></div>
 									<img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
@@ -92,7 +92,9 @@
 										<select name="calendar" class="form-select" aria-label="Default select example">
 											<option selected>Choisissez un jour</option>
 											{% for cal in calendar %}
-												<option value="{{cal.id}}">{{ cal.start|date('l') }}
+												{% set daysOfWeek = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"] %}
+
+												<option value="{{cal.id}}">{{ daysOfWeek[cal.start|date('w')] }}
 													de
 													{{cal.start|date('H:i')}}
 													à
@@ -115,7 +117,7 @@
 										</div>
 									</div>
 									<div class="div-button_creche pb-2">
-										<button type="submit" href="{{ path('parent_reservations', {id: family.id} )}}" class="button-modal_creche mt-5">
+										<button type="submit" class="button-modal_creche mt-5">
 											Réserver un créneau</button>
 									</div>
 								</div>
@@ -128,15 +130,15 @@
 
 		{# Affichage du formulaire #}
 		{# {{ form_start(form) }}
-									    {{ form_row(form.title) }}
-									    {{ form_row(form.start) }}
-									    {{ form_row(form.end) }}
-									    {{ form_row(form.description) }}
-									    {{ form_row(form.all_day) }}
-									    {{ form_row(form.background_color) }}
-									    {{ form_row(form.text_color) }}
-									
-									    <button type="submit">Envoyer</button>
-									{{ form_end(form) }} #}
+											    {{ form_row(form.title) }}
+											    {{ form_row(form.start) }}
+											    {{ form_row(form.end) }}
+											    {{ form_row(form.description) }}
+											    {{ form_row(form.all_day) }}
+											    {{ form_row(form.background_color) }}
+											    {{ form_row(form.text_color) }}
+											
+											    <button type="submit">Envoyer</button>
+											{{ form_end(form) }} #}
 	</body>
 </html></body></html>
