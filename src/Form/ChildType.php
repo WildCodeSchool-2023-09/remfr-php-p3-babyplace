@@ -30,7 +30,7 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
-                    'class' => 'form-control',
+                    'class' => 'form-text_dossiers-enfants',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le prénom de votre enfant.']),
@@ -80,7 +80,17 @@ class ChildType extends AbstractType
                     'Non' => false,
                 ],
             ])
-            ->add('allergy')
+            ->add('allergy', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Allergie',
+                    'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez indiquer l\'allergie de votre enfant.']),
+                ]
+            ])
             ->add('isDisabled', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
@@ -113,7 +123,7 @@ class ChildType extends AbstractType
                 }
             )
             ->add('birthCertificateFile', VichFileType::class, [
-                'label' => 'Certificat de naissance',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
@@ -129,13 +139,13 @@ class ChildType extends AbstractType
                 ]
             ])
             ->add('vaccineFile', VichFileType::class, [
-                'label' => 'Carnet de vaccination',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
             ])
             ->add('insuranceFile', VichFileType::class, [
-                'label' => 'Attestation d\'assurance de l\'enfant',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,

@@ -132,6 +132,15 @@ class FamilyController extends AbstractController
         ]);
     }
 
+    // Filtres présents sur la partie Recherche - Parents
+    #[Route('/filtres', name: 'filtres')]
+    public function filtersParent(): Response
+    {
+        return $this->render('parent/filters.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
     #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
     public function confirmationRegister(): Response
     {
@@ -153,14 +162,6 @@ class FamilyController extends AbstractController
     public function showReservation(): Response
     {
         return $this->render('parent/reservation1-parent.html.twig', [
-            'controller_name' => 'FamilyController',
-        ]);
-    }
-    // Filtres présents sur la partie Recherche - Parents
-    #[Route('/filtres', name: 'filtres')]
-    public function filtersParent(): Response
-    {
-        return $this->render('parent/filters.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -210,9 +211,17 @@ class FamilyController extends AbstractController
         ]);
     }
 
+    // Page détail crèche - Parents
     #[Route('/results', methods: ['GET'], name: 'results')]
     public function showCrecheResults(): Response
     {
         return $this->render('parent/presentation-creche.html.twig');
+    }
+
+    // Page détail crèche - Parents
+    #[Route('/moyens-de-paiement', methods: ['GET'], name: 'checkout')]
+    public function checkout(): Response
+    {
+        return $this->render('parent/moyens-de-paiement.html.twig');
     }
 }
