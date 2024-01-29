@@ -13,7 +13,6 @@ class AgendaController extends AbstractController
 {
     #[Route('creche/gestion/agenda/{id}', name: 'app_agenda')]
     public function index(CalendarRepository $calendarRepository, int $id, Creche $creche): Response
-
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
