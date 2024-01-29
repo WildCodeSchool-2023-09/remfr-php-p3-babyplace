@@ -3,7 +3,9 @@
 {% macro calculateAge(birthdate) %}
 	{# birthdate doit être une instance de DateTime dans votre code PHP #}
 	{{ 'now'|date('Y') - birthdate|date('Y') - (birthdate|date('md') > 'now'|date('md') ? 1 : 0) }}
+	
 {% endmacro %}
+
 {% macro calculateHour(hourStart, hourEnd) %}
     {% set startTimestamp = hourStart|date('U') %}
     {% set endTimestamp = hourEnd|date('U') %}

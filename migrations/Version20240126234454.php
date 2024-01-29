@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240125102936 extends AbstractMigration
+final class Version20240126234454 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -29,7 +29,7 @@ final class Version20240125102936 extends AbstractMigration
         $this->addSql('CREATE TABLE emergency_contact (id INT AUTO_INCREMENT NOT NULL, family_id INT NOT NULL, name VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, phone_contact VARCHAR(15) NOT NULL, INDEX IDX_FE1C6190C35E566A (family_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE family (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, lastname VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, postal_code VARCHAR(5) NOT NULL, city VARCHAR(255) NOT NULL, phone VARCHAR(10) NOT NULL, UNIQUE INDEX UNIQ_A5E6215BA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE photo (id INT AUTO_INCREMENT NOT NULL, creche_id INT DEFAULT NULL, picture VARCHAR(255) DEFAULT NULL, updated_at DATETIME DEFAULT NULL, INDEX IDX_14B784186C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE reservation (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, family_id INT NOT NULL, calendar_id INT DEFAULT NULL, status VARCHAR(255) NOT NULL, INDEX IDX_42C849556C6060B (creche_id), INDEX IDX_42C84955C35E566A (family_id), UNIQUE INDEX UNIQ_42C84955A40A2C8 (calendar_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE reservation (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, family_id INT NOT NULL, calendar_id INT DEFAULT NULL, child_id INT DEFAULT NULL, status VARCHAR(255) NOT NULL, INDEX IDX_42C849556C6060B (creche_id), INDEX IDX_42C84955C35E566A (family_id), UNIQUE INDEX UNIQ_42C84955A40A2C8 (calendar_id), INDEX IDX_42C84955DD62C21B (child_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE reset_password_request (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, selector VARCHAR(20) NOT NULL, hashed_token VARCHAR(100) NOT NULL, requested_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', expires_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_7CE748AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE schedule (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, weekdays VARCHAR(255) NOT NULL, opening_hours VARCHAR(255) NOT NULL, closing_hours VARCHAR(255) NOT NULL, INDEX IDX_5A3811FB6C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE service (id INT AUTO_INCREMENT NOT NULL, creche_id INT NOT NULL, service_name VARCHAR(255) NOT NULL, status TINYINT(1) DEFAULT NULL, INDEX IDX_E19D9AD26C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -50,6 +50,7 @@ final class Version20240125102936 extends AbstractMigration
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C849556C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C84955C35E566A FOREIGN KEY (family_id) REFERENCES family (id)');
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C84955A40A2C8 FOREIGN KEY (calendar_id) REFERENCES calendar (id)');
+        $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C84955DD62C21B FOREIGN KEY (child_id) REFERENCES child (id)');
         $this->addSql('ALTER TABLE reset_password_request ADD CONSTRAINT FK_7CE748AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE schedule ADD CONSTRAINT FK_5A3811FB6C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
         $this->addSql('ALTER TABLE service ADD CONSTRAINT FK_E19D9AD26C6060B FOREIGN KEY (creche_id) REFERENCES creche (id)');
@@ -73,6 +74,7 @@ final class Version20240125102936 extends AbstractMigration
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C849556C6060B');
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C84955C35E566A');
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C84955A40A2C8');
+        $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C84955DD62C21B');
         $this->addSql('ALTER TABLE reset_password_request DROP FOREIGN KEY FK_7CE748AA76ED395');
         $this->addSql('ALTER TABLE schedule DROP FOREIGN KEY FK_5A3811FB6C6060B');
         $this->addSql('ALTER TABLE service DROP FOREIGN KEY FK_E19D9AD26C6060B');

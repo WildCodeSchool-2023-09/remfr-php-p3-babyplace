@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Family;
 use App\Form\FamilyType;
+use App\Repository\CalendarRepository;
+use App\Repository\CrecheRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,7 +67,7 @@ class FamilyController extends AbstractController
 
             $this->addFlash('familySuccess', 'Vos informations personnelles ont bien été mises à jour.');
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('app_home');
         }
 
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
@@ -114,10 +116,15 @@ class FamilyController extends AbstractController
 
     // Listes de recherches
     #[Route('/liste-de-recherches', name: 'liste-de-recherches')]
-    public function searchList(): Response
+    public function searchList(CalendarRepository $calendarRepo, CrecheRepository $crecheRepo): Response
     {
+        $calendars = $calendarRepo->findAll();
+        $creches = $crecheRepo->findAll();
+
         return $this->render('parent/search-list.html.twig', [
             'controller_name' => 'FamilyController',
+            'calendars' => $calendars,
+            'creches' => $creches,
         ]);
     }
 
@@ -125,8 +132,11 @@ class FamilyController extends AbstractController
     #[Route('/recherches', name: 'recherches')]
     public function search(): Response
     {
+
+
         return $this->render('parent/search.html.twig', [
             'controller_name' => 'FamilyController',
+
         ]);
     }
 
