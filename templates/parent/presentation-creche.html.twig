@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>
+			{% block title %}Crèches à proximité
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class= "search-creche">
+        {% include 'parent/_navbar-parent.html.twig' %}
+    	{% include 'creche/_header-creche.html.twig' %}
+        {% block body %}
+        <section class="section_card-creche">
+            <div class="div_search-creche">
+                <div class="card mb-5">
+                    <div class="card-header_creche card-header position-relative">
+                        <div class="div-card-img-top"></div>
+                        <img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
+                        <i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
+                        <p class="rate_search-parent position-absolute bottom-0 end-0">4,8  <i class="fa-solid fa-star"></i></p>
+                    </div>
+					<div class="card_creche-intro p-1 m-3">
+						<h4 class="title_card-creche">Présentation</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+						</p>
+					</div>
+					<div class="creche-contact p-1">
+						<i class="fa-solid fa-circle-info creche-contact-icon"></i>
+                        <ul class="list-infos_creche">
+						<li class="mb-1">Horaires:
+						</li>
+						<li class="mb-1">Téléphone:
+						</li>
+						<li class="mb-1">Mail:</li>
+                        </ul>
+					</div>
+					<div class="creche-hour m-3">
+						<h4 class="title_card-creche">Disponibilités</h4>
+                            <table class="table reservations_search-list">
+                            <tr>
+                                <td class="day_search-list day-active_search-list">Lun. 14</td>
+                                <td class="day_search-list">Mar. 15</td>
+                                <td class="day_search-list">Mer. 16</td>
+                            </tr>
+                            <tr>
+                                <td class="day_search-list">Jeu. 17</td>
+                                <td class="day_search-list day-active_search-list">Ven. 18</td>
+                                <td class="day_search-list">Sam. 19</td>
+                            </tr>
+                        </table>
+					</div>
+					<div class="creche-xp m-3">
+						<h4 class="title_card-creche">Expériences</h4>
+						<ul class="list-activites_creche">
+							<li>Expérience 1</li>
+							<li>Expérience 2</li>
+							<li>Expérience 3</li>
+						</ul>
+					</div>
+					<div class="creche-reception m-3">
+						<h4 class="title_card-creche">Accueil</h4>
+						<ul class="list-activites_creche">
+							<li>Accueil 1</li>
+							<li>Accueil 2</li>
+							<li>Accueil 3</li>
+						</ul>
+					</div>
+					<div class="creche-activity m-3">
+						<h4  class="title_card-creche">Activités</h4>
+						<ul class="list-activites_creche">
+							<li>Activité 1</li>
+							<li>Activité 2</li>
+							<li>Activité 3</li>
+						</ul>
+					</div>
+                    <div class="div-button_creche pb-3">
+                        <button href="/disponibilites-creche" class="button_creche mt-5" data-bs-toggle="modal" data-bs-target="#ModalReserver">Réserver un créneau</button>
+                    </div>
+				</div>
+				<p class="legend_creche">* En complétant mon profil, je peux obtenir une tarification personnalisée en fonction de mes revenus</p>
+			</div>
+            <!-- Modal -->
+                <div class="modal fade" id="ModalReserver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="div-modal_reservations modal-dialog modal-dialog-centered">
+                        <div class="modal-content card card-modal_reservations">
+                            <div class="card-header_creche card-header position-relative">
+                                <div class="div-card-img-top"></div>
+                                <img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
+                                <h5 class="card-title position-absolute bottom-0 start-0">Nom de la crèche</h5>
+                                <i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
+                                <p class="rate_search-parent position-absolute bottom-0 end-0">4,8  <i class="fa-solid fa-star"></i></p>
+                            </div>
+                            <div class="card-body position-relative">
+                                {# Jour et statut #}
+                                <div class="card_reservations mb-3">
+                                <select class="form-select" aria-label="Default select example">
+                                        <option selected>Choisissez un jour</option>
+                                        <option value="1">Lun. 17/09/2024</option>
+                                        <option value="2">Mar. 18/09/2024</option>
+                                        <option value="3">Jeu. 20/09/2024</option>
+                                    </select>
+                                </div>
+                                {# Horaires #}
+                                <div class="card_reservations">
+                                    <div class="col mb-3">
+                                        <p class="horaires_reservations mb-1">Horaires</p>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Toute la journée</option>
+                                            <option value="2">Matinée</option>
+                                            <option value="3">Après-midi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {# Enfant pris en charge #}
+                                <div class="card_reservations">
+                                    <div class="col">
+                                        <p class="horaires_reservations mb-1">Quel enfant souhaité vous faire garder ?</p>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Élise</option>
+                                            <option value="2">Yacine</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="div-button_creche pb-2">
+                                    <a href="{{ path('parent_reservations') }}" class="button-modal_creche mt-5">Réserver un créneau</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        {% endblock %}
+	</body>
+</html>

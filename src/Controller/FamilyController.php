@@ -30,7 +30,7 @@ class FamilyController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         } elseif (in_array('ROLE_PARENT', $this->getUser()->getRoles()) && $this->getUser()->getFamily()) {
-            return $this->redirectToRoute('parent_parent_edit', ['id' => $this->getUser()->getFamily()->getId()]);
+            return $this->redirectToRoute('parent_menu', ['id' => $this->getUser()->getFamily()->getId()]);
         }
 
         $family = new Family();
@@ -47,7 +47,7 @@ class FamilyController extends AbstractController
 
             //Il ne faudrait pas mettre de addFlash ici,
             //mais renvoyer à une page invitant à consulter ses mails
-            return $this->redirectToRoute('parent_new');
+            return $this->redirectToRoute('parent_index');
         }
 
         return $this->render('parent/register-parent.html.twig', [
@@ -80,7 +80,7 @@ class FamilyController extends AbstractController
     }
 
     //Voir le profil parent
-    #[Route('/{id}/profil', methods: ['GET'], name: 'parent_profil')]
+    #[Route('/{id}/profil', methods: ['GET'], name: 'profil')]
     public function showProfil(Family $family): Response
     {
         return $this->render('parent/parent-profil.html.twig', [
@@ -89,7 +89,7 @@ class FamilyController extends AbstractController
     }
     //Il faudrait qu'on édite cette méthode de façon à la link avec user,
     //de cette façon, le compte serait supprimé. Donc renvoi à la page d'accueil.
-    #[Route('/{id}', name: 'deleteParent', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function deleteParent(
         Request $request,
         Family $family,
@@ -98,7 +98,7 @@ class FamilyController extends AbstractController
     ): Response {
         if (
             $this->isCsrfTokenValid('delete' . $family->getId() .
-            '_' . $user->getId(), $request->request->get('_token'))
+                '_' . $user->getId(), $request->request->get('_token'))
         ) {
             $entityManager->remove($family);
             $entityManager->remove($user);
@@ -108,7 +108,7 @@ class FamilyController extends AbstractController
         return $this->redirectToRoute('family_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/menu-parent', name: 'menu')]
+    #[Route('/menu-parent', name: 'menu', methods: ['GET'])]
     public function menuParent(): Response
     {
         return $this->render('parent/menu.html.twig', [
@@ -134,6 +134,15 @@ class FamilyController extends AbstractController
         ]);
     }
 
+    // Filtres présents sur la partie Recherche - Parents
+    #[Route('/filtres', name: 'filtres')]
+    public function filtersParent(): Response
+    {
+        return $this->render('parent/filters.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
     #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
     public function confirmationRegister(): Response
     {
@@ -151,18 +160,10 @@ class FamilyController extends AbstractController
     }
 
     //Voir la page de réservation
-    #[Route('/reservation', methods:['GET','POST'], name:'parent_reservation1')]
+    #[Route('/reservation', methods: ['GET', 'POST'], name: 'parent_reservation1')]
     public function showReservation(): Response
     {
         return $this->render('parent/reservation1-parent.html.twig', [
-            'controller_name' => 'FamilyController',
-        ]);
-    }
-    // Filtres présents sur la partie Recherche - Parents
-    #[Route('/filtres', name: 'filtres')]
-    public function filtersParent(): Response
-    {
-        return $this->render('parent/filters.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -195,13 +196,13 @@ class FamilyController extends AbstractController
     }
 
     // Informations personnelles - Parents
-    #[Route('/informations-personnelles', name: 'informations-personnelles')]
+    /*#[Route('/informations-personnelles', name: 'informations-personnelles')]
     public function infosFamily(): Response
     {
-        return $this->render('parent/informations-personnelles.html.twig', [
+        return $this->render('', [
             'controller_name' => 'FamilyController',
         ]);
-    }
+    }*/
 
     // Réservations - Parents
     #[Route('/reservations', name: 'reservations')]
@@ -210,5 +211,19 @@ class FamilyController extends AbstractController
         return $this->render('parent/reservations.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
+    }
+
+    // Page détail crèche - Parents
+    #[Route('/results', methods: ['GET'], name: 'results')]
+    public function showCrecheResults(): Response
+    {
+        return $this->render('parent/presentation-creche.html.twig');
+    }
+
+    // Page détail crèche - Parents
+    #[Route('/moyens-de-paiement', methods: ['GET'], name: 'checkout')]
+    public function checkout(): Response
+    {
+        return $this->render('parent/moyens-de-paiement.html.twig');
     }
 }

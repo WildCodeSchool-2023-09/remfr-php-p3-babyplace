@@ -28,7 +28,7 @@ class Child
     #[ORM\Column(length: 100)]
     private ?string $childLastname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable:true)]
     private ?DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
@@ -43,10 +43,10 @@ class Child
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $disability = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $birthCertificate = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'birthCertificate')]
+    #[Vich\UploadableField(mapping: 'birthcertificate_file', fileNameProperty: 'birthCertificate')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -60,10 +60,10 @@ class Child
     #[ORM\Column(length: 255)]
     private ?string $doctorName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $vaccine = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'vaccine')]
+    #[Vich\UploadableField(mapping: 'vaccine_file', fileNameProperty: 'vaccine')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -74,10 +74,10 @@ class Child
     )]
     private ?File $vaccineFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $insurance = null;
 
-    #[Vich\UploadableField(mapping: '', fileNameProperty: 'insurance')]
+    #[Vich\UploadableField(mapping: 'insurance_file', fileNameProperty: 'insurance')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
@@ -141,7 +141,7 @@ class Child
         return $this->birthdate;
     }
 
-    public function setBirthdate(DateTimeInterface $birthdate): static
+    public function setBirthdate(?DateTimeInterface $birthdate): static
     {
         $this->birthdate = $birthdate;
 

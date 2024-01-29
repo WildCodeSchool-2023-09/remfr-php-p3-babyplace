@@ -2,7 +2,6 @@
 
 {% block content %}
 	<h3>Votre compte {{creche.name}}</h3>
-	{{creche.id}}
 	<h5>Infomation de la creche</h5>
 	<a href="{{ path('creche_edit_creche', {id: creche.id}) }}">Modifer les informations de la creche</a>
 	<h5>Jours d'ouverture</h5>
