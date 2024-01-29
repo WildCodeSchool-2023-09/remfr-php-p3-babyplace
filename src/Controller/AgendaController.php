@@ -16,7 +16,6 @@ class AgendaController extends AbstractController
         $events = $calendarRepository->findAll();
         $creche = $creche->getId();
         $rdvs = [];
-
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
@@ -31,7 +30,6 @@ class AgendaController extends AbstractController
             ];
         }
         $data = json_encode($rdvs);
-
         return $this->render('agenda/agenda.html.twig', compact('data'));
     }
 }
