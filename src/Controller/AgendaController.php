@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Creche;
+use App\Repository\CrecheRepository;
 use App\Repository\CalendarRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,12 @@ class AgendaController extends AbstractController
 {
     #[Route('creche/gestion/agenda/{id}', name: 'app_agenda')]
     public function index(CalendarRepository $calendarRepository, int $id, Creche $creche): Response
+
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $events = $calendarRepository->findAll();
         $creche = $creche->getId();
         $rdvs = [];
@@ -33,5 +39,15 @@ class AgendaController extends AbstractController
         $data = json_encode($rdvs);
 
         return $this->render('agenda/agenda.html.twig', compact('data'));
+    }
+
+    #[Route('/creneaux', name: 'app_creneaux')]
+    public function listReservation(CalendarRepository $calendarRepository): Response
+    {
+        $events = $calendarRepository->findAll();
+
+        return $this->render('agenda/creneaux.html.twig', [
+            "events" => $events
+        ]);
     }
 }
