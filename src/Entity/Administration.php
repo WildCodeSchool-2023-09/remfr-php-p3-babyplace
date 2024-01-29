@@ -131,7 +131,7 @@ class Administration
          png ou un fichier pdf.'
     )]
     private ?File $familyRecordFile = null;
-   #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $divorceDecree = null;
 
     #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty:'divorceDecree')]

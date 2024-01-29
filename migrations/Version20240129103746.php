@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240129102649 extends AbstractMigration
+final class Version20240129103746 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20240129102649 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE administration (id INT NOT NULL, parent_id INT NOT NULL, family_income VARCHAR(255) DEFAULT NULL, tax_return VARCHAR(255) DEFAULT NULL, caf_number VARCHAR(7) DEFAULT NULL, social_number VARCHAR(255) DEFAULT NULL, residency_proof VARCHAR(255) DEFAULT NULL, status_proof VARCHAR(255) DEFAULT NULL, banking_info VARCHAR(255) DEFAULT NULL, discharge VARCHAR(255) DEFAULT NULL, family_record VARCHAR(255) DEFAULT NULL, divorce_decree VARCHAR(255) DEFAULT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_9FDD0D18727ACA70 (parent_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE administration (id INT AUTO_INCREMENT NOT NULL, parent_id INT NOT NULL, family_income VARCHAR(255) DEFAULT NULL, tax_return VARCHAR(255) DEFAULT NULL, caf_number VARCHAR(7) DEFAULT NULL, social_number VARCHAR(255) DEFAULT NULL, residency_proof VARCHAR(255) DEFAULT NULL, status_proof VARCHAR(255) DEFAULT NULL, banking_info VARCHAR(255) DEFAULT NULL, discharge VARCHAR(255) DEFAULT NULL, family_record VARCHAR(255) DEFAULT NULL, divorce_decree VARCHAR(255) DEFAULT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_9FDD0D18727ACA70 (parent_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE administration_creche (administration_id INT NOT NULL, creche_id INT NOT NULL, INDEX IDX_EFFF052639B8E743 (administration_id), INDEX IDX_EFFF05266C6060B (creche_id), PRIMARY KEY(administration_id, creche_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE calendar (id INT AUTO_INCREMENT NOT NULL, creche_id INT DEFAULT NULL, title VARCHAR(100) NOT NULL, start DATETIME NOT NULL, end DATETIME NOT NULL, description LONGTEXT NOT NULL, all_day TINYINT(1) DEFAULT NULL, background_color VARCHAR(7) NOT NULL, text_color VARCHAR(7) NOT NULL, INDEX IDX_6EA9A1466C6060B (creche_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE child (id INT AUTO_INCREMENT NOT NULL, family_id INT NOT NULL, child_firstname VARCHAR(100) NOT NULL, child_lastname VARCHAR(100) NOT NULL, birthdate DATE DEFAULT NULL, is_walking TINYINT(1) NOT NULL, allergy VARCHAR(255) NOT NULL, is_disabled TINYINT(1) NOT NULL, disability VARCHAR(255) DEFAULT NULL, birth_certificate VARCHAR(255) DEFAULT NULL, doctor_name VARCHAR(255) NOT NULL, vaccine VARCHAR(255) DEFAULT NULL, insurance VARCHAR(255) DEFAULT NULL, updated_at DATETIME DEFAULT NULL, INDEX IDX_22B35429C35E566A (family_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
