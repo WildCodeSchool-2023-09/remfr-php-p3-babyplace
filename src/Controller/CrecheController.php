@@ -158,6 +158,7 @@ class CrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($creche);
             $entityManager->flush();
 
             return $this->redirectToRoute('registration_success');

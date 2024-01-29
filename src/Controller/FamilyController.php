@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Family;
 use App\Form\FamilyType;
+use App\Repository\FamilyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/parent', name: 'parent_')]
 class FamilyController extends AbstractController
@@ -53,25 +55,27 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'parent_edit', methods: ['GET', 'POST'])]
-    public function editParent(Request $request, Family $family, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function editParent(
+        Request $request,
+        Family $family,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $form = $this->createForm(FamilyType::class, $family);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($family);
             $entityManager->flush();
 
             $this->addFlash('familySuccess', 'Vos informations personnelles ont bien été mises à jour.');
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('parent_menu');
         }
-
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
 
-        return $this->render('parent/edit-parent.html.twig', [
-            'formFamily' => $form
+        return $this->render('parent/informations-personnelles.html.twig', [
+            'formFamily' => $form,
+            'family' => $family,
         ]);
     }
 

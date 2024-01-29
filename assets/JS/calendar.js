@@ -54,7 +54,10 @@ function addSubmitHandler() {
 }
 
 // Ajouter l'écouteur d'événement au bouton pour charger et afficher la modal
-document.getElementById('calendarModalButton').addEventListener('click', loadAndShowModal);
+if (document.body.contains(document.getElementById('calendarModalButton'))) {
+    document.getElementById('calendarModalButton').addEventListener('click', loadAndShowModal);
+}
+
 
 
 

@@ -23,8 +23,8 @@ class Administration
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private string $familyIncome;
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $familyIncome = 'null';
 
     #[Vich\UploadableField(mapping: 'family_income_file', fileNameProperty:'familyIncome')]
     #[Assert\File(
@@ -37,8 +37,8 @@ class Administration
     )]
     private ?File $familyIncomeFile = null;
 
-    #[ORM\Column(length: 255)]
-    private string $taxReturn;
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $taxReturn = 'null';
 
     #[Vich\UploadableField(mapping: 'tax_return_file', fileNameProperty:'taxReturn')]
     #[Assert\File(
@@ -51,23 +51,23 @@ class Administration
     )]
     private ?File $taxReturnFile = null;
 
-    #[ORM\Column(length: 7)]
+    #[ORM\Column(length: 7, nullable: true)]
     #[Assert\Length(
         min: 15,
         max: 15,
         exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
-    private string $cafNumber;
+    private string $cafNumber = 'null';
 
-    #[ORM\Column(length: 15)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(
         min: 15,
         max: 15,
         exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
-    private string $socialNumber;
+    private string $socialNumber = 'null';
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private string $residencyProof;
 
     #[Vich\UploadableField(mapping: 'residency_proof_file', fileNameProperty:'residencyProof')]
@@ -81,8 +81,8 @@ class Administration
     )]
     private ?File $residencyProofFile = null;
 
-    #[ORM\Column(length: 255)]
-    private string $statusProof;
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $statusProof = 'null';
 
     #[Vich\UploadableField(mapping: 'status_proof_file', fileNameProperty:'statusProof')]
     #[Assert\File(
@@ -95,14 +95,14 @@ class Administration
     )]
     private ?File $statusProofFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Iban(
         message: 'Le numéro IBAN n\'est pas valide',
     )]
-    private string $bankingInfo;
+    private string $bankingInfo = 'null';
 
-    #[ORM\Column(length: 255)]
-    private string $discharge;
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $discharge = 'null';
 
     #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
     #[Assert\File(
@@ -115,8 +115,8 @@ class Administration
     )]
     private ?File $dischargeFile = null;
 
-    #[ORM\Column(length: 255)]
-    private string $familyRecord;
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $familyRecord = 'null';
 
     #[Vich\UploadableField(mapping: 'family_record_file', fileNameProperty:'familyRecord')]
     #[Assert\File(
@@ -129,7 +129,7 @@ class Administration
     )]
     private ?File $familyRecordFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $divorceDecree = null;
 
     #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty:'divorceDecree')]

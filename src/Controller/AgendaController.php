@@ -2,23 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Creche;
 use App\Repository\CalendarRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AgendaController extends AbstractController
 {
-    #[Route('/agenda', name: 'app_agenda')]
-    public function index(CalendarRepository $calendarRepository): Response
+    #[Route('creche/gestion/agenda/{id}', name: 'app_agenda')]
+    public function index(CalendarRepository $calendarRepository, int $id, Creche $creche): Response
     {
         $events = $calendarRepository->findAll();
-
+        $creche = $creche->getId();
         $rdvs = [];
 
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
+                'crecheId' => $creche,
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitle(),
