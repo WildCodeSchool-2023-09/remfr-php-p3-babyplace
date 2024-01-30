@@ -159,15 +159,6 @@ class FamilyController extends AbstractController
         ]);
     }
 
-    // Filtres présents sur la partie Recherche - Parents
-    #[Route('/filtres', name: 'filtres')]
-    public function filtersParent(): Response
-    {
-        return $this->render('parent/filters.html.twig', [
-            'controller_name' => 'FamilyController',
-        ]);
-    }
-
     #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
     public function confirmationRegister(): Response
     {
