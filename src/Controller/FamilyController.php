@@ -240,7 +240,7 @@ class FamilyController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
-        // Récupérer les données du formulaire        
+        // Récupérer les données du formulaire
         $crecheId = $request->request->get('creche');
         $childId = $request->request->get('child');
         $calendarId = $request->request->get('calendar');
@@ -273,7 +273,8 @@ class FamilyController extends AbstractController
             $entityManager->flush();
         } catch (\Exception $e) {
             // Gérer l'erreur de sauvegarde
-            return new Response('Erreur lors de la sauvegarde de la réservation: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return new Response('Erreur lors de la sauvegarde de la réservation: '
+            . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         // Redirection vers une autre page, par exemple, la page des résultats des parents
