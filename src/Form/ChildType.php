@@ -91,18 +91,22 @@ class ChildType extends AbstractType
                 /*'constraints' => [
                     new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
                 ]*/
-                ])
-            ->addDependent('disability', 'isDisabled', function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
-                if ($isDisabledValue == true) {
-                    $disabilityDepend->add(TextareaType::class, [
-                        'label' => false,
-                        'attr' => [
-                            'class' => 'form-control',
-                            'placeholder' => 'Quel est-il ?'
-                        ],
-                    ]);
+            ])
+            ->addDependent(
+                'disability',
+                'isDisabled',
+                function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
+                    if ($isDisabledValue == true) {
+                        $disabilityDepend->add(TextareaType::class, [
+                            'label' => false,
+                            'attr' => [
+                                'class' => 'form-control',
+                                'placeholder' => 'Quel est-il ?'
+                            ],
+                        ]);
+                    }
                 }
-            })
+            )
             ->add('birthCertificateFile', VichFileType::class, [
                 'label' => false,
                 'required' => false,
@@ -150,8 +154,7 @@ class ChildType extends AbstractType
                 'label' => false,
                 'class' => Family::class,
                 'choice_label' => 'id',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

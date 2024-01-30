@@ -13,7 +13,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 
 #[AsLiveComponent]
 final class FormComponent extends AbstractController
-{   
+{
     use ComponentWithFormTrait;
     use DefaultActionTrait;
 

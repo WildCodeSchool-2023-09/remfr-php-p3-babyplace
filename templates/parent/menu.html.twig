@@ -23,11 +23,11 @@
         <section class="section_menu-parent">
             <div class="div_menu-parent">
                 <ul class="ul_menu-parent fa-ul">
-                    <li><a href="{{ path('parent_reservations') }}" class="liens_menu-parent"><i class="icons_menu-parent fa-solid fa-calendar-check"></i>Réservations</a></li>
+                    <li><a href="{{ path('parent_reservations', {'id': app.user.family.id}) }}" class="liens_menu-parent"><i class="icons_menu-parent fa-solid fa-calendar-check"></i>Réservations</a></li>
                     <li><a href="{{ path('parent_dossiers-inscriptions', {'id': app.user.family.id}) }}" class="liens_menu-parent"><i class="icons_menu-parent fa-solid fa-folder-open"></i>Dossiers d'inscriptions</a></li>
                     <li><a href="{{ path('parent_edit', {'id': app.user.family.id}) }}" class="liens_menu-parent"><i class="icons_menu-parent fa-solid fa-address-book"></i>Informations personnelles</a></li>
-                    <li><a href="{{ path('emergency_index', {'family_id': app.user.family.id}) }}" class="liens_menu-parent" href="#"><i class="icons_menu-parent fa-solid fa-users"></i>Personnes de confiance</a></li>
-                    <li><a class="liens_menu-parent" href="#"><i class="icons_menu-parent fa-solid fa-credit-card"></i>Vos moyens de paiement</a></li>
+                    <li><a href="{{ path('emergency_index', {'id': app.user.family.id}) }}" class="liens_menu-parent" href="#"><i class="icons_menu-parent fa-solid fa-users"></i>Personnes de confiance</a></li>
+                    <li><a href="{{ path('parent_checkout', {'id': app.user.family.id}) }}" class="liens_menu-parent"><i class="icons_menu-parent fa-solid fa-credit-card"></i>Vos moyens de paiement</a></li>
                     <li><a href="{{ path('app_logout') }}" class="liens_menu-parent" href="/logout"><i class="icons_menu-parent fa-solid fa-right-from-bracket"></i>Se déconnecter</a></li>
                 </ul>
             </div>

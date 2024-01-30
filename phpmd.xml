@@ -13,14 +13,20 @@
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
         <exclude name="ExcessivePublicCount" />
-        <exclude name="ExcessiveClassComplexity" />
         <exclude name="TooManyMethods" />
         <exclude name="TooManyPublicMethods"/>
         <exclude name="NPathComplexity"/>
+<<<<<<< HEAD
         <exclude name="CyclomaticComplexity"/>
         <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
     </rule>
     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
+=======
+        <exclude name="CyclomaticComplexity"/>  
+        <exclude name="ExcessiveClassComplexity" />       
+    </rule>     
+     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
+>>>>>>> dev
         <properties>
             <property name="minimum" value="150"/>
         </properties>

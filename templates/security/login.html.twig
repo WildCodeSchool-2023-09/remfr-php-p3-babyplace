@@ -37,7 +37,7 @@
 				<a href="/register">Inscrivez-vous</a>
 			</p>
 			{# Login de connexion #}
-			{# rajout du hidden csrf pour le token #}			
+			{# rajout du hidden csrf pour le token #}
 			<form class="form_login" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				<h4 class="title_login mb-5">Je me connecte</h4>

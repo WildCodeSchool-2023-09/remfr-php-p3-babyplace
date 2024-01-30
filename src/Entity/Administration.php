@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdministrationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -51,7 +52,7 @@ class Administration
     )]
     private ?File $taxReturnFile = null;
 
-    #[ORM\Column(length: 7, nullable:true)]
+    #[ORM\Column(length: 7, nullable: true)]
     #[Assert\Length(
         min: 7,
         max: 7,
@@ -95,7 +96,7 @@ class Administration
     )]
     private ?File $statusProofFile = null;
 
-    #[ORM\Column(length: 255, nullable:true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Iban(
         message: 'Le numéro IBAN n\'est pas valide',
     )]
@@ -128,8 +129,7 @@ class Administration
          png ou un fichier pdf.'
     )]
     private ?File $familyRecordFile = null;
-
-    #[ORM\Column(length: 255, nullable:true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $divorceDecree = null;
 
     #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty:'divorceDecree')]

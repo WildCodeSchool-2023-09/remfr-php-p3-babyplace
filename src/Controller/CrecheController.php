@@ -158,6 +158,7 @@ class CrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($creche);
             $entityManager->flush();
 
             return $this->redirectToRoute('registration_success');
@@ -182,13 +183,14 @@ class CrecheController extends AbstractController
         }
         $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
         $family = $familyRepository->findAll();
-        $reservation = $reservationRepo->findAll();
+        //$reservation = $reservationRepo->findAll();
+        $reservations = $reservationRepo->findBy([], ['id' => 'DESC']);
         $calendar = $calendarRepository->findAll();
         $children = $childRepository->findAll();
         $administration = $administrationRepo->findAll();
 
         return $this->render('creche/demandes.html.twig', [
-            'reservations' => $reservation,
+            'reservations' => $reservations,
             'family' => $family,
         ]);
     }

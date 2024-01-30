@@ -1,5 +1,5 @@
 /*
- 
+
 Welcome to your app's main JavaScript file!*
 We recommend including the built version of this JavaScript file
 (and its CSS file) in your base layout (base.html.twig).
@@ -13,7 +13,7 @@ import './bootstrap';
 
 // Font Awesome
 require('@fortawesome/fontawesome-free/css/all.min.css');
-require('@fortawesome/fontawesome-free/js/all.js');
+// require('@fortawesome/fontawesome-free/js/all.js');
 
 // Agenda
 import './JS/calendar';
@@ -25,6 +25,3 @@ a2lix_lib.sfCollection.init()
 // Bootstrap
 require('bootstrap');
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
-
-//Ajax pour l'upload de fichiers
-//import '.JS/upload-file.js'
