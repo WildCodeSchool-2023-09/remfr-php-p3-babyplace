@@ -277,7 +277,7 @@ class FamilyController extends AbstractController
         }
 
         // Redirection vers une autre page, par exemple, la page des résultats des parents
-        return $this->redirectToRoute('parent_results', ['id' => $family->getId()]);
+        return $this->redirectToRoute('parent_results', ['id' => $family->getId(), 'id_creche' => $creche->getId()]);
     }
 
     #[Route('/{id}/results/{id_creche}', methods: ['GET', 'POST'], name: 'results')]
