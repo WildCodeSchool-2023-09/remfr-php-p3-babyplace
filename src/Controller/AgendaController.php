@@ -12,8 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AgendaController extends AbstractController
 {
     #[Route('creche/gestion/agenda/{id}', name: 'app_agenda')]
-    public function index(CalendarRepository $calendarRepository, int $id, Creche $creche): Response
-    {
+    public function index(
+        Creche $creche,
+        CalendarRepository $calendarRepository,
+        int $id,
+        CrecheRepository $crecheRepository
+    ): Response {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
@@ -34,6 +38,7 @@ class AgendaController extends AbstractController
                 'allDay' => $event->getAllDay(),
             ];
         }
+
         $data = json_encode($rdvs);
         return $this->render('agenda/agenda.html.twig', compact('data'));
     }

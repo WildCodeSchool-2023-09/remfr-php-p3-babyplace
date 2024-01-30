@@ -14,6 +14,8 @@ use App\Repository\ChildRepository;
 use App\Repository\CrecheRepository;
 use App\Repository\FamilyRepository;
 use App\Repository\CalendarRepository;
+use App\Repository\CalendarRepository;
+use App\Repository\CrecheRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -135,6 +137,7 @@ class FamilyController extends AbstractController
         return $this->render('parent/search-list.html.twig', [
             'controller_name' => 'FamilyController',
             'family' => $family,
+
             'creches' => $creches,
         ]);
     }
@@ -143,8 +146,11 @@ class FamilyController extends AbstractController
     #[Route('/recherches', name: 'recherches')]
     public function search(): Response
     {
+
+
         return $this->render('parent/search.html.twig', [
             'controller_name' => 'FamilyController',
+
         ]);
     }
 
