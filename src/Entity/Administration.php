@@ -13,10 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use DateTimeInterface;
 use DateTime;
+use Serializable;
 
 #[ORM\Entity(repositoryClass: AdministrationRepository::class)]
 #[Vich\Uploadable]
-class Administration
+class Administration implements Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -168,7 +169,7 @@ class Administration
         return $this->familyIncome;
     }
 
-    public function setFamilyIncome(string $familyIncome): static
+    public function setFamilyIncome(?string $familyIncome): static
     {
         $this->familyIncome = $familyIncome;
 
@@ -195,7 +196,7 @@ class Administration
         return $this->taxReturn;
     }
 
-    public function setTaxReturn(string $taxReturn): static
+    public function setTaxReturn(?string $taxReturn): static
     {
         $this->taxReturn = $taxReturn;
 
@@ -222,7 +223,7 @@ class Administration
         return $this->cafNumber;
     }
 
-    public function setCafNumber(string $cafNumber): static
+    public function setCafNumber(?string $cafNumber): static
     {
         $this->cafNumber = $cafNumber;
 
@@ -234,7 +235,7 @@ class Administration
         return $this->socialNumber;
     }
 
-    public function setSocialNumber(string $socialNumber): static
+    public function setSocialNumber(?string $socialNumber): static
     {
         $this->socialNumber = $socialNumber;
 
@@ -246,7 +247,7 @@ class Administration
         return $this->residencyProof;
     }
 
-    public function setResidencyProof(string $residencyProof): static
+    public function setResidencyProof(?string $residencyProof): static
     {
         $this->residencyProof = $residencyProof;
 
@@ -273,7 +274,7 @@ class Administration
         return $this->statusProof;
     }
 
-    public function setStatusProof(string $statusProof): static
+    public function setStatusProof(?string $statusProof): static
     {
         $this->statusProof = $statusProof;
 
@@ -300,7 +301,7 @@ class Administration
         return $this->bankingInfo;
     }
 
-    public function setBankingInfo(string $bankingInfo): static
+    public function setBankingInfo(?string $bankingInfo): static
     {
         $this->bankingInfo = $bankingInfo;
 
@@ -312,7 +313,7 @@ class Administration
         return $this->discharge;
     }
 
-    public function setDischarge(string $discharge): self
+    public function setDischarge(?string $discharge): self
     {
         $this->discharge = $discharge;
 
@@ -339,7 +340,7 @@ class Administration
         return $this->familyRecord;
     }
 
-    public function setFamilyRecord(string $familyRecord): static
+    public function setFamilyRecord(?string $familyRecord): static
     {
         $this->familyRecord = $familyRecord;
 
@@ -366,7 +367,7 @@ class Administration
         return $this->divorceDecree;
     }
 
-    public function setDivorceDecree(string $divorceDecree): static
+    public function setDivorceDecree(?string $divorceDecree): static
     {
         $this->divorceDecree = $divorceDecree;
 
@@ -434,5 +435,19 @@ class Administration
         $this->creche->removeElement($creche);
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
     }
 }
