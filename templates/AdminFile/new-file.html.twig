@@ -41,35 +41,12 @@
         </header>
         <section class="section_dossiers-inscriptions">
             <div class="div_search-parent">
-                <form>
                     <h5 class="subtitle_dossiers-enfants mb-4">Dossiers parents</h5>
                     <!-- Input file - Thibault Mahé -->
                     {% include 'AdminFile/_form-file.html.twig' %}
             </div>
         </section>
         <script>
-
-                // Récupérer le champ d'upload
-        const familyIncomeFileInput = document.getElementById("familyIncomeFileInput");
-        const file = familyIncomeFileInput.files[0];
-
-        // Créer un objet FormData pour envoyer le fichier
-        const formData = new FormData();
-        formData.append("familyIncomeFile", file);
-
-        
-        // Utiliser Fetch API pour envoyer le fichier en utilisant une requête POST
-        fetch("/uploads/documents/familyIncome", {
-            method: "POST",
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Gérer la réponse du serveur ici
-        })
-        .catch(error => console.error("Erreur lors de l'envoi du fichier :", error));
-    });
-});
             (function() {
 
             'use strict';

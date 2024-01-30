@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Administration;
 use App\Form\AdministrationType;
 use App\Entity\Family;
+use App\Repository\AdministrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +19,11 @@ use Symfony\Flex\Response as FlexResponse;
 class AdministrationController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
-    public function index(): Response
+    public function index(AdministrationRepository $adminRepository): Response
     {
-        return $this->render('');
+        return $this->render('AdminFile/index-file.html.twig', [
+        'files' => $adminRepository->findAll(),
+    ]);
     }
 
     #[Route('/add', name:'add')]
@@ -45,7 +48,7 @@ class AdministrationController extends AbstractController
         $this->addFlash('failAdministration', 'Il y a eu un problème dans la mise en ligne de vos informations.');
 
         return $this->render('AdminFile/new-file.html.twig', [
-            'formFile' => $form,
+            'formFile' => $form->createView(),
         ]);
     }
 

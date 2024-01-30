@@ -35,14 +35,6 @@ class AdministrationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Numéro authentification CAF',
                 ],
-                'constraints' => [
-                    new Assert\Length([
-                        'min' => 7,
-                        'max' => 7,
-                        'exactMessage' => 'Le numéro de sécurité sociale doit
-                         comporter exactement {{ limit }} caractères.',
-                    ]),
-                ],
             ])
             ->add('socialNumber', TextType::class, [
                 'label' => false,
@@ -50,12 +42,6 @@ class AdministrationType extends AbstractType
                     'placeholder' => 'Numéro de sécurité sociale',
                 ],
                 'constraints'  => [
-                    new Assert\Length([
-                        'min' => 15,
-                        'max' => 15,
-                        'exactMessage' => 'Le numéro de sécurité sociale doit
-                         comporter exactement {{ limit }} caractères.',
-                    ]),
                     new Assert\Regex([
                         'pattern' => '/^[0-9]+$/',
                         'message' => 'Le numéro de sécurité sociale ne doit contenir que des chiffres.',
@@ -78,13 +64,6 @@ class AdministrationType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Votre RIB',
-                ],
-                'constraints' => [
-                    new Assert\Length([
-                        'min' => 34,
-                        'max' => 34,
-                        'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
-                    ]),
                 ],
             ])
             ->add('dischargeFile', VichFileType::class, [

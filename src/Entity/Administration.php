@@ -53,9 +53,9 @@ class Administration
 
     #[ORM\Column(length: 7, nullable:true)]
     #[Assert\Length(
-        min: 15,
-        max: 15,
-        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
+        min: 7,
+        max: 7,
+        exactMessage: 'Votre numéro d\'authentification CAF doit être composé de 7 caractères.'
     )]
     private ?string $cafNumber = null;
 
