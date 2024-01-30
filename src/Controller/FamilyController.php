@@ -143,7 +143,18 @@ class FamilyController extends AbstractController
     #[Route('/recherches', name: 'recherches')]
     public function search(): Response
     {
+
+
         return $this->render('parent/search.html.twig', [
+            'controller_name' => 'FamilyController',
+        ]);
+    }
+
+    // Filtres présents sur la partie Recherche - Parents
+    #[Route('/filtres', name: 'filtres')]
+    public function filtersParent(): Response
+    {
+        return $this->render('parent/filters.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }

@@ -9,11 +9,14 @@
 		{% for event in events %}
 			<div>
 				<p>{{ event.title }}</p>
+				
 				<p>{{ event.start|date('d-m-Y H:i') }}</p>
 				<p>{{ event.end|date('d-m-Y H:i') }}</p>
 				<p>{{ event.description }}</p>
 				<p>Toute la journée : {{ event.allDay ? 'Oui' }}</p>
 				<button type="submit">test</button>
+				<br>	
+				<hr>
 				<br>
 			</div>
 		{% endfor %}
