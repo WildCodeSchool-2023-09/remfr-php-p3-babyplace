@@ -38,6 +38,7 @@
             <div class="div_search-parent">
                 <!-- Cards des crèches (penser à activer la boucle) -->
                 {% for creche in creches %}
+
                 <a href="{{ path('parent_results', {'id': app.user.family.id, 'id_creche': creche.id}) }}" class="text-decoration-none">
                 <div class="card mb-5">
                     <div class="card-header_creche card-header position-relative">
@@ -48,6 +49,7 @@
                         <p class="rate_search-parent position-absolute bottom-0 end-0">4,8  <i class="fa-solid fa-star"></i></p>
                     </div>
                     <div class="card-body position-relative">
+
                         <p class="lieu_search-parent card-text">{{creche.city}}</p>
                         <p class="prix_search-parent card-text position-absolute top-0 end-0">3,5€/j</p>
                         <table class="table reservations_search-list">
@@ -65,6 +67,7 @@
                     </div>
                 </div>
                 </a>
+
                 {% endfor %}
                 <!-- Fin des Cards des crèches (penser à activer la boucle) -->
             </div>
