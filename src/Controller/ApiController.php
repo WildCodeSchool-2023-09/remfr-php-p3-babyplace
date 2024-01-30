@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Creche;
 use App\Entity\Calendar;
 use App\Repository\CalendarRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -52,12 +53,15 @@ class ApiController extends AbstractController
     {
 
         $events = $this->calendarRepository->findAll();
+        //$creche = new Creche();
+        //$var = $creche->getId();
 
-         $rdvs = [];
+        $rdvs = [];
 
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
+                'crecheId' => 1,
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitle(),

@@ -54,11 +54,11 @@
             'use strict';
 
             $('.input-file_dossiers-enfants').each(function() {
-                var $input = $(this),
+                let $input = $(this),
                     $label = $input.next('.js-labelFile'),
                     labelVal = $label.html();
             $input.on('change', function(element) {
-                var fileName = '';
+                let fileName = '';
                 if (element.target.value) fileName = element.target.value.split('\\').pop();
                 fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
             });

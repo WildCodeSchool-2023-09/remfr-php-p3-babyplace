@@ -16,76 +16,129 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class= "search-creche">
-    	{% include 'creche/_header-creche.html.twig' %}
-        {% block body %}
-        <section class="section_card-creche">
-            <div class="div_search-creche">
-                <div class="card mb-5">
-                    <div class="card-header_creche card-header position-relative">
-                        <div class="div-card-img-top"></div>
-                        <img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
-                        <i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
-                        <p class="rate_search-parent position-absolute bottom-0 end-0">4,8  <i class="fa-solid fa-star"></i></p>
-                    </div>
-					<div class="card_creche-intro p-1 m-3">
-						<h4 class="title_card-creche">Présentation</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
-						</p>
+	<body class="search-creche">
+		{% include 'parent/_navbar-parent.html.twig' %}
+		{% include 'creche/_header-creche.html.twig' %}
+		{% block body %}
+			<section class="section_card-creche">
+				<div class="div_search-creche">
+					<div class="card mb-5">
+						<div class="card-header_creche card-header position-relative">
+							<div class="div-card-img-top"></div>
+							<img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
+							<i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
+							<p class="rate_search-parent position-absolute bottom-0 end-0">4,8
+								<i class="fa-solid fa-star"></i>
+							</p>
+						</div>
+						<div class="card_creche-intro p-1 m-3">
+							<h4 class="title_card-creche">Présentation</h4>
+							<p>
+								{{creches.introduction }}
+							</p>
+						</div>
+						<div class="creche-contact p-1">
+							<i class="fa-solid fa-circle-info creche-contact-icon"></i>
+							<ul class="list-infos_creche">
+								<li class="mb-1">Horaires:
+									{{creches.schedule.openingHours}}
+									{{creches.schedule.closingHours}}
+								</li>
+								<li class="mb-1">Téléphone:
+									<p>{{creches.phonenumber}}</p>
+								</li>
+							</ul>
+						</div>
+
+						<div class="creche-hour m-3">
+							<h4 class="title_card-creche">Disponibilités</h4>
+							<table class="table reservations_search-list">
+								<tr>
+									<td class="day_search-list day-active_search-list">Lun. 14</td>
+									<td class="day_search-list">Mar. 15</td>
+									<td class="day_search-list">Mer. 16</td>
+								</tr>
+								<tr>
+									<td class="day_search-list">Jeu. 17</td>
+									<td class="day_search-list day-active_search-list">Ven. 18</td>
+									<td class="day_search-list">Sam. 19</td>
+								</tr>
+							</table>
+						</div>
+						<div class="div-button_creche pb-3">
+							<button href="/disponibilites-creche" class="button_creche mt-5" data-bs-toggle="modal" data-bs-target="#ModalReserver">Réserver un créneau</button>
+						</div>
 					</div>
-					<div class="creche-contact p-1">
-						<i class="fa-solid fa-circle-info creche-contact-icon"></i>
-                        <ul class="creche-list">
-						<li>Horaires:
-						</li>
-						<li>Téléphone:
-						</li>
-						<li>Mail:</li>
-                        </ul>
-					</div>
-					<div class="creche-hour m-3">
-						<h4 class="title_card-creche">Disponibilités</h4>
-                            <table class="table reservations_search-list">
-                            <tr>
-                                <td class="day_search-list day-active_search-list">Lun. 14</td>
-                                <td class="day_search-list">Mar. 15</td>
-                                <td class="day_search-list">Mer. 16</td>
-                            </tr>
-                            <tr>
-                                <td class="day_search-list">Jeu. 17</td>
-                                <td class="day_search-list day-active_search-list">Ven. 18</td>
-                                <td class="day_search-list">Sam. 19</td>
-                            </tr>
-                        </table>
-					</div>
-					<div class="creche-xp m-3">
-						<h4 class="title_card-creche">Expériences</h4>
-						<ul class="creche-list">
-							<li>Expérience 1</li>
-							<li>Expérience 2</li>
-							<li>Expérience 3</li>
-						</ul>
-					</div>
-					<div class="creche-reception m-3">
-						<h4 class="title_card-creche">Accueil</h4>
-						<ul class="creche-list">
-							<li>Accueil 1</li>
-							<li>Accueil 2</li>
-							<li>Accueil 3</li>
-						</ul>
-					</div>
-					<div class="creche-activity m-3">
-						<h4  class="title_card-creche">Activités</h4>
-						<ul class="creche-list">
-							<li>Activité 1</li>
-							<li>Activité 2</li>
-							<li>Activité 3</li>
-						</ul>
+					<p class="legend_creche">* En complétant mon profil, je peux obtenir une tarification personnalisée en fonction de mes revenus</p>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="ModalReserver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="div-modal_reservations modal-dialog modal-dialog-centered">
+						<div class="modal-content card card-modal_reservations">
+							<form action="{{ path('parent_reservations', {id: family.id}) }}" method="POST">
+								<div class="card-header_creche card-header position-relative">
+									<div class="div-card-img-top"></div>
+									<img class="card-img-top" src="{{ asset('build/images/image-card-creche.jpg') }}" alt="Card image cap">
+									<h5 class="card-title position-absolute bottom-0 start-0">{{creches.name}}</h5>
+									<i class="favoris_search_parent fa-solid fa-heart fa-lg position-absolute top-0 end-0"></i>
+									<p class="rate_search-parent position-absolute bottom-0 end-0">4,8
+										<i class="fa-solid fa-star"></i>
+									</p>
+								</div>
+								<div
+									class="card-body position-relative">
+									{# Jour et statut #}
+									<div class="card_reservations mb-3">
+										<select name="calendar" class="form-select" aria-label="Default select example">
+											<option selected>Choisissez un jour</option>
+											{% for cal in calendar %}
+												{% set daysOfWeek = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"] %}
+
+												<option value="{{cal.id}}">{{ daysOfWeek[cal.start|date('w')] }}
+													de
+													{{cal.start|date('H:i')}}
+													à
+													{{cal.end|date('H:i')}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									{# Enfant pris en charge #}
+									<div class="card_reservations">
+										<div class="col">
+											<p class="horaires_reservations mb-1">Quel enfant souhaité vous faire garder ?</p>
+											<select name="child" class="form-select" aria-label="Default select example">
+												{% for child in childs %}
+													<option value="{{child.id}}">{{child.childFirstname}}</option>
+												{% endfor %}
+											</select>
+											<input type="hidden" name="status" value="en attente">
+											<input type="hidden" name="creche" value="{{creches.id}}">
+											<input type="hidden" name="family" value="{{family.id}}">
+										</div>
+									</div>
+									<div class="div-button_creche pb-2">
+										<button type="submit" class="button-modal_creche mt-5">
+											Réserver un créneau</button>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
-				<p class="legend_creche">* En complétant mon profil, je peux obtenir une tarification personnalisée en fonction de mes revenus</p>
-			</div>
+			{% endblock %}
+		</body>
 
-        {% endblock %}
+		{# Affichage du formulaire #}
+		{# {{ form_start(form) }}
+											    {{ form_row(form.title) }}
+											    {{ form_row(form.start) }}
+											    {{ form_row(form.end) }}
+											    {{ form_row(form.description) }}
+											    {{ form_row(form.all_day) }}
+											    {{ form_row(form.background_color) }}
+											    {{ form_row(form.text_color) }}
+											
+											    <button type="submit">Envoyer</button>
+											{{ form_end(form) }} #}
 	</body>
-</html>
+</html></body></html>

@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Creche;
 use App\Entity\Calendar;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Calendar>
@@ -45,4 +46,16 @@ class CalendarRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getFreeCalendar(Creche $creche): array
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('c')
+            ->leftJoin('c.reservation', 'r')
+            ->where('c.creche = :creche')
+            ->andWhere($qb->expr()->isNull('r.id'))
+            ->setParameter('creche', $creche);
+
+        return $qb->getQuery()->getResult();
+    }
 }

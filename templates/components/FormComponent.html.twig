@@ -1,57 +1,20 @@
-<div{{attributes}}>
-	<!-- component html -->
-	{{ form_start(form) }}
-	{{ form_row(form.childFirstname, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }})}}
-	{{ form_row(form.childLastname, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }})}}
-	{{ form_row(form.birthdate, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }}
-	)}}
-	{{ form_row(form.isWalking, {'attr' : { 'class' :'form-select form-text_dossiers-enfants mb-3' }}
-	)}}
-	{{ form_row(form.allergy, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }})}}
-	{{ form_row(form.isDisabled, {'attr' : {'class' : "form-select form-text_dossiers-enfants mb-3" }})}}
-	{% if form.isDisabled.vars.value == true %}
-		{{ form_row(form.disability, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }})}}
-	{% endif %}
-	<div class="form-group mb-3">
-		{{ form_row(form.birthCertificateFile)}}
-		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-			<i class="icon fa fa-check"></i>
-            <span class="js-fileName">Acte de naissance / certificat de grossesse</span>
-        </label>
-		</div>
-		{{ form_row(form.doctorName, {'attr' : { 'class' :'form-text_dossiers-enfants mb-3' }})}}
-		<div class="form-group mb-3">
-			{{ form_row(form.vaccineFile, name="file", id="file", class="input-file_dossiers-enfants")}}
-			<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-				<i class="icon fa fa-check"></i>
-				<span class="js-fileName">Carnet de santé / vaccinations</span>
-			</label>
-		</div>
-		<div class="form-group mb-3">
-			{{ form_row(form.insuranceFile, name="file", id="file", class="input-file_dossiers-enfants")}}
-			<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-				<i class="icon fa fa-check"></i>
-				<span class="js-fileName">Attestation d'assurance</span>
-			</div>
+<div{{ attributes }}>
+    <!-- component html -->
+    {{ form_start(form) }}
+    {{ form_row(form.childFirstname)}}
+    {{ form_row(form.childLastname)}}
+    {{ form_row(form.birthdate)}}
+    {{ form_row(form.isWalking)}}
+    {{ form_row(form.allergy)}}
+    {{ form_row(form.isDisabled)}}
+    {% if form.isDisabled.vars.value == true %}
+        {{ form_row(form.disability)}}
+    {% endif %}
+    {{ form_row(form.birthCertificateFile)}}
+    {{ form_row(form.doctorName)}}
+    {{ form_row(form.vaccineFile)}}
+    {{ form_row(form.insuranceFile)}}
 
-			<button class="button_dossiers-inscriptions mt-5">{{ button_label|default('Enregistrer') }}</button>
-			{{ form_end(form) }}
-		</div>
-		        <script>
-            (function() {
-
-            'use strict';
-
-            $('.input-file_dossiers-enfants').each(function() {
-                var $input = $(this),
-                    $label = $input.next('.js-labelFile'),
-                    labelVal = $label.html();
-            $input.on('change', function(element) {
-                var fileName = '';
-                if (element.target.value) fileName = element.target.value.split('\\').pop();
-                fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
-            });
-            });
-
-            })();
-        </script>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>

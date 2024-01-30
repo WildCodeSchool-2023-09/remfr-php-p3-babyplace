@@ -30,7 +30,8 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
-                    ],
+                    'class' => 'form-text_dossiers-enfants',
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le prénom de votre enfant.']),
                     new Length([
@@ -67,41 +68,58 @@ class ChildType extends AbstractType
             ->add('isWalking', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
-                    'placeholder' => 'Votre enfant marche-t-il ?',
-                    'choices' => [
-                        'Oui' => true,
-                        'Non' => false,
-                    ],
-            ])
-            ->add('allergy', TextType::class,[
-                'label' => false,
                 'attr' => [
-                'placeholder' => 'Allergies de votre enfant',
+                    /*'placeholder' => 'Votre enfant marche-t-il ?',*/
+                    'class' => 'form-control',
                 ],
+                'placeholder' => 'Votre enfant marche-t-il ?',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+            ])
+            ->add('allergy', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Allergie',
+                    'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez indiquer l\'allergie de votre enfant.']),
+                ]
             ])
             ->add('isDisabled', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
                 'required' => false,
-                    'placeholder' => 'Votre enfant présente-t-il un handicap',
-                    'choices' => [
-                        'Oui' => true,
-                        'Non' => false,
-                    ]
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'placeholder' => 'Votre enfant présente-t-il un handicap',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ]
                 /*'constraints' => [
                     new NotBlank(['message' => 'Veuillez préciser la situation de votre enfant.']),
                 ]*/
-                ])
-            ->addDependent('disability', 'isDisabled', function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
-                if ($isDisabledValue == true) {
-                    $disabilityDepend->add(TextareaType::class, [
-                        'label' => false,
-                        'attr' => [
-                            'placeholder' => 'Quel est-il ?'
-                        ],
-                    ]);
+            ])
+            ->addDependent(
+                'disability',
+                'isDisabled',
+                function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
+                    if ($isDisabledValue == true) {
+                        $disabilityDepend->add(TextareaType::class, [
+                            'label' => false,
+                            'attr' => [
+                                'class' => 'form-control',
+                                'placeholder' => 'Quel est-il ?'
+                            ],
+                        ]);
+                    }
                 }
-            })
+            )
             ->add('birthCertificateFile', VichFileType::class, [
                 'label' => false,
                 'required' => false,
@@ -132,7 +150,6 @@ class ChildType extends AbstractType
             ])
             ->add('insuranceFile', VichFileType::class, [
                 'label' => false,
-                'label_attr' => ['class' => "choose-a-file_dossiers-enfants js-labelFile", 'for' => "file"],
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
@@ -143,8 +160,7 @@ class ChildType extends AbstractType
             ->add('family', EntityType::class, [
                 'class' => Family::class,
                 'choice_label' => 'id',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

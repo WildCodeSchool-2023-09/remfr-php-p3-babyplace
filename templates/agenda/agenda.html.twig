@@ -24,11 +24,10 @@
 
 
 	<script>
-    
-		document.addEventListener('DOMContentLoaded', function () {
-            // déclaration des constantes
-        const calendarEl = document.getElementById('calendar');
-        const modalEdit = document.getElementById('myModal');        
+
+		document.addEventListener('DOMContentLoaded', function () { // déclaration des constantes
+const calendarEl = document.getElementById('calendar');
+
 
 // Initialisation du calendar
 const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -47,11 +46,14 @@ const eventId = info.event.id;
 // Construire l'URL pour l'édition de l'événement
 const editEventURL = `/calendar/${eventId}/edit`;
 
+
 fetch (`/calendar/${eventId}/edit`).then(response => response.text()).then(html => { // Insérer le contenu de la modal dans le corps du document
 document.body.insertAdjacentHTML('beforeend', html);
 
 // Activer la modal après avoir ajouté son contenu au DOM
-const modal = new bootstrap.Modal(document.getElementById('myModal'));
+const modalEdit = document.getElementById('myModal');
+modalEdit.id = eventId;
+const modal = new bootstrap.Modal(modalEdit);
 modal.show();
 
 modal._element.addEventListener('shown.bs.modal', editSubmitHandler);
@@ -77,7 +79,8 @@ throw new Error('Erreur lors de la requête');
 }
 // Soumission réussie du formulaire, fermer la modal après un court délai
 setTimeout(function () {
-const modal = new bootstrap.Modal(document.getElementById('myModal'));
+const modalEdit = document.getElementById(eventId);
+const modal = new bootstrap.Modal(modalEdit);
 modal.hide();
 // Recharger la page après la fermeture de la modal
 window.location.reload();

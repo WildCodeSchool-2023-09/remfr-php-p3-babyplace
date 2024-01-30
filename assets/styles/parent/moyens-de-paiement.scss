@@ -1,0 +1,203 @@
+.section_moyens-de-paiement {
+    margin-top: 20vh;
+    padding-bottom: 10vh;
+    height: auto;
+}
+
+.infos-header_moyens-de-paiement {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.infos-details_moyens-de-paiement {
+    width: 80%;
+    font-weight: 600;
+}
+
+.card_moyens-de-paiement {
+    background-color: white;
+    margin: auto;
+    width: 600px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media(max-width:767px) {
+    .card_moyens-de-paiement {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
+
+@media(height:1366px) {
+    .card_moyens-de-paiement {
+        width: 90%;
+        padding: 8vh;
+    }
+}
+
+.card-title_moyens-de-paiement {
+    font-weight: 700;
+    font-size: 2.5em;
+}
+
+.nav_moyens-de-paiement {
+    display: flex;
+}
+
+.nav_moyens-de-paiement ul {
+    list-style-type: none;
+    display: flex;
+    padding-inline-start: unset;
+    margin-bottom: 6vh;
+}
+
+.nav_moyens-de-paiement li {
+    padding: 1rem;
+}
+
+.nav_moyens-de-paiement li a {
+    color: $h-color;
+    text-decoration: none;
+}
+
+.active {
+    border-bottom: 2px solid black;
+    font-weight: bold;
+}
+
+.input_moyens-de-paiement {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: $h-color;
+    font-weight: 600;
+    width: 100%;
+    min-width: unset;
+    background-color: transparent;
+    border-color: transparent;
+    margin: 0;
+
+    &::placeholder {
+        color: $h-color;
+    }
+}
+
+.form_moyens-de-paiement a {
+    color: $h-color;
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: bold;
+
+    &:hover {
+        color: $btn-color-hover;
+        text-decoration: none;
+    }
+}
+
+.form_moyens-de-paiement .row {
+    margin: 0;
+    overflow: hidden;
+}
+
+.form_moyens-de-paiement .row-1 {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: rgba(221, 228, 236, 0.301);
+    border-color: rgba(221, 228, 236, 0.459);
+    margin: 2vh 0;
+    overflow: hidden;
+}
+
+.form_moyens-de-paiement .row-2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem;
+}
+
+.form_moyens-de-paiement .row .row-2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem;
+}
+
+.form_moyens-de-paiement .row .col-2,
+.col-7,
+.col-3 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 1vh;
+}
+
+.form_moyens-de-paiement .row .col-2 {
+    padding-right: 0;
+}
+
+#card-header_moyens-de-paiement {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.card-inner_moyens-de-paiement {
+    font-size: 0.7rem;
+    color: gray;
+}
+
+.three .col-7 {
+    padding-left: 0;
+}
+
+.three {
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.three .col-2 {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: rgba(221, 228, 236, 0.301);
+    border-color: rgba(221, 228, 236, 0.459);
+    margin: 2vh 0;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.three .col-2 input {
+    font-size: 0.7rem;
+    margin-left: 1vh;
+}
+
+.btn:hover {
+    color: white;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+
+input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+    color: transparent;
+}
