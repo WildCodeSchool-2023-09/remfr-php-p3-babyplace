@@ -296,7 +296,7 @@ class FamilyController extends AbstractController
     ): Response {
         $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
         $creches = $crecheRepository->findOneBy(['id' => $creche->getId()]);
-        $calendar = $calendarRepository->findBy(['creche' => $creche->getId()]);
+        $calendar = $calendarRepository->getFreeCalendar($creche);
         $childs = $childRepository->findBy(['family' => $family->getId()]);
 
         return $this->render('parent/presentation-creche.html.twig', [
@@ -304,7 +304,6 @@ class FamilyController extends AbstractController
             'creches' => $creches,
             'calendar' => $calendar,
             'childs' => $childs,
-            /*'form' => $form->createView(), // Passer le formulaire à la vue*/
         ]);
     }
     // Page détail crèche - Parents
