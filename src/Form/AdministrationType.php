@@ -81,8 +81,8 @@ class AdministrationType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\Length([
-                        'min' => 34,
-                        'max' => 34,
+                        'min' => 27,
+                        'max' => 27,
                         'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
                     ]),
                 ],

@@ -53,9 +53,9 @@ class Administration
 
     #[ORM\Column(length: 7, nullable:true)]
     #[Assert\Length(
-        min: 15,
-        max: 15,
-        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
+        min: 7,
+        max: 7,
+        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 7 caractères valide.'
     )]
     private ?string $cafNumber = null;
 
@@ -104,7 +104,7 @@ class Administration
     #[ORM\Column(length: 255, nullable:true)]
     private ?string $discharge = null;
 
-    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
+    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]    
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne
