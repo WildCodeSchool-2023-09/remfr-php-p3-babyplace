@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Validator\Constraints\Length;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfonycasts\DynamicForms\DependentField;
@@ -30,7 +31,6 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
-                    'class' => 'form-control',
                     ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le prénom de votre enfant.']),
@@ -45,7 +45,6 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                 'placeholder' => 'Nom de famille',
-                'class' => 'form-control',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le nom de famille de votre enfant.']),
@@ -61,7 +60,6 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Date de naissance',
-                    'class' => 'form-control',
                     ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer la date de naissance de votre enfant.']),
@@ -70,24 +68,21 @@ class ChildType extends AbstractType
             ->add('isWalking', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
-                'attr' => [
-                    /*'placeholder' => 'Votre enfant marche-t-il ?',*/
-                    'class' => 'form-control',
-                    ],
                     'placeholder' => 'Votre enfant marche-t-il ?',
                     'choices' => [
                         'Oui' => true,
                         'Non' => false,
                     ],
             ])
-            ->add('allergy')
+            ->add('allergy', TextType::class, [
+                'label' => false,
+                'attr' => [
+                'placeholder' => 'Votre enfant souffre-t-il d\'une allergie ?',],
+            ])
             ->add('isDisabled', ChoiceType::class, [
                 'label' => false,
                 'multiple' => false,
                 'required' => false,
-                    'attr' => [
-                        'class' => 'form-control',
-                    ],
                     'placeholder' => 'Votre enfant présente-t-il un handicap',
                     'choices' => [
                         'Oui' => true,
@@ -109,10 +104,15 @@ class ChildType extends AbstractType
                 }
             })
             ->add('birthCertificateFile', VichFileType::class, [
-                'label' => 'Certificat de naissance',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'name' => "file",
+                    'id' => "file",
+                    'class' => "input-file_dossiers-enfants"
+                ]
             ])
             ->add('doctorName', TextType::class, [
                 'label' => false,
@@ -125,18 +125,29 @@ class ChildType extends AbstractType
                 ]
             ])
             ->add('vaccineFile', VichFileType::class, [
-                'label' => 'Carnet de vaccination',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'name' => "file",
+                    'id' => "file",
+                    'class' => "input-file_dossiers-enfants"
+                ]
             ])
             ->add('insuranceFile', VichFileType::class, [
-                'label' => 'Attestation d\'assurance de l\'enfant',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'name' => "file",
+                    'id' => "file",
+                    'class' => "input-file_dossiers-enfants"
+                ]
             ])
             ->add('family', EntityType::class, [
+                'label' => false,
                 'class' => Family::class,
                 'choice_label' => 'id',
             ])

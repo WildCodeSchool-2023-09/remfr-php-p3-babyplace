@@ -1,20 +1,38 @@
-<div{{ attributes }}>
-    <!-- component html -->
-    {{ form_start(form) }}
-    {{ form_row(form.childFirstname)}}
-    {{ form_row(form.childLastname)}}
-    {{ form_row(form.birthdate)}}
-    {{ form_row(form.isWalking)}}
-    {{ form_row(form.allergy)}}
-    {{ form_row(form.isDisabled)}}
-    {% if form.isDisabled.vars.value == true %}
-        {{ form_row(form.disability)}}
-    {% endif %}
-    {{ form_row(form.birthCertificateFile)}}
-    {{ form_row(form.doctorName)}}
-    {{ form_row(form.vaccineFile)}}
-    {{ form_row(form.insuranceFile)}}
+<div{{attributes}}>
+	<!-- component html -->
+	{{ form_start(form) }}
+	{{ form_row(form.childFirstname, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.childLastname, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.birthdate, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.isWalking, {'attr' : {'class' : "form-select form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.allergy, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.isDisabled, {'attr' : {'class' : "form-select form-text_dossiers-enfants mb-3"}})}}
+	{% if form.isDisabled.vars.value == true %}
+		{{ form_row(form.disability)}}
+	{% endif %}
+	<div class="form-group mb-3">
+		{{ form_row(form.birthCertificateFile)}}
+		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Attestation d'assurance</span>
+		</label>
+	</div>
+	{{ form_row(form.doctorName, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	<div class="form-group mb-3">
+		{{ form_row(form.vaccineFile)}}
+		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Carnet de santé / vaccinations</span>
+		</label>
+	</div>
+	<div class="form-group mb-3">
+		{{ form_row(form.insuranceFile)}}
+		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Attestation d'assurance</span>
+		</label>
+        {{ form_row(form.family, {'attr': {'style': 'display: none;'}})}}
+		<button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Enregistrer') }}</button>
+		{{ form_end(form) }}
+	</div>
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-</div>

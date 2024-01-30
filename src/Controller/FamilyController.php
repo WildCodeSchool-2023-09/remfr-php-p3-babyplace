@@ -56,8 +56,11 @@ class FamilyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editParent(Request $request, Family $family, EntityManagerInterface $entityManager): Response
-        {
+    public function editParent(
+        Request $request,
+        Family $family,
+        EntityManagerInterface $entityManager
+    ): Response {
         $form = $this->createForm(FamilyType::class, $family);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -166,7 +169,7 @@ class FamilyController extends AbstractController
     }
 
     // Dossiers d'inscriptions - Parents
-    #[Route('/dossiers-inscriptions', name: 'dossiers-inscriptions')]
+    #[Route('/{id}/dossiers-inscriptions', name: 'dossiers-inscriptions')]
     public function foldersRegister(): Response
     {
         return $this->render('parent/dossiers-inscriptions.html.twig', [

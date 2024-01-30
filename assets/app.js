@@ -25,3 +25,6 @@ a2lix_lib.sfCollection.init()
 // Bootstrap
 require('bootstrap');
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+
+//Ajax pour l'upload de fichiers
+//import '.JS/upload-file.js'

@@ -44,7 +44,7 @@ class AdministrationController extends AbstractController
 
         $this->addFlash('failAdministration', 'Il y a eu un problème dans la mise en ligne de vos informations.');
 
-        return $this->render('adminFile/index-file.html.twig', [
+        return $this->render('AdminFile/new-file.html.twig', [
             'formFile' => $form,
         ]);
     }
