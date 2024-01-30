@@ -65,6 +65,13 @@ class AdministrationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Votre RIB',
                 ],
+                'constraints' => [
+                    new Assert\Length([
+                        'min' => 27,
+                        'max' => 27,
+                        'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
+                    ]),
+                ],
             ])
             ->add('dischargeFile', VichFileType::class, [
                 'label' => false,

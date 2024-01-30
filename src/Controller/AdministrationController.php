@@ -7,6 +7,7 @@ use App\Form\AdministrationType;
 use App\Entity\Family;
 use App\Repository\AdministrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Serializable;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,18 +57,19 @@ class AdministrationController extends AbstractController
     public function editAdminFile(
         Request $request,
         Administration $adminFile,
+        Family $family,
         EntityManagerInterface $entityManager
     ): Response {
             $form = $this->createForm(AdministrationType::class, $adminFile);
             $form->handleRequest($request);
 
         if ($form-> isSubmitted() && $form-> isValid()) {
-            $entityManager->persist($adminFile);
+           
             $entityManager->flush();
 
             $this->addFlash('fileSuccess', 'Votre dossier administratif a bien été mis à jour.');
 
-            return $this->redirectToRoute('adminfile_index');
+            return $this->redirectToRoute('adminfile_edit', ['id' => $family->getId()]);
         }
 
         $this->addFlash('fileFail', 'Il y a eu un problème dans la modification de votre dossier administratif.');

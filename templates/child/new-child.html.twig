@@ -35,13 +35,8 @@
                 </div>
             </nav>
             <div class="div-btn-parents_dossiers-inscriptions">
-<<<<<<< HEAD
-                <a href="{{ path('parent_dossiers-parents', {'id': app.user.family.id}) }}" class="btn-parents_dossiers-enfants">Parents</a>
-                <a href="{{ path('parent_dossiers-inscriptions', {'id': app.user.family.id}) }}" class="btn-enfants_dossiers-enfants">Enfants</a>
-=======
                 <a href="{{ path('parent_dossiers-parents') }}" class="btn-parents_dossiers-enfants">Parents</a>
                 <a href="{{ path('parent_dossiers-inscriptions') }}" class="btn-enfants_dossiers-enfants">Enfants</a>
->>>>>>> dev
             </div>
         </header>
 {% block body %}
@@ -69,10 +64,6 @@
             });
 
             })();
-        </script>
+        </script> 
     {# <a href="{{ path('child_index') }}">back to list</a> #}
-<<<<<<< HEAD
 {% endblock %}
-=======
-{% endblock %}
->>>>>>> dev
