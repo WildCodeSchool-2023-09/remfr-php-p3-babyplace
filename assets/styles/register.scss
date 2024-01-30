@@ -79,6 +79,11 @@ $footer-text-color: #000;
     width: 70%;
 }
 
+.stepone-title {
+    width: 50%;
+    text-align: left;
+}
+
 // modal calendar
 
 .form-control {
@@ -97,7 +102,7 @@ $footer-text-color: #000;
 }
 
 .div-form_form-calendar {
-    padding: 10%;   
+    padding: 10%;
 }
 
 div#calendar_end.form-control {
@@ -121,7 +126,8 @@ div#calendar_start_time {
     width: 100%;
 }
 
-.div-hour-start_form-calendar, .div-hour-end_form-calendar {
+.div-hour-start_form-calendar,
+.div-hour-end_form-calendar {
     width: 50%;
 }
 
@@ -149,7 +155,7 @@ input#calendar_end_date {
     width: 100%;
 }
 
-.div-background-color_form-calendar {    
+.div-background-color_form-calendar {
     width: 100%;
 }
 
@@ -160,7 +166,7 @@ input#calendar_end_date {
 input#calendar_all_day.nom-lambda {
     width: 20px;
     height: 20px;
-    margin-left: 10px;   
+    margin-left: 10px;
 }
 
 .button-update_form-calendar {
@@ -177,10 +183,10 @@ input#calendar_all_day.nom-lambda {
 .button-update_form-calendar:hover {
     background: $button-color-success;
     color: white;
-    font-weight: 600;    
+    font-weight: 600;
 }
 
-.button-delete_form-calendar {    
+.button-delete_form-calendar {
     color: $button-color-danger;
     font-weight: 600;
     letter-spacing: 0.15rem;
@@ -198,25 +204,25 @@ input#calendar_all_day.nom-lambda {
 
 @media only screen and (max-width: 600px) {
 
-    .div-left_register{
+    .div-left_register {
         display: none;
     }
 
-    .div-right_register{
+    .div-right_register {
         width: 100%;
     }
-    
+
     .stepone-title {
         text-align: left;
     }
 
-    .stepone-register{
+    .stepone-register {
         display: flex;
         flex-direction: column;
-        width:80%;
+        width: 80%;
     }
 
-    .agree-terms{
+    .agree-terms {
         display: flex;
         flex-direction: row-reverse;
     }

@@ -23,14 +23,12 @@ class AgendaController extends AbstractController
         }
 
         $events = $calendarRepository->findAll();
-        //$var = $creche->getId();
-
+        $creche = $creche->getId();
         $rdvs = [];
-
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
-                'crecheId' => 1,
+                'crecheId' => $creche,
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitle(),
@@ -42,7 +40,6 @@ class AgendaController extends AbstractController
         }
 
         $data = json_encode($rdvs);
-
         return $this->render('agenda/agenda.html.twig', compact('data'));
     }
 

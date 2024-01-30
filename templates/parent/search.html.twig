@@ -17,6 +17,7 @@
         {% endblock %}
     </head>
     <body class="body_search">
+    {% include 'parent/_navbar-parent.html.twig' %}
         {% block body %}
         <section class="section_search">
             <div class="div_search">
@@ -24,7 +25,8 @@
                 <form class="form_search">
                     <input type="text" class="form-text_search input-file_search mb-3" id="exampleInputPassword1" placeholder="Adresse">
                     <input type="date" class="form-text_search input-file_search mb-3" id="exampleInputPassword1" placeholder="Date disponible">
-                    <button type="submit" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</button>
+                    {# <button type="submit" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</button> #}
+                    <a href="{{ path('parent_liste-de-recherches') }}" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</a>
                 </form>
             </div>
         </section>

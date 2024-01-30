@@ -43,7 +43,7 @@
 						<li>{{reservation.family.lastname}}</li>
 						<li>Profil complété à :</li>
 
-							{% if app.user %}
+							{# {% if app.user %}
 								{% set var = 100 %}
 							{% endif %}
 							{% if reservation.family.administration.familyIncome == 'null' %}
@@ -76,8 +76,7 @@
 							{% if reservation.family.administration.divorceDecree == 'null' %}
 								{% set var = var - 10 %}
 							{% endif %}
-							{{var}}{{' %'}}
-
+							{{var}}{{' %'}} #}
 
 						<li>Date de debut </li>
 						{{ reservation.calendar.start|date('d-m-Y') }}

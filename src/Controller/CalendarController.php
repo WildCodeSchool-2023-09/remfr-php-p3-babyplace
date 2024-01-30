@@ -32,7 +32,6 @@ class CalendarController extends AbstractController
         EntityManagerInterface $entityManager,
         CrecheRepository $crecheRepository
     ): Response {
-
         $calendar = new Calendar();
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);

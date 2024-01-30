@@ -25,6 +25,7 @@
         {% endblock %}
     </head>
     <body class="body_search-parent">
+        {% include 'parent/_navbar-parent.html.twig' %}
         <!-- Searchbar -->
         <header class="header_search-parent">
              <nav class="navbar top-navbar_filters">
@@ -34,8 +35,8 @@
                 </div>
             </nav>
             <div class="div-btn-parents_dossiers-inscriptions">
-                <a href="{{ path('parent_filtres') }}" class="btn-parents_dossiers-enfants">Parents</a>
-                <a href="{{ path('parent_filtres') }}" class="btn-enfants_dossiers-enfants">Enfants</a>
+                <a href="{{ path('parent_dossiers-parents') }}" class="btn-parents_dossiers-enfants">Parents</a>
+                <a href="{{ path('parent_dossiers-inscriptions') }}" class="btn-enfants_dossiers-enfants">Enfants</a>
             </div>
         </header>
         {% block body %}
@@ -88,11 +89,11 @@
             'use strict';
 
             $('.input-file_dossiers-enfants').each(function() {
-                var $input = $(this),
+                let $input = $(this),
                     $label = $input.next('.js-labelFile'),
                     labelVal = $label.html();
             $input.on('change', function(element) {
-                var fileName = '';
+                let fileName = '';
                 if (element.target.value) fileName = element.target.value.split('\\').pop();
                 fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
             });

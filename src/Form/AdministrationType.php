@@ -73,19 +73,19 @@ class AdministrationType extends AbstractType
                     'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
                 ]),
             ])
-            ->add('discharge', VichFileType::class, [
+            ->add('dischargeFile', VichFileType::class, [
                 'label' => 'Autorisation de sortie',
                 'required' => true,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
-            ->add('familyRecord', VichFileType::class, [
+            ->add('familyRecordFile', VichFileType::class, [
                 'label' => 'Copie du livret de famille',
                 'required' => true,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
-            ->add('divorceDecree', VichFileType::class, [
+            ->add('divorceDecreeFile', VichFileType::class, [
                 'label' => 'Jugement de divorce',
                 'required' => false,
                 'allow_delete' => true,

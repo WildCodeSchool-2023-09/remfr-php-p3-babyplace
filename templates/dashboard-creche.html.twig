@@ -12,7 +12,7 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}		
+        {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
 			<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
         {% endblock %}
@@ -23,6 +23,7 @@
         <header>
             {# Navbar top #}
             <nav class="navbar navbar_dashboard-creche bg-body-tertiary">
+            {% include 'includes/searchbar-creche.html.twig' %}
             <i class="fa-regular fa-bell fa-lg"></i>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,7 +39,7 @@
             {# Aside #}
             <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
                 <a href="/" class="d-flex align-items-center md-auto text-white text-decoration-none">
-                    <h4 class="logo_dashboard-creche">BabyPlace</h4>
+                    <img src="{{ asset('build/images/logo-babyplace-blanc-creche.png') }}" class="logo_dashboard-creche">
                 </a>
                 <hr>
                 <ul class="div_aside nav nav-pills flex-column mb-auto">
