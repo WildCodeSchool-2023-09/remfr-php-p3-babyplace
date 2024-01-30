@@ -73,14 +73,30 @@ class CrecheController extends AbstractController
         ]);
     }
 
-    #[Route('/gestion/{id}', methods: ['GET'], name: 'edit_index')]
-    public function editIndex(#[MapEntity(mapping: ['id' => 'id'])]
-    Creche $creche): Response
-    {
+    // Vue d'ensemble
+
+    #[Route('/gestion/{id}', methods: ['GET', 'POST'], name: 'edit_index')]
+    public function editIndex(
+        CrecheRepository $crecheRepository,
+        FamilyRepository $familyRepository,
+        ReservationRepository $reservationRepo,
+        CalendarRepository $calendarRepository,
+        ChildRepository $childRepository,
+        AdministrationRepository $administrationRepo
+    ): Response {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $family = $familyRepository->findAll();
+        $reservations = $reservationRepo->findBy([], ['id' => 'DESC'], 1);
+        $calendar = $calendarRepository->findAll();
+        $children = $childRepository->findAll();
+        $administration = $administrationRepo->findAll();
+
         return $this->render('creche/editIndex.html.twig', [
+            'reservations' => $reservations,
+            'family' => $family,
             'creche' => $creche,
         ]);
     }
@@ -182,7 +198,7 @@ class CrecheController extends AbstractController
         }
         $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
         $family = $familyRepository->findAll();
-        $reservation = $reservationRepo->findAll();
+        $reservation = $reservationRepo->findBy([], ['id' => 'DESC']);
         $calendar = $calendarRepository->findAll();
         $children = $childRepository->findAll();
         $administration = $administrationRepo->findAll();

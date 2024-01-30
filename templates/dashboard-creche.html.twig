@@ -23,7 +23,7 @@
         <header>
             {# Navbar top #}
             <nav class="navbar navbar_dashboard-creche bg-body-tertiary">
-            {% include 'includes/searchbar-creche.html.twig' %}
+            {# {% include 'includes/searchbar-creche.html.twig' %} #}
             <i class="fa-regular fa-bell fa-lg"></i>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,15 +37,19 @@
                 </div>
             </nav>
             {# Aside #}
-            <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
+            <div class="d-flex flex-column flex-shrink-0 text-white aside_dashboard">
                 <a href="/" class="d-flex align-items-center md-auto text-white text-decoration-none">
                     <img src="{{ asset('build/images/logo-babyplace-blanc-creche.png') }}" class="logo_dashboard-creche">
                 </a>
                 <hr>
                 <ul class="div_aside nav nav-pills flex-column mb-auto">
+                    <h3 class="nav-title_dashboard-creche">Tableau de bord</h3>
+                    <li>
+                        <a href="{{ path('creche_edit_index', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-border-all fa-gestion"></i>Vue d'ensemble</a>
+                    </li>
                     <h3 class="nav-title_dashboard-creche">Réservations</h3>
                     <li>
-                        <a href="{{ path('creche_demandes', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-border-all fa-gestion"></i>Liste des demandes</a>
+                        <a href="{{ path('creche_demandes', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar-check fa-gestion"></i>Liste des demandes</a>
                     </li>
                     <li>
                         <a href="{{ path('app_agenda', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-regular fa-calendar fa-gestion"></i>Agenda</a>
@@ -55,10 +59,13 @@
                     </li>
                     <h3 class="nav-title_dashboard-creche">Profil</h3>
                     <li>
-                        <a href="{{ path('creche_edit_index', {id:app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-circle-user fa-gestion"></i>Informations personnelles</a>
+                        <a href="{{ path('creche_edit_creche', {id: app.user.id}) }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-circle-user fa-gestion"></i>Informations personnelles</a>
                     </li>
                     <li>
                         <a {# href="{{ path(creche/gestion/notifications) }}" #} class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-bell fa-gestion"></i>Notifications</a>
+                    </li>
+                     <li>
+                        <a href="{{ path('app_logout') }}" class="nav-link nav-link_dashboard-creche text-white"><i class="fa-solid fa-right-from-bracket fa-gestion"></i>Se déconnecter</a>
                     </li>
                 </ul>
             </div>
