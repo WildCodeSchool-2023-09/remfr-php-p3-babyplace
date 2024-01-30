@@ -1,4 +1,4 @@
-{{ form_start(formFile) }}
+{{ form_start(formFile, {'attr': {'enctype': 'multipart/form-data'}}) }}
     <div class="form-group mb-3">
         {{ form_row(formFile.familyIncomeFile, {'attr' : {'id' : 'familyIncomeFileInput', 'class' : "input-file_dossiers-enfants"}})}}
         <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
