@@ -3,7 +3,9 @@
 {% macro calculateAge(birthdate) %}
 	{# birthdate doit être une instance de DateTime dans votre code PHP #}
 	{{ 'now'|date('Y') - birthdate|date('Y') - (birthdate|date('md') > 'now'|date('md') ? 1 : 0) }}
+	
 {% endmacro %}
+
 {% macro calculateHour(hourStart, hourEnd) %}
     {% set startTimestamp = hourStart|date('U') %}
     {% set endTimestamp = hourEnd|date('U') %}
@@ -78,7 +80,7 @@
 				</div>
 				<div class="col-md-2 col_demandes">
 					<ul>
-                        <li class="bold_demandes">Date de debut </li>
+            <li class="bold_demandes">Date de debut </li>
 						{{ reservation.calendar.start|date('d-m-Y') }}
 						<li class="bold_demandes  mt-3">Date de fin</li>
 						{{ reservation.calendar.end|date('d-m-Y') }}

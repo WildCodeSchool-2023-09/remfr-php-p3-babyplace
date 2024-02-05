@@ -3,15 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Child;
+use App\Entity\Creche;
 use App\Entity\Family;
+use App\Entity\Calendar;
 use App\Form\FamilyType;
+use App\Form\CalendarType;
+use App\Entity\Reservation;
+use App\Repository\ChildRepository;
+use App\Repository\CrecheRepository;
 use App\Repository\FamilyRepository;
+use App\Repository\CalendarRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/parent', name: 'parent_')]
 class FamilyController extends AbstractController
@@ -56,8 +64,11 @@ class FamilyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editParent(Request $request, Family $family, EntityManagerInterface $entityManager): Response
-    {
+    public function editParent(
+        Request $request,
+        Family $family,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $form = $this->createForm(FamilyType::class, $family);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +79,6 @@ class FamilyController extends AbstractController
 
             return $this->redirectToRoute('parent_menu');
         }
-
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
 
         return $this->render('parent/informations-personnelles.html.twig', [
@@ -106,20 +116,26 @@ class FamilyController extends AbstractController
         return $this->redirectToRoute('family_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/menu-parent', name: 'menu', methods: ['GET'])]
-    public function menuParent(): Response
+    #[Route('/{id}/menu-parent', name: 'menu', methods: ['GET', 'POST'])]
+    public function menuParent(FamilyRepository $familyRepository): Response
     {
+        $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
         return $this->render('parent/menu.html.twig', [
             'controller_name' => 'FamilyController',
+            'family' => $family,
         ]);
     }
 
     // Listes de recherches
-    #[Route('/liste-de-recherches', name: 'liste-de-recherches')]
-    public function searchList(): Response
+    #[Route('/{id}/liste-de-recherches', name: 'liste-de-recherches')]
+    public function searchList(FamilyRepository $familyRepository, CrecheRepository $crecheRepository): Response
     {
+        $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
+        $creches = $crecheRepository->findAll();
         return $this->render('parent/search-list.html.twig', [
             'controller_name' => 'FamilyController',
+            'family' => $family,
+            'creches' => $creches,
         ]);
     }
 
@@ -127,6 +143,8 @@ class FamilyController extends AbstractController
     #[Route('/recherches', name: 'recherches')]
     public function search(): Response
     {
+
+
         return $this->render('parent/search.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
@@ -203,21 +221,91 @@ class FamilyController extends AbstractController
     }*/
 
     // Réservations - Parents
-    #[Route('/reservations', name: 'reservations')]
-    public function reservations(): Response
+    /*#[Route('/reservations/{id}', name: 'reservations')]
+    public function reservations(EntityManagerInterface $entityManager, Request $request, Family $family): Response
     {
-        return $this->render('parent/reservations.html.twig', [
-            'controller_name' => 'FamilyController',
+        $reservation = new Reservation();
+        $reservation->setFamily($request->get('family'));
+        $reservation->setCreche($request->get('creche'));
+        $reservation->setChild($request->get('child'));
+        $reservation->setCalendar($request->get('calendar'));
+        $reservation->setStatus($request->get('status'));
+
+        $entityManager->persist($reservation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('parent_results', ['id' => $this->getUser()->getFamily()->getId()]);
+    }*/
+
+    #[Route('/reservations/{id}', name: 'reservations')]
+    public function reservations(
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response {
+        // Récupérer les données du formulaire
+        $crecheId = $request->request->get('creche');
+        $childId = $request->request->get('child');
+        $calendarId = $request->request->get('calendar');
+        $status = $request->request->get('status');
+
+        // Vérifier l'existence des entités
+        $creche = $entityManager->getRepository(Creche::class)->find($crecheId);
+        $child = $entityManager->getRepository(Child::class)->find($childId);
+        $calendar = $entityManager->getRepository(Calendar::class)->find($calendarId);
+
+        if (!$creche || !$child || !$calendar) {
+            // Gérer le cas où une des entités n'est pas trouvée
+            throw $this->createNotFoundException('Certaines entités n\'ont pas été trouvées.');
+        }
+
+        // Supposons que vous ayez déjà l'objet Family à partir du contexte de l'utilisateur
+        $family = $this->getUser()->getFamily();
+
+        // Créer une nouvelle instance de réservation
+        $reservation = new Reservation();
+        $reservation->setFamily($family);
+        $reservation->setCreche($creche);
+        $reservation->setChild($child);
+        $reservation->setCalendar($calendar);
+        $reservation->setStatus($status);
+
+        try {
+            // Enregistrer la réservation dans la base de données
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            // Gérer l'erreur de sauvegarde
+            return new Response('Erreur lors de la sauvegarde de la réservation: '
+            . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        // Redirection vers une autre page, par exemple, la page des résultats des parents
+        return $this->redirectToRoute('parent_results', ['id' => $family->getId(), 'id_creche' => $creche->getId()]);
+    }
+
+    #[Route('/{id}/results/{id_creche}', methods: ['GET', 'POST'], name: 'results')]
+    public function showCrecheResults(
+        Request $request,
+        #[MapEntity(mapping: ['id' => 'id'])] Family $family,
+        #[MapEntity(mapping: ['id_creche' => 'id'])] Creche $creche,
+        FamilyRepository $familyRepository,
+        CrecheRepository $crecheRepository,
+        CalendarRepository $calendarRepository,
+        ChildRepository $childRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
+        $creches = $crecheRepository->findOneBy(['id' => $creche->getId()]);
+        $calendar = $calendarRepository->getFreeCalendar($creche);
+        $childs = $childRepository->findBy(['family' => $family->getId()]);
+
+        return $this->render('parent/presentation-creche.html.twig', [
+            'family' => $family,
+            'creches' => $creches,
+            'calendar' => $calendar,
+            'childs' => $childs,
         ]);
     }
-
-    // Page détail crèche - Parents
-    #[Route('/results', methods: ['GET'], name: 'results')]
-    public function showCrecheResults(): Response
-    {
-        return $this->render('parent/presentation-creche.html.twig');
-    }
-
     // Page détail crèche - Parents
     #[Route('/moyens-de-paiement', methods: ['GET'], name: 'checkout')]
     public function checkout(): Response
