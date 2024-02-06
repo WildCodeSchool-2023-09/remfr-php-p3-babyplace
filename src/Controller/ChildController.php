@@ -25,7 +25,7 @@ class ChildController extends AbstractController
         ]);
     }
 
-    #[Route('/child/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/{family_id}/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         EntityManagerInterface $entityManager,

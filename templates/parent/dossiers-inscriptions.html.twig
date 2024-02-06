@@ -28,7 +28,7 @@
             </nav>
             <div class="div-btn-parents_dossiers-inscriptions">
                 <a href="{{ path('parent_dossiers-parents', {'id': app.user.family.id}) }}" class="btn-parents_dossiers-inscriptions">Parents</a>
-                <a href="{{ path('parent_dossiers-inscriptions', {'id': app.user.family.id}) }}" class="btn-enfants_dossiers-inscriptions">Enfants</a>
+                <a href="{{ path('parent_dossiers-inscriptions', {'family_id': app.user.family.id}) }}" class="btn-enfants_dossiers-inscriptions">Enfants</a>
             </div>
         </header>
         {% block body %}
@@ -37,8 +37,8 @@
                 <div class="crud-enfant_dossiers-inscriptions mb-3">
                     <p class="name-crud-enfant_dossiers-inscriptions">Élise</p>
                     <div>
-                        <i {# href="{{ path('child_edit', {'family_id': app.user.family.id, 'child_id': child.id}) }}" #} class="fa-solid fa-pen icon-edit_dossiers-inscriptions"></i>
-                        <a {#href="{{ path('child_delete', {'family_id': app.user.family, 'child_id': child.id}) }}" #} class="text-decoration-none"><i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i></a>
+                        <a {# href="{{ path('child_edit', {'family_id': app.user.family.id, 'child_id': child.id}) }}" #}><i class="fa-solid fa-pen icon-edit_dossiers-inscriptions"></i></a>
+                        <a {#href="{{ path('child_delete', {'family_id': app.user.family, 'child_id': child.id}) }}" #}><i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i></a>
                     </div>
                 </div>
                 <div class="crud-enfant_dossiers-inscriptions mb-3">
