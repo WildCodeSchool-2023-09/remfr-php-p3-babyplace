@@ -25,6 +25,7 @@ class ApiController extends AbstractController
     public function majEvent(?Calendar $calendar, Request $request, EntityManagerInterface $entityManager): Response
     {
          // on récupère les données
+         // on inject en json
 
          $donnees = json_decode($request->getContent());
 
