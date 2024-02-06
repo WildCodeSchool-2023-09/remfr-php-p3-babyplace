@@ -1,15 +1,15 @@
-<div{{ attributes }}>
-    <!-- component html -->
-    {{ form_start(form) }}
-    {{ form_row(form.childFirstname)}}
-    {{ form_row(form.childLastname)}}
-    {{ form_row(form.birthdate)}}
-    {{ form_row(form.isWalking)}}
-    {{ form_row(form.allergy)}}
-    {{ form_row(form.isDisabled)}}
-    {% if form.isDisabled.vars.value == true %}
-        {{ form_row(form.disability)}}
-    {% endif %}
+<div{{attributes}}>
+	<!-- component html -->
+	{{ form_start(form) }}
+	{{ form_row(form.childFirstname, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.childLastname, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.birthdate, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.isWalking, {'attr' : {'class' : "form-select form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.allergy, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
+	{{ form_row(form.isDisabled, {'attr' : {'class' : "form-select form-text_dossiers-enfants mb-3"}})}}
+	{% if form.isDisabled.vars.value == true %}
+		{{ form_row(form.disability)}}
+	{% endif %}
         <div class="form-group mb-3">
         {{ form_row(form.birthCertificateFile, {'attr': {'class': 'input-file_dossiers-enfants'}}, {'name': 'file'}, {'id': 'file'})}}
             <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">

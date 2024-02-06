@@ -1,2 +1,5 @@
-
-{{ component('FormComponent') }}
+{# {% if app.user.family is defined %} #}
+    {{ component('FormComponent') }}
+{# {% else %}
+    {{ path('app_login')}}
+{% endif %} #}

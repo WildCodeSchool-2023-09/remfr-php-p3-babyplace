@@ -185,7 +185,7 @@ class FamilyController extends AbstractController
     }
 
     // Dossiers d'inscriptions - Parents
-    #[Route('/dossiers-inscriptions', name: 'dossiers-inscriptions')]
+    #[Route('/{id}/dossiers-inscriptions', name: 'dossiers-inscriptions')]
     public function foldersRegister(): Response
     {
         return $this->render('parent/dossiers-inscriptions.html.twig', [

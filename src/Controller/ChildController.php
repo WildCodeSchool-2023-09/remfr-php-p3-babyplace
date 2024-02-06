@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Child;
+use App\Entity\Family;
 use App\Form\ChildType;
 use App\Form\SearchChildType;
 use App\Repository\ChildRepository;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +25,17 @@ class ChildController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/child/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        #[MapEntity(mapping:['family_id' => 'id'])] Family $family
+    ): Response {
         $child = new Child();
         $form = $this->createForm(ChildType::class, $child);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($form->getData());
+            $child->setFamily($family);
             $entityManager->persist($child);
             $entityManager->flush();
 
@@ -38,21 +43,27 @@ class ChildController extends AbstractController
         }
 
         return $this->render('child/new-child.html.twig', [
-            'formChild' => $form,
+            'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Child $child): Response
-    {
+    #[Route('/parent/{family_id}/child/{child_id}', name: 'show', methods: ['GET'])]
+    public function show(
+        #[MapEntity(mapping:['family_id' => 'id'])] Family $parent,
+        #[MapEntity(mapping:['child_id' => 'id'])]Child $child
+    ): Response {
         return $this->render('child/show-child.html.twig', [
+            'family' => $parent,
             'child' => $child,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Child $child, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/parent/{family_id}/child/{child_id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Request $request,
+        Child $child,
+        EntityManagerInterface $entityManager
+    ): Response {
         $form = $this->createForm(ChildType::class, $child);
         $form->handleRequest($request);
 

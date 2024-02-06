@@ -14,20 +14,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use DateTimeInterface;
 use DateTime;
+use Serializable;
 
 #[ORM\Entity(repositoryClass: AdministrationRepository::class)]
 #[Vich\Uploadable]
-class Administration
+class Administration implements Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $familyIncome = 'null';
-
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $familyIncome = null;
 
     #[Vich\UploadableField(mapping: 'family_income_file', fileNameProperty:'familyIncome')]
     #[Assert\File(
@@ -40,9 +39,8 @@ class Administration
     )]
     private ?File $familyIncomeFile = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $taxReturn = 'null';
-
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $taxReturn = null;
 
     #[Vich\UploadableField(mapping: 'tax_return_file', fileNameProperty:'taxReturn')]
     #[Assert\File(
@@ -57,21 +55,22 @@ class Administration
 
     #[ORM\Column(length: 7, nullable: true)]
     #[Assert\Length(
-        min: 15,
-        max: 15,
-        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
+        min: 7,
+        max: 7,
+        exactMessage: 'Votre numéro d\'authentification CAF doit être composé de 7 caractères.'
     )]
-    private string $cafNumber = 'null';
-    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cafNumber = null;
+
+    #[ORM\Column(length: 15, nullable:true)]
     #[Assert\Length(
         min: 15,
         max: 15,
         exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
-    private string $socialNumber = 'null';
+    private ?string $socialNumber = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $residencyProof;
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $residencyProof = null;
 
     #[Vich\UploadableField(mapping: 'residency_proof_file', fileNameProperty:'residencyProof')]
     #[Assert\File(
@@ -84,8 +83,8 @@ class Administration
     )]
     private ?File $residencyProofFile = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $statusProof = 'null';
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $statusProof = null;
 
     #[Vich\UploadableField(mapping: 'status_proof_file', fileNameProperty:'statusProof')]
     #[Assert\File(
@@ -102,10 +101,10 @@ class Administration
     #[Assert\Iban(
         message: 'Le numéro IBAN n\'est pas valide',
     )]
-    private string $bankingInfo = 'null';
+    private ?string $bankingInfo = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $discharge = 'null';
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $discharge = null;
 
     #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
     #[Assert\File(
@@ -118,8 +117,8 @@ class Administration
     )]
     private ?File $dischargeFile = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private string $familyRecord = 'null';
+    #[ORM\Column(length: 255, nullable:true)]
+    private ?string $familyRecord = null;
 
     #[Vich\UploadableField(mapping: 'family_record_file', fileNameProperty:'familyRecord')]
     #[Assert\File(
@@ -170,7 +169,7 @@ class Administration
         return $this->familyIncome;
     }
 
-    public function setFamilyIncome(string $familyIncome): static
+    public function setFamilyIncome(?string $familyIncome): static
     {
         $this->familyIncome = $familyIncome;
 
@@ -197,7 +196,7 @@ class Administration
         return $this->taxReturn;
     }
 
-    public function setTaxReturn(string $taxReturn): static
+    public function setTaxReturn(?string $taxReturn): static
     {
         $this->taxReturn = $taxReturn;
 
@@ -224,7 +223,7 @@ class Administration
         return $this->cafNumber;
     }
 
-    public function setCafNumber(string $cafNumber): static
+    public function setCafNumber(?string $cafNumber): static
     {
         $this->cafNumber = $cafNumber;
 
@@ -236,7 +235,7 @@ class Administration
         return $this->socialNumber;
     }
 
-    public function setSocialNumber(string $socialNumber): static
+    public function setSocialNumber(?string $socialNumber): static
     {
         $this->socialNumber = $socialNumber;
 
@@ -248,7 +247,7 @@ class Administration
         return $this->residencyProof;
     }
 
-    public function setResidencyProof(string $residencyProof): static
+    public function setResidencyProof(?string $residencyProof): static
     {
         $this->residencyProof = $residencyProof;
 
@@ -275,7 +274,7 @@ class Administration
         return $this->statusProof;
     }
 
-    public function setStatusProof(string $statusProof): static
+    public function setStatusProof(?string $statusProof): static
     {
         $this->statusProof = $statusProof;
 
@@ -302,7 +301,7 @@ class Administration
         return $this->bankingInfo;
     }
 
-    public function setBankingInfo(string $bankingInfo): static
+    public function setBankingInfo(?string $bankingInfo): static
     {
         $this->bankingInfo = $bankingInfo;
 
@@ -314,7 +313,7 @@ class Administration
         return $this->discharge;
     }
 
-    public function setDischarge(string $discharge): self
+    public function setDischarge(?string $discharge): self
     {
         $this->discharge = $discharge;
 
@@ -341,7 +340,7 @@ class Administration
         return $this->familyRecord;
     }
 
-    public function setFamilyRecord(string $familyRecord): static
+    public function setFamilyRecord(?string $familyRecord): static
     {
         $this->familyRecord = $familyRecord;
 
@@ -368,7 +367,7 @@ class Administration
         return $this->divorceDecree;
     }
 
-    public function setDivorceDecree(string $divorceDecree): static
+    public function setDivorceDecree(?string $divorceDecree): static
     {
         $this->divorceDecree = $divorceDecree;
 
@@ -436,5 +435,19 @@ class Administration
         $this->creche->removeElement($creche);
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
     }
 }
