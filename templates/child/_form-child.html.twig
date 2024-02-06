@@ -1,5 +1,5 @@
 {# {% if app.user.family is defined %} #}
-    {{ component('FormComponent') }}
+    {{ component('FormComponent', {'family_id': app.user.family.id}) }}
 {# {% else %}
     {{ path('app_login')}}
 {% endif %} #}

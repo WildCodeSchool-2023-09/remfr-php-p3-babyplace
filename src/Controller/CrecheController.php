@@ -134,7 +134,7 @@ class CrecheController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('registration_success');
+            return $this->redirectToRoute('creche_edit_index', ['id' => $creche->getId()]);
         }
 
         return $this->render('creche/edit/schedule.html.twig', [
@@ -143,7 +143,7 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/gestion/photo/{id}', methods: ['GET', 'POST'], name: 'edit_photo')]
-    public function editPhoto(Request $request, EntityManagerInterface $entityManager): Response
+    public function editPhoto(Creche $creche, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -155,7 +155,7 @@ class CrecheController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('registration_success');
+            return $this->redirectToRoute('creche_edit_index', ['id' => $creche->getId()]);
         }
 
         return $this->render('creche/edit/photos.html.twig', [
