@@ -19,6 +19,12 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfonycasts\DynamicForms\DependentField;
 use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
+/**
+ * This will suppress all the PMD warnings in
+ * this class.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 class ChildType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

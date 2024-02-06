@@ -10,10 +10,30 @@
     {% if form.isDisabled.vars.value == true %}
         {{ form_row(form.disability)}}
     {% endif %}
-    {{ form_row(form.birthCertificateFile)}}
-    {{ form_row(form.doctorName)}}
-    {{ form_row(form.vaccineFile)}}
-    {{ form_row(form.insuranceFile)}}
+        <div class="form-group mb-3">
+        {{ form_row(form.birthCertificateFile, {'attr': {'class': 'input-file_dossiers-enfants'}}, {'name': 'file'}, {'id': 'file'})}}
+            <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+                <i class="icon fa fa-check"></i>
+                <span class="js-fileName">Certificat de naissance</span>
+            </label>
+        </div>
+    {{ form_row(form.doctorName, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}})}}
+        <div class="form-group mb-3">
+        {{ form_row(form.vaccineFile, {'attr': {'class': 'input-file_dossiers-enfants'}})}}
+            <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+                <i class="icon fa fa-check"></i>
+                <span class="js-fileName">Carnet de vaccins</span>
+            </label>
+        </div>
+        <div class="form-group mb-3">
+        {{ form_row(form.insuranceFile, {'attr': {'class': 'input-file_dossiers-enfants'}})}}
+            <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
+                <i class="icon fa fa-check"></i>
+                <span class="js-fileName">Attestation d'assurance</span>
+            </label>
+        </div>
+
+    <button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Appliquer mes changements') }}</button>
 
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
