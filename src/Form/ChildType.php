@@ -50,8 +50,7 @@ class ChildType extends AbstractType
             ->add('childLastname', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nom de famille',
-                    'class' => 'form-control',
+                'placeholder' => 'Nom de famille',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer le nom de famille de votre enfant.']),
@@ -67,7 +66,6 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Date de naissance',
-                    'class' => 'form-control',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer la date de naissance de votre enfant.']),
@@ -133,6 +131,9 @@ class ChildType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'class' => "input-file_dossiers-enfants",
+                ]
             ])
             ->add('doctorName', TextType::class, [
                 'label' => false,
@@ -149,12 +150,18 @@ class ChildType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'class' => "input-file_dossiers-enfants",
+                ]
             ])
             ->add('insuranceFile', VichFileType::class, [
                 'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
+                'attr' => [
+                    'class' => "input-file_dossiers-enfants",
+                ]
             ])
             ->add('family', EntityType::class, [
                 'class' => Family::class,

@@ -1,7 +1,7 @@
 {{ form_start(formEmergency) }}
-    {{ form_row(formEmergency.name)}}
-    {{ form_row(formEmergency.lastname)}}
-    {{ form_row(formEmergency.phoneContact)}}
+    {{ form_row(formEmergency.name, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}))}}
+    {{ form_row(formEmergency.lastname, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}))}}
+    {{ form_row(formEmergency.phoneContact, {'attr' : {'class': 'form-text_informations-personnelles mb-3' }}))}}
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(formEmergency) }}
