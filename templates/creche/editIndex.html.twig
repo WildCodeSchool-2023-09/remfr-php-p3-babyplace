@@ -1,13 +1,128 @@
 {% extends "dashboard-creche.html.twig" %}
 
+{% macro calculateAge(birthdate) %}
+	{# birthdate doit être une instance de DateTime dans votre code PHP #}
+	{{ 'now'|date('Y') - birthdate|date('Y') - (birthdate|date('md') > 'now'|date('md') ? 1 : 0) }}
+{% endmacro %}
+{% macro calculateHour(hourStart, hourEnd) %}
+    {% set startTimestamp = hourStart|date('U') %}
+    {% set endTimestamp = hourEnd|date('U') %}
+
+ {{ ((endTimestamp - startTimestamp) / 3600) | round(0)}}
+{% endmacro %}
+
 {% block content %}
-	<h3>Votre compte {{creche.name}}</h3>
-	<h5>Infomation de la creche</h5>
-	<a href="{{ path('creche_edit_creche', {id: creche.id}) }}">Modifer les informations de la creche</a>
-	<h5>Jours d'ouverture</h5>
-	<a href="{{ path('creche_edit_schedule', {id: creche.id}) }}">Modifier les jours d'ouverture</a>
-	<h5>Photos de la creche</h5>
-	<a href="{{ path('creche_edit_photo', {id: creche.id}) }}">Ajouter/Modifier des photos</a>
-	<h5>Membre de l'equipe</h5>
-	<a href="{{ path('creche_edit_team', {id: creche.id}) }}">Modifier les infomation des equipes</a>
+	<h4 class="title_demandes mb-5">Votre compte {{creche.name}}</h4>
+
+    {# Dernière card #}
+    {% for reservation in reservations %}
+		<div class="card_demandes mb-3">
+			<div class="row_demandes row">
+				<div class="col-md-1 pastille_demandes">
+					{% if reservation.status == "en attente" %}
+						<div class="pastille attente"></div>
+					{% elseif reservation.status == "accepté" %}
+						<div class="pastille accept"></div>
+					{% elseif reservation.status == "refusé" %}
+						<div class="pastille refuse"></div>
+					{% elseif reservation.status == "annulé" %}
+						<div class="pastille annule"></div>
+					{% endif %}
+				</div>
+				<div class="col-md-2 col_demandes">
+					<ul>
+						<li class="bold_demandes">{{ reservation.child.childFirstname }}</li>
+						<li class="regular_demandes">Âge :{{ _self.calculateAge(reservation.child.birthdate) }} an(s)</li>
+						<li class="bold_demandes mt-3">Date de naissance</li>
+                        <li class="regular_demandes">{{ reservation.child.birthdate|date('d-m-Y') }}</li>
+					</ul>
+				</div>
+				<div class="col-md-2 col_demandes">
+					<ul>
+						<li class="bold_demandes">{{reservation.family.firstname}} {{reservation.family.lastname}}</li>
+						<li class="regular_demandes">Profil complété à :</li>
+							{# {% if app.user %}
+								{% set var = 100 %}
+							{% endif %}
+							{% if reservation.family.administration.familyIncome == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.taxReturn == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.cafNumber == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.socialNumber == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.residencyProof == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.statusProof == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.bankingInfo == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.discharge == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.familyRecord == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{% if reservation.family.administration.divorceDecree == 'null' %}
+								{% set var = var - 10 %}
+							{% endif %}
+							{{var}}{{' %'}} #}
+					</ul>
+				</div>
+				<div class="col-md-2 col_demandes">
+					<ul>
+                        <li class="bold_demandes">Date de debut </li>
+						{{ reservation.calendar.start|date('d-m-Y') }}
+						<li class="bold_demandes  mt-3">Date de fin</li>
+						{{ reservation.calendar.end|date('d-m-Y') }}
+					</ul>
+				</div>
+				<div class="col-md-2 col_demandes">
+					<ul class="d-inline-flex">
+						<li class="horaires_reservations pe-2">Nombre d'heures :</li>
+						{{ _self.calculateHour(reservation.calendar.start, reservation.calendar.end) }}
+					</ul>
+				</div>
+
+                <div class="col-md-2 col_demandes">
+                    <div class="row">
+							<div class="col s6 div-label_demandes">
+								<a href="{{ path('creche_demandes', {id:app.user.id}) }}" class="label-redirection_demandes mb-3">Voir la demande</a>
+							</div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
+<section class="widgets_dashboard">
+        {# Agenda et photo de la crèche #}
+        <a href="{{ path('app_agenda', {id:app.user.id}) }}" style="background-image: url('{{ asset('build/images/marketing-de-votre-activite.png') }}')" class="div1_dashboard text-decoration-none">
+            <h5 class="agenda-widgets_dashboard">Agenda</h5>
+        </a>
+        <div class="div2_dashboard" style="background-image: url('{{ asset('build/images/image-card-creche.jpg') }}')">
+            <div class="div-card-img-top_dashboard"></div>
+        </div>
+        {# Row des informations personnelles #}
+        <a href="{{ path('creche_edit_creche', {id: app.user.id}) }}" class="div3_dashboard text-decoration-none">
+            <h5 class="title-widgets_dashboard">Infomation de la creche</h5>
+            <p class="description-widgets_dashboard">Modifer les informations de la creche</p>
+        </a>
+        <a href="{{ path('creche_edit_schedule', {id: app.user.id}) }}" class="div4_dashboard text-decoration-none">
+            <h5 class="title-widgets_dashboard">Jours d'ouverture</h5>
+            <p class="description-widgets_dashboard">Modifier les jours d'ouverture</p>
+        </a>
+         <a href="{{ path('creche_edit_photo', {id: app.user.id}) }}" class="div5_dashboard text-decoration-none">
+            <h5 class="title-widgets_dashboard">Images de ma creche</h5>
+            <p class="description-widgets_dashboard">Ajouter / Modifier des photos</p>
+        </a>
+</section>
 {% endblock %}

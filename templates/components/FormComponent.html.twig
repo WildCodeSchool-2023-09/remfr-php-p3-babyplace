@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div{{attributes}}>
 	<!-- component html -->
 	{{ form_start(form) }}
@@ -11,45 +10,6 @@
 	{% if form.isDisabled.vars.value == true %}
 		{{ form_row(form.disability)}}
 	{% endif %}
-	<div class="form-group mb-3">
-		{{ form_row(form.birthCertificateFile)}}
-		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-			<i class="icon fa fa-check"></i>
-			<span class="js-fileName">Attestation d'assurance</span>
-		</label>
-	</div>
-	{{ form_row(form.doctorName, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}})}}
-	<div class="form-group mb-3">
-		{{ form_row(form.vaccineFile)}}
-		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-			<i class="icon fa fa-check"></i>
-			<span class="js-fileName">Carnet de santé / vaccinations</span>
-		</label>
-	</div>
-	<div class="form-group mb-3">
-		{{ form_row(form.insuranceFile)}}
-		<label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-			<i class="icon fa fa-check"></i>
-			<span class="js-fileName">Attestation d'assurance</span>
-		</label>
-        {{ form_row(form.family, {'attr': {'style': 'display: none;'}})}}
-		<button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Enregistrer') }}</button>
-		{{ form_end(form) }}
-	</div>
-
-=======
-<div{{ attributes }}>
-    <!-- component html -->
-    {{ form_start(form) }}
-    {{ form_row(form.childFirstname, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}}) }}
-    {{ form_row(form.childLastname, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}})}}
-    {{ form_row(form.birthdate, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}})}}
-    {{ form_row(form.isWalking, {'attr': {'class': 'form-select form-text_dossiers-enfants mb-3'}})}}
-    {{ form_row(form.allergy, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}})}}
-    {{ form_row(form.isDisabled, {'attr': {'class': 'form-select form-text_dossiers-enfants mb-3'}})}}
-    {% if form.isDisabled.vars.value == true %}
-        {{ form_row(form.disability, {'attr': {'class': 'form-text_dossiers-enfants mb-3'}})}}
-    {% endif %}
         <div class="form-group mb-3">
         {{ form_row(form.birthCertificateFile, {'attr': {'class': 'input-file_dossiers-enfants'}}, {'name': 'file'}, {'id': 'file'})}}
             <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
@@ -69,12 +29,12 @@
         {{ form_row(form.insuranceFile, {'attr': {'class': 'input-file_dossiers-enfants'}})}}
             <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
                 <i class="icon fa fa-check"></i>
-                <span class="js-fileName">Assurance de votre enfant</span>
+                <span class="js-fileName">Attestation d'assurance</span>
             </label>
         </div>
 
     <button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Appliquer mes changements') }}</button>
 
+    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 </div>
->>>>>>> dev

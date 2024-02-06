@@ -1,0 +1,33 @@
+.form-text_informations-personnelles-creche {
+    background-color: white;
+    color: $h-color;
+    border-radius: 0.5rem;
+    border: 0;
+    padding: 1% 2% 1% 2%;
+    width: 50%;
+    z-index: 99;
+    margin-bottom: 2vh;
+}
+
+.button_informations-personnelles-creche {
+    background-color: $btn-color;
+    color: white;
+    font-family: $headings-font-family;
+    font-size: $btn-font-size;
+    font-weight: 600;
+    text-decoration: none;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.35rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 30%;
+    border: 0;
+
+    &:hover {
+        background-color: $btn-color-hover;
+        color: white;
+        font-weight: 600;
+    }
+}

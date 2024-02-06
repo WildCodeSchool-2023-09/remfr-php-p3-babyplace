@@ -44,43 +44,8 @@
             <div class="div_search-parent">
                 <h5 class="subtitle_dossiers-enfants mb-3">Dossiers enfants</h5>
                 <p class="label_dossiers-enfants">Élise</p>
-                <form>
-                    <input type="email" class="form-text_dossiers-enfants mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom">
-                    <input type="password" class="form-text_dossiers-enfants mb-3" id="exampleInputPassword1" placeholder="Nom">
-                    <input type="password" class="form-text_dossiers-enfants mb-3" id="exampleInputPassword1" placeholder="01/10/1996">
-                    <select class="form-select form-text_dossiers-enfants mb-3" aria-label="Default select example">
-                        <option selected>Enfant sans handicap</option>
-                        <option value="1">Enfant avec handicap</option>
-                    </select>
-                    <select class="form-select form-text_dossiers-enfants mb-3" aria-label="Default select example">
-                        <option selected>Enfant qui marche</option>
-                        <option value="1">Enfant qui ne marche pas</option>
-                    </select>
-                    <!-- Input file - Thibault Mahé -->
-                    <div class="form-group mb-3">
-                        <input type="file" name="file" id="file" class="input-file_dossiers-enfants">
-                        <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-                            <i class="icon fa fa-check"></i>
-                            <span class="js-fileName">Attestation d'assurance</span>
-                        </label>
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="file" name="file" id="file" class="input-file_dossiers-enfants">
-                        <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-                            <i class="icon fa fa-check"></i>
-                            <span class="js-fileName">Carnet de santé / vaccinations</span>
-                        </label>
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="file" name="file" id="file" class="input-file_dossiers-enfants">
-                        <label for="file" class="choose-a-file_dossiers-enfants js-labelFile">
-                            <i class="icon fa fa-check"></i>
-                            <span class="js-fileName">Acte de naissance / certificat de grossesse</span>
-                        </label>
-                    </div>
-                    <!-- Fin input file -->
-                    <button type="submit" class="button_dossiers-inscriptions mt-5">Appliquer mes changements</button>
-                </form>
+
+                {% include 'components/FormComponent.html.twig' %}
             </div>
         </section>
         <script>

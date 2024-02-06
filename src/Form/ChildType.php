@@ -20,6 +20,12 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfonycasts\DynamicForms\DependentField;
 use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
+/**
+ * This will suppress all the PMD warnings in
+ * this class.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 class ChildType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -60,7 +66,7 @@ class ChildType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Date de naissance',
-                    ],
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez indiquer la date de naissance de votre enfant.']),
                 ]
@@ -113,9 +119,7 @@ class ChildType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => true,
                 'attr' => [
-                    'name' => "file",
-                    'id' => "file",
-                    'class' => "input-file_dossiers-enfants"
+                    'class' => "input-file_dossiers-enfants",
                 ]
             ])
             ->add('doctorName', TextType::class, [
@@ -134,9 +138,7 @@ class ChildType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => true,
                 'attr' => [
-                    'name' => "file",
-                    'id' => "file",
-                    'class' => "input-file_dossiers-enfants"
+                    'class' => "input-file_dossiers-enfants",
                 ]
             ])
             ->add('insuranceFile', VichFileType::class, [
@@ -145,9 +147,7 @@ class ChildType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => true,
                 'attr' => [
-                    'name' => "file",
-                    'id' => "file",
-                    'class' => "input-file_dossiers-enfants"
+                    'class' => "input-file_dossiers-enfants",
                 ]
             ])
             ->add('family', EntityType::class, [
