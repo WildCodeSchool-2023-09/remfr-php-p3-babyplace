@@ -7,8 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: ChildRepository::class)]
+#[Vich\Uploadable]
 class Child
 {
     #[ORM\Id]
@@ -22,8 +28,8 @@ class Child
     #[ORM\Column(length: 100)]
     private ?string $childLastname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $birthdate = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable:true)]
+    private ?DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
     private ?bool $isWalking = null;
@@ -37,17 +43,53 @@ class Child
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $disability = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $birthCertificate = null;
+
+    #[Vich\UploadableField(mapping: 'birthcertificate_file', fileNameProperty: 'birthCertificate')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $birthCertificateFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $doctorName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $vaccine = null;
 
-    #[ORM\Column(length: 255)]
+    #[Vich\UploadableField(mapping: 'vaccine_file', fileNameProperty: 'vaccine')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $vaccineFile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $insurance = null;
+
+    #[Vich\UploadableField(mapping: 'insurance_file', fileNameProperty: 'insurance')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'La taille du fichier ne
+         doit pas dépasser 1Mo.',
+        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
+         png ou un fichier pdf.'
+    )]
+    private ?File $insuranceFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'children')]
     #[ORM\JoinColumn(nullable: false)]
@@ -56,9 +98,13 @@ class Child
     #[ORM\ManyToMany(targetEntity: Creche::class, inversedBy: 'children')]
     private Collection $creche;
 
+    #[ORM\OneToMany(mappedBy: 'child', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
     public function __construct()
     {
         $this->creche = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,12 +136,12 @@ class Child
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getBirthdate(): ?DateTimeInterface
     {
         return $this->birthdate;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): static
+    public function setBirthdate(?DateTimeInterface $birthdate): static
     {
         $this->birthdate = $birthdate;
 
@@ -230,6 +276,122 @@ class Child
     public function removeCreche(Creche $creche): static
     {
         $this->creche->removeElement($creche);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of birthCertificateFile
+     */
+    public function getBirthCertificateFile(): ?File
+    {
+        return $this->birthCertificateFile;
+    }
+
+    /**
+     * Set the value of birthCertificateFile
+     *
+     * @return  self
+     */
+    public function setBirthCertificateFile(?File $birthCertificateFile): Child
+    {
+        $this->birthCertificateFile = $birthCertificateFile;
+        if ($birthCertificateFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of vaccineFile
+     */
+    public function getVaccineFile(): ?File
+    {
+        return $this->vaccineFile;
+    }
+
+    /**
+     * Set the value of vaccineFile
+     *
+     * @return  self
+     */
+    public function setVaccineFile(?File $vaccineFile): Child
+    {
+        $this->vaccineFile = $vaccineFile;
+        if ($vaccineFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of insuranceFile
+     */
+    public function getInsuranceFile(): ?File
+    {
+        return $this->insuranceFile;
+    }
+
+    /**
+     * Set the value of insuranceFile
+     *
+     * @return  self
+     */
+    public function setInsuranceFile(?File $insuranceFile): Child
+    {
+        $this->insuranceFile = $insuranceFile;
+        if ($insuranceFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): ?DatetimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(?DatetimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setChild($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getChild() === $this) {
+                $reservation->setChild(null);
+            }
+        }
 
         return $this;
     }

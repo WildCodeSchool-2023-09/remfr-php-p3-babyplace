@@ -1,0 +1,31 @@
+{% extends 'register.html.twig' %}
+
+{% block title %}Hello RegistrationCrecheController!
+{% endblock %}
+
+{% block body %}
+	{# Section prenant tout le body #}
+	<section
+		class="section_register">
+		{# Progress bar uniquement front #}
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+		{# Div de gauche = container de la div de contenu #}
+		<div
+			class="div-left_register">
+			{# Div contenu pour le form et les boutons "Retour" et "Suivant" #}
+			<div
+				class="div-content_register">
+				{# Code du contenu ici #}
+				<h2>Registration</h2>
+					{% include "registration_creche/_form.html.twig" %}
+			</div>
+		</div>
+
+		{# Div de droite = container de la div des infos #}
+		<div
+			class="div-right_register">{# Module des infos ici #}
+		</div>
+	</section>
+{% endblock %}

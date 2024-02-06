@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmergencyContact index{% endblock %}
+
+{% block body %}
+    <h1>EmergencyContact index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Numéro de téléphone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emergency_contact in emergency_contacts %}
+            <tr>
+                <td>{{ emergency_contact.id }}</td>
+                <td>{{ emergency_contact.name }}</td>
+                <td>{{ emergency_contact.lastname }}</td>
+                <td>{{ emergency_contact.phoneContact }}</td>
+                <td>
+                    <a href="{{ path('emergency_show', {'id': emergency_contact.id}) }}">show</a>
+                    <a href="{{ path('emergency_edit', {'id': emergency_contact.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

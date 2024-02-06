@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fichier administratif{% endblock %}
+
+{% block body %}
+    <h1>Liste des justificatifs</h1>
+
+            <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td>{{ file.familyIncomeFile }}</td>
+                <td>{{ file.taxReturnFile }}</td>
+                <td>{{ file.cafNumber }}</td>
+                <td>{{ file.socialNumber }}</td>
+                <td>{{ file.residencyProofFile }}</td>
+                <td>{{ file.statusProofFile }}</td>
+                <td>{{ file.bankingInfo }}</td>
+                <td>{{ file.dischargeFile }}</td>
+                <td>{{ file.familyRecordFile }}</td>
+                <td>{{ file.divorceDecreeFile}}</td>
+
+                {# <td>
+                    <a href="{{ path('child_show', {'id': child.id}) }}">show</a>
+                    <a href="{{ path('child_edit', {'id': child.id}) }}">edit</a>
+                </td> #}
+            </tr>

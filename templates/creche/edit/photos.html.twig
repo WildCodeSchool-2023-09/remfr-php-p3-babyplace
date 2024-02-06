@@ -1,0 +1,15 @@
+{% extends "dashboard-creche.html.twig" %}
+
+{% block title %}Edit photo Creche{% endblock %}
+
+{% block content %}
+    <h4 class="title_demandes mb-5">Images de ma crèche</h4>
+	{{ form_start(form) }}
+    <h5 class="">Téléverser votre photographie ici</h5>
+    {{ form_row(form.picturesFile, {'attr': {'class': 'form-text_informations-personnelles-creche mb-3'}}) }}
+	<button class="button_informations-personnelles-creche mt-3" type="submit">Sauvegarder mon image</button>
+	{{ form_end(form) }}
+{% endblock %}
+
+
+

@@ -3,23 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserRegistrationFormType;
-use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
-use Symfony\Component\Mailer\MailerInterface;
+use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Form\UserRegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class UserRegistrationController extends AbstractController
 {
@@ -39,12 +39,17 @@ class UserRegistrationController extends AbstractController
         EntityManagerInterface $entityManager,
         MailerInterface $mailer
     ): Response {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
         $user = new User();
         $form = $this->createForm(UserRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $userRole = $request->request->get('roles');
+            $user->setRoles([$userRole]);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -59,7 +64,7 @@ class UserRegistrationController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from(new Address('mailer@example.com', 'BabyPlace'))
                 ->to($user->getEmail())
-                ->subject('Please Confirm your Email')
+                ->subject('Ouverture du compte BabyPlace : validez votre mail!')
                 ->htmlTemplate('registration/confirmation_email.html.twig');
 
             $this->emailVerifier->sendEmailConfirmation(

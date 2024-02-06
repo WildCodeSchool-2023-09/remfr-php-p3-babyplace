@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
                      http://pmd.sf.net/ruleset_xml_schema.xsd"
          xsi:noNamespaceSchemaLocation="
-                     http://pmd.sf.net/ruleset_xml_schema.xsd">
+                     http://pmd.sf.net/ruleset_xml_schema.xsd" >
     <rule ref="rulesets/cleancode.xml" >
         <exclude name="ElseExpression" />
         <exclude name="StaticAccess" />
@@ -13,11 +13,22 @@
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
         <exclude name="ExcessivePublicCount" />
-        <exclude name="ExcessiveClassComplexity" />
         <exclude name="TooManyMethods" />
         <exclude name="TooManyPublicMethods"/>
         <exclude name="NPathComplexity"/>
-        <exclude name="CyclomaticComplexity"/>
+        <exclude name="CyclomaticComplexity"/>  
+        <exclude name="ExcessiveClassComplexity" />       
+    </rule>     
+     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
+        <properties>
+            <property name="minimum" value="150"/>
+        </properties>
+    </rule>
+    <exclude name="ExcessiveClassComplexity" />
+    <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
+        <properties>
+            <property name="minimum" value="150"/>
+        </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity" >
         <properties>

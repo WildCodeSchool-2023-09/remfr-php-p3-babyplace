@@ -1,0 +1,60 @@
+<form method="post" enctype="multipart/form-data">
+{{ form_start(formFile) }}
+    <div class="form-group mb-3">
+        {{ form_row(formFile.familyIncomeFile, {'attr' : {'id' : 'family-income','class' : "input-file_dossiers-enfants"}})}}
+        <label for="family-income" id="family-income" class="choose-a-file_dossiers-enfants js-labelFile">
+		    <i class="icon fa fa-check"></i>
+		    <span class="js-fileName">Justificatif de revenu</span>
+		</label>
+    </div>
+    <div class="form-group mb-3">
+    {{ form_row(formFile.taxReturnFile, {'attr' : {'id' : 'tax-return','class' : "input-file_dossiers-enfants"}} )}}
+    	<label for="tax-return" id="tax-return" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Déclaration de revenu</span>
+	</label>
+    </div>
+    {{ form_row(formFile.cafNumber, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}}) }}
+    {{ form_row(formFile.socialNumber, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}}) }}
+    <div class="form-group mb-3">
+        {{ form_row(formFile.residencyProofFile, {'attr' : {'id' : 'residency-proof','class' : "input-file_dossiers-enfants"}} )}}
+	    <label for="residency-proof" id="ResidencyProof" class="choose-a-file_dossiers-enfants js-labelFile">
+            <i class="icon fa fa-check"></i>
+		    <span class="js-fileName">Justificatif de domicile</span>
+		</label>
+    </div>
+    <div class="form-group mb-3">
+        {{ form_row(formFile.statusProofFile, {'attr' : {'id' : 'status-proof'}} )}}
+		<label for="status-proof" id="status-proof" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Attestation de travail</span>
+		</label>
+    </div>
+        {{ form_row(formFile.bankingInfo, {'attr' : {'class' : "form-text_dossiers-enfants mb-3"}}) }}
+    <div class="form-group mb-3">
+        {{ form_row(formFile.dischargeFile, {'attr' : {'id' : 'discharge-file','class' : "input-file_dossiers-enfants"}} )}}
+            	<label for="discharge-file" id="discharge-file" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+    		<span class="js-fileName">Autorisation de sortie</span>
+    </div>
+    <div class="form-group mb-3">
+        {{ form_row(formFile.familyRecordFile, {'attr' : {'id' : 'family-record','class' : "input-file_dossiers-enfants"}})}}
+    	<label for="family-record" id="family-record" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+    		<span class="js-fileName">Copie du livret de famille</span>
+    	</label>
+    </div>
+    <div class="form-group mb-3">
+        {{ form_row(formFile.divorceDecreeFile, {'attr' : {'id' : 'divorce-decree','class' : "input-file_dossiers-enfants"}})}}
+    	<label for="divorce-decree" id="divorce-decree" class="choose-a-file_dossiers-enfants js-labelFile">
+			<i class="icon fa fa-check"></i>
+			<span class="js-fileName">Jugement de divorce</span>
+	    </label>
+    </div>
+    {{ form_row(formFile.parent, {'attr': {'style': 'display: none;'}})}}
+    {{ form_row(formFile.creche)}}
+
+
+    <button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(formFile) }}
+</form>

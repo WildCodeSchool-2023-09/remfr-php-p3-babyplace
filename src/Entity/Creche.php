@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CrecheRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,27 +18,39 @@ class Creche
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner l\'introduction de la crèche')]
+    #[Assert\Length(min: 10, minMessage: 'L\'introduction doit contenir au moins 10 caractères'),
+    Assert\Length(max: 255, maxMessage: 'L\'introduction doit contenir au maximum 255 caractères')]
     private ?string $introduction = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de la crèche')]
+    #[Assert\Length(max: 255, maxMessage: 'Le nom de la crèche doit contenir au maximum 255 caractères')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner la localisation de la crèche')]
+    #[Assert\Length(max: 255, maxMessage: 'La localisation de la crèche doit contenir au maximum 255 caractères')]
     private ?string $localisation = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le code postal de la crèche')]
     private ?int $postCode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner la ville de la crèche')]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le numéro de téléphone de la crèche')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le numéro d\'assurance de la crèche')]
     private ?string $insuranceNumber = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le statut juridique de la crèche')]
     private ?string $legalStatus = null;
 
     #[ORM\OneToOne(inversedBy: 'creche', cascade: ['persist', 'remove'])]
@@ -68,6 +81,9 @@ class Creche
     #[ORM\OneToMany(mappedBy: 'creche', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\OneToMany(mappedBy: 'Creche', targetEntity: Calendar::class)]
+    private Collection $calendars;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -76,6 +92,7 @@ class Creche
         $this->children = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->calendars = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -388,6 +405,36 @@ class Creche
             // set the owning side to null (unless already changed)
             if ($reservation->getCreche() === $this) {
                 $reservation->setCreche(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Calendar>
+     */
+    public function getCalendars(): Collection
+    {
+        return $this->calendars;
+    }
+
+    public function addCalendar(Calendar $calendar): static
+    {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars->add($calendar);
+            $calendar->setCreche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): static
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getCreche() === $this) {
+                $calendar->setCreche(null);
             }
         }
 

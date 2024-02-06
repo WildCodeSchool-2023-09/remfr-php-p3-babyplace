@@ -1,0 +1,16 @@
+{% extends "dashboard-creche.html.twig" %}
+
+{% block title %}Edit planning Creche{% endblock %}
+
+{% block content %}
+	<h4 class="title_demandes mb-5">Jours et horaires d'ouverture</h4>
+	{{ form_start(form) }}
+    <h5 class="">Jours de la semaine</h5>
+    {{ form_row(form.weekdays, {'attr': {'class': 'form-text_informations-personnelles-creche mb-3'}}) }}
+    <h5>Heures d'ouverture</h5>
+    {{ form_row(form.openingHours, {'attr': {'class': 'form-text_informations-personnelles-creche mb-3'}}) }}
+    <h5>Heures de fermeture</h5>
+    {{ form_row(form.closingHours, {'attr': {'class': 'form-text_informations-personnelles-creche mb-3'}}) }}
+    <button class="button_informations-personnelles-creche mt-3" type="submit">Sauvegarder mes horaires d'ouvertures</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -20,28 +20,42 @@ class UserFixtures extends Fixture
     {
         // Création d’un utilisateur de type “contributeur” (= auteur)
         $contributor = new User();
-        $contributor->setEmail('contributor@monsite.com');
-        $contributor->setRoles(['ROLE_USER']);
+        $contributor->setEmail('creche@creche.com');
+        $contributor->setRoles(['ROLE_CRECHE']);
         $contributor->setAvatar('null');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $contributor,
-            'contributorpassword'
+            'crechepassword'
         );
+        $this->addReference('user_24', $contributor);
 
         $contributor->setPassword($hashedPassword);
         $manager->persist($contributor);
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
-        $admin->setEmail('admin@admin.com');
-        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setEmail('parent@parent.com');
+        $admin->setRoles(['ROLE_PARENT']);
         $admin->setAvatar('null');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
-            'adminpassword'
+            'parentpassword'
         );
+        $this->addReference('user_0', $admin);
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
+
+        $parent = new User();
+        $parent->setEmail('test@test.com');
+        $parent->setRoles(['ROLE_PARENT']);
+        $parent->setAvatar('null');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $parent,
+            'testpassword'
+        );
+        $this->addReference('user_1', $parent);
+        $parent->setPassword($hashedPassword);
+        $manager->persist($parent);
 
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();

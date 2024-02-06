@@ -5,6 +5,21 @@ vich_uploader:
         type: attribute
 
     mappings:
+        user_file:
+            uri_prefix: /uploads/images/avatar
+            upload_destination: '%upload_user_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
+        team_file:
+            uri_prefix: /uploads/images/teamAvatar
+            upload_destination: '%upload_team_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        creche_file:
+            uri_prefix: /uploads/images/crechePictures
+            upload_destination: '%upload_creche_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
         family_income_file:
             uri_prefix: /uploads/documents/familyIncome
             upload_destination: '%upload_familyIncome_directory%'
@@ -39,4 +54,21 @@ vich_uploader:
             uri_prefix: /uploads/documents/divorceDecree
             upload_destination: '%upload_divorceDecree_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        birthcertificate_file:
+            uri_prefix: /uploads/documents/birthCertificate
+            upload_destination: '%upload_birthCertificate_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        vaccine_file:
+            uri_prefix: /uploads/documents/vaccine
+            upload_destination: '%upload_vaccine_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        insurance_file:
+            uri_prefix: /uploads/documents/insurance
+            upload_destination: '%upload_insurance_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        
             
