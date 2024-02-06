@@ -106,7 +106,7 @@ class Administration implements Serializable
     #[ORM\Column(length: 255, nullable:true)]
     private ?string $discharge = null;
 
-    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]    
+    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
     #[Assert\File(
         maxSize: '1M',
         maxSizeMessage: 'La taille du fichier ne

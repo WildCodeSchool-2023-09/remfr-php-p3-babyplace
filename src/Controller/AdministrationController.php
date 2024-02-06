@@ -24,7 +24,7 @@ class AdministrationController extends AbstractController
     {
         return $this->render('AdminFile/index-file.html.twig', [
         'files' => $adminRepository->findAll(),
-    ]);
+        ]);
     }
 
     #[Route('/add', name:'add')]
@@ -60,11 +60,10 @@ class AdministrationController extends AbstractController
         Family $family,
         EntityManagerInterface $entityManager
     ): Response {
-            $form = $this->createForm(AdministrationType::class, $adminFile);
-            $form->handleRequest($request);
+        $form = $this->createForm(AdministrationType::class, $adminFile);
+        $form->handleRequest($request);
 
         if ($form-> isSubmitted() && $form-> isValid()) {
-           
             $entityManager->flush();
 
             $this->addFlash('fileSuccess', 'Votre dossier administratif a bien été mis à jour.');
