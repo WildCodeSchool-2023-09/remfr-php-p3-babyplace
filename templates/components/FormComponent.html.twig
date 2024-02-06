@@ -31,10 +31,11 @@
                 <i class="icon fa fa-check"></i>
                 <span class="js-fileName">Attestation d'assurance</span>
             </label>
+        </div> 
+        <div hidden>  
+        {{ form_row(form.family)}}
         </div>
-
     <button type="submit" class="button_dossiers-inscriptions mt-5">{{ button_label|default('Appliquer mes changements') }}</button>
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 </div>

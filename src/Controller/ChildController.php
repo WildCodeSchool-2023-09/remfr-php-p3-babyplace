@@ -29,7 +29,7 @@ class ChildController extends AbstractController
     public function new(
         Request $request,
         EntityManagerInterface $entityManager,
-        #[MapEntity(mapping:['family_id' => 'id'])] Family $family
+        #[MapEntity(mapping:['family_id' => 'id'])] Family $family,
     ): Response {
         $child = new Child();
         $form = $this->createForm(ChildType::class, $child);
@@ -39,7 +39,11 @@ class ChildController extends AbstractController
             $entityManager->persist($child);
             $entityManager->flush();
 
-            return $this->redirectToRoute('child_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'parent_dossiers-inscriptions',
+                ['family_id' => $family->getId() ],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render('child/new-child.html.twig', [

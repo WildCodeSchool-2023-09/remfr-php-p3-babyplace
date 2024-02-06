@@ -176,10 +176,10 @@ class FamilyController extends AbstractController
     }
 
     //Voir la page de réservation
-    #[Route('/reservation', methods: ['GET', 'POST'], name: 'parent_reservation1')]
+    #[Route('/reservations', methods: ['GET', 'POST'], name: 'reservation1')]
     public function showReservation(): Response
     {
-        return $this->render('parent/reservation1-parent.html.twig', [
+        return $this->render('parent/reservations.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
