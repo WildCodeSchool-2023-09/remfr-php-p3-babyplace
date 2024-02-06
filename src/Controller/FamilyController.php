@@ -186,10 +186,12 @@ class FamilyController extends AbstractController
 
     // Dossiers d'inscriptions - Parents
     #[Route('/{family_id}/dossiers-inscriptions', name: 'dossiers-inscriptions')]
-    public function foldersRegister(): Response
+    public function foldersRegister(ChildRepository $childRepository): Response
     {
+        $child = $childRepository->findAll();
         return $this->render('parent/dossiers-inscriptions.html.twig', [
             'controller_name' => 'FamilyController',
+            'childs' => $child
         ]);
     }
 
@@ -197,8 +199,10 @@ class FamilyController extends AbstractController
     #[Route('/dossiers-enfants', name: 'dossiers-enfants')]
     public function childRegister(): Response
     {
+
         return $this->render('parent/dossiers-enfants.html.twig', [
             'controller_name' => 'FamilyController',
+
         ]);
     }
 

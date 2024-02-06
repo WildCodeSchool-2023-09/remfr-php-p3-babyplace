@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Child;
 use App\Entity\Family;
+use App\Entity\Reservation;
 use App\Form\ChildType;
 use App\Form\SearchChildType;
 use App\Repository\ChildRepository;
+use App\Repository\ReservationRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/child', name : 'child_')]
+#[Route('/child', name: 'child_')]
 class ChildController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -29,7 +31,7 @@ class ChildController extends AbstractController
     public function new(
         Request $request,
         EntityManagerInterface $entityManager,
-        #[MapEntity(mapping:['family_id' => 'id'])] Family $family,
+        #[MapEntity(mapping: ['family_id' => 'id'])] Family $family,
     ): Response {
         $child = new Child();
         $form = $this->createForm(ChildType::class, $child);
@@ -41,7 +43,7 @@ class ChildController extends AbstractController
 
             return $this->redirectToRoute(
                 'parent_dossiers-inscriptions',
-                ['family_id' => $family->getId() ],
+                ['family_id' => $family->getId()],
                 Response::HTTP_SEE_OTHER
             );
         }
@@ -78,20 +80,26 @@ class ChildController extends AbstractController
         }
 
         return $this->render('child/edit-child.html.twig', [
-            'child' => $child,
+            'child_edit' => $child,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Child $child, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $child->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($child);
-            $entityManager->flush();
-        }
+    #[Route('/parent/{family_id}/child/{child_id}/delete', name: 'delete', methods: ['POST','GET'])]
+    public function deleteChild(
+        #[MapEntity(mapping: ['family_id' => 'id'])] Family $parent,
+        #[MapEntity(mapping: ['child_id' => 'id'])] Child $child,
+        EntityManagerInterface $entityManager,
+    ): Response {
 
-        return $this->redirectToRoute('child_index', [], Response::HTTP_SEE_OTHER);
+        $entityManager->remove($child);
+        $entityManager->flush();
+
+        return $this->redirectToRoute(
+            'parent_dossiers-inscriptions',
+            ['family_id' => $parent->getId()],
+            Response::HTTP_SEE_OTHER
+        );
     }
 
     #[Route('/search-child', name: 'search', methods: ['GET'])]
@@ -112,8 +120,8 @@ class ChildController extends AbstractController
             $result2 = $childRepository->findDisability();
 
             return $this->render('your_template.html.twig', [
-            'result1' => $result1,
-            'result2' => $result2,
+                'result1' => $result1,
+                'result2' => $result2,
             ]);
         }
 

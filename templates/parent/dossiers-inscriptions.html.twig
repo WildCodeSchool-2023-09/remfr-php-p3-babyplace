@@ -34,20 +34,15 @@
         {% block body %}
         <section class="section_dossiers-inscriptions">
             <div class="div_search-parent">
+            {% for child in childs %}          
                 <div class="crud-enfant_dossiers-inscriptions mb-3">
-                    <p class="name-crud-enfant_dossiers-inscriptions">Élise</p>
+                    <p class="name-crud-enfant_dossiers-inscriptions">{{ child.childFirstname}}</p>
                     <div>
                         <a {# href="{{ path('child_edit', {'family_id': app.user.family.id, 'child_id': child.id}) }}" #}><i class="fa-solid fa-pen icon-edit_dossiers-inscriptions"></i></a>
-                        <a {#href="{{ path('child_delete', {'family_id': app.user.family, 'child_id': child.id}) }}" #}><i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i></a>
+                        <a href="{{ path('child_delete', {'family_id': app.user.family.id, 'child_id': child.id}) }}"><i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i></a>
                     </div>
                 </div>
-                <div class="crud-enfant_dossiers-inscriptions mb-3">
-                    <p class="name-crud-enfant_dossiers-inscriptions">Yacine</p>
-                    <div>
-                        <i class="fa-solid fa-pen icon-edit_dossiers-inscriptions"></i>
-                        <i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i>
-                    </div>
-                </div>
+                 {% endfor %}
                 <a href="{{ path('child_new', {'family_id': app.user.family.id}) }}" class="button_dossiers-inscriptions mt-3"><i class="fa-solid fa-user-plus icon_dossiers-inscriptions"></i>Ajouter un enfant</a>
             </div>
         </section>
