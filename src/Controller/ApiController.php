@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ApiController extends AbstractController
 {
     private CalendarRepository $calendarRepository;
-
+    // création d'un construct pour éviter d'avoir à injecter dans la private function
     public function __construct(CalendarRepository $calendarRepository)
     {
         $this->calendarRepository = $calendarRepository;
