@@ -205,11 +205,11 @@ input#calendar_all_day.nom-lambda {
 @media only screen and (max-width: 600px) {
 
     .div-left_register {
-        display: none;
+        width: 100%;
     }
 
     .div-right_register {
-        width: 100%;
+        display: none;
     }
 
     .stepone-title {
