@@ -205,11 +205,11 @@ input#calendar_all_day.nom-lambda {
 @media only screen and (max-width: 600px) {
 
     .div-left_register {
-        display: none;
+        width: 100%;
     }
 
     .div-right_register {
-        width: 100%;
+        display: none;
     }
 
     .stepone-title {
@@ -225,5 +225,24 @@ input#calendar_all_day.nom-lambda {
     .agree-terms {
         display: flex;
         flex-direction: row-reverse;
+    }
+
+    .logo_register {
+        width: 40vw;
+    }
+
+    .button_register {
+        background-color: $btn-color;
+        color: white;
+        font-size: 0.75rem;
+        padding: 3% 2% 3% 2%;
+        font-weight: 600;
+        width: 100%;
+        letter-spacing: 3px;
+    }
+
+    .button_register:hover {
+        background-color: $btn-color-hover;
+        color: white;
     }
 }
