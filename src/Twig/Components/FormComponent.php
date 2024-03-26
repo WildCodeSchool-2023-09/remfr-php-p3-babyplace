@@ -27,7 +27,7 @@ final class FormComponent extends AbstractController
     {
 
         $child = $this->initialFormData ?? new Child();
-        $family = $child->getFamily() ? $child->getFamily()->getId(): $this->getUser()->getFamily()->getId();
+        $family = $child->getFamily() ? $child->getFamily()->getId() : $this->getUser()->getFamily()->getId();
 
         //Création d'un formulaire sans spécifier le chemin de ChildType
         return $this->createForm(ChildType::class, $child, [

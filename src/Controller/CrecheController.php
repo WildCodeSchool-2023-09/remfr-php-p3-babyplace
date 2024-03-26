@@ -89,7 +89,8 @@ class CrecheController extends AbstractController
         }
         $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
         $family = $familyRepository->findAll();
-        $reservations = $reservationRepo->findBy(['creche' => $this->getUser()->getCreche()->getId()], ['id' => 'DESC'], 1);
+        $reservations = $reservationRepo->findBy([
+            'creche' => $this->getUser()->getCreche()->getId()], ['id' => 'DESC'], 1);
 
         return $this->render('creche/editIndex.html.twig', [
             'reservations' => $reservations,
@@ -195,7 +196,8 @@ class CrecheController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         $family = $familyRepository->findAll();
-        $reservations = $reservationRepo->findBy(['creche' => $this->getUser()->getCreche()->getId()], ['id' => 'DESC']);
+        $reservations = $reservationRepo->findBy([
+            'creche' => $this->getUser()->getCreche()->getId()], ['id' => 'DESC']);
 
         return $this->render('creche/demandes.html.twig', [
             'reservations' => $reservations,
