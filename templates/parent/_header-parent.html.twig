@@ -2,10 +2,10 @@
 <header class="header_menu-parent">
         <div class="header-div_menu-parent row">
             <div class="col-3">
-                <img src="https://media.licdn.com/dms/image/D4E03AQGVdI45nlZyiw/profile-displayphoto-shrink_200_200/0/1702083596535?e=1709769600&v=beta&t=_Oflby1notjk32_utYQBmOWJ3zOTibemqYdloNJsI9E" class="img-profil_menu-parent">
+                <img src="{{ asset('build/images/image-card-creche.jpg') }}" class="img-profil_menu-parent">
             </div>
             <div class="col-9">
-            <h5 class="mb-1 name_menu-parent">Nom du parent</h5>
+            <h5 class="mb-1 name_menu-parent">{{family.firstName}} {{family.lastName}}</h5>
             <p class="dossier_menu-parent">Dossier complété à 80%</p>
             </div>
         </div>
