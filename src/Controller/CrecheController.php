@@ -183,8 +183,8 @@ class CrecheController extends AbstractController
         ]);
     }
 
-    #[Route('/demandes/{id}', methods: ['GET', 'POST'], name: 'demandes')]
-    public function demandes(
+    #[Route('/requests/{id}', methods: ['GET', 'POST'], name: 'demandes')]
+    public function requests(
         CrecheRepository $crecheRepository,
         FamilyRepository $familyRepository,
         ReservationRepository $reservationRepo,
@@ -199,14 +199,14 @@ class CrecheController extends AbstractController
         $reservations = $reservationRepo->findBy([
             'creche' => $this->getUser()->getCreche()->getId()], ['id' => 'DESC']);
 
-        return $this->render('creche/demandes.html.twig', [
+        return $this->render('creche/requests.html.twig', [
             'reservations' => $reservations,
             'family' => $family,
         ]);
     }
 
     #[Route('/demandes/accepter/{id}', methods: ['GET', 'POST'], name: 'demande_accepter')]
-    public function demandeAccepter(
+    public function acceptedRequest(
         ReservationRepository $reservationRepo,
         EntityManagerInterface $entityManager,
         CrecheRepository $crecheRepository,
@@ -224,7 +224,7 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/demandes/refuser/{id}', methods: ['GET', 'POST'], name: 'demande_refuser')]
-    public function demandeRefuser(
+    public function deniedRequest(
         ReservationRepository $reservationRepo,
         EntityManagerInterface $entityManager,
         CrecheRepository $crecheRepository,
@@ -242,7 +242,7 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/demandes/modifier/{id}', methods: ['GET', 'POST'], name: 'demande_modifier')]
-    public function demandeModifier(
+    public function pendingRequest(
         ReservationRepository $reservationRepo,
         EntityManagerInterface $entityManager,
         CrecheRepository $crecheRepository,
@@ -260,7 +260,7 @@ class CrecheController extends AbstractController
     }
 
     #[Route('/demandes/annuler/{id}', methods: ['GET', 'POST'], name: 'demande_annuler')]
-    public function demandeAnnuler(
+    public function cancelledRequest(
         ReservationRepository $reservationRepo,
         EntityManagerInterface $entityManager,
         CrecheRepository $crecheRepository,

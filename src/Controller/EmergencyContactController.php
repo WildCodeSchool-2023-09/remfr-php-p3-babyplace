@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EmergencyContactController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(EmergencyRepository $emergencyRepository): Response
+    public function indexEmergency(EmergencyRepository $emergencyRepository): Response
     {
         return $this->render('emergency-contact/index.html.twig', [
             'emergency_contacts' => $emergencyRepository->findAll(),
@@ -25,7 +25,7 @@ class EmergencyContactController extends AbstractController
     }
 
     #[Route('/parent/{family_id}/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(
+    public function newEmergency(
         Request $request,
         EntityManagerInterface $entityManager,
         #[MapEntity(mapping:['family_id' => 'id'])] Family $parent
