@@ -81,7 +81,7 @@ class FamilyController extends AbstractController
         }
         $this->addFlash('familyFail', 'Il y a eu un problème dans la modification de vos informations.');
 
-        return $this->render('parent/informations-personnelles.html.twig', [
+        return $this->render('parent/personal-infos.html.twig', [
             'formFamily' => $form,
             'family' => $family,
         ]);
@@ -162,7 +162,7 @@ class FamilyController extends AbstractController
     #[Route('/confirmation-inscription', name: 'confirmation-inscription')]
     public function confirmationRegister(): Response
     {
-        return $this->render('parent/confirmation-inscription.html.twig', [
+        return $this->render('parent/registration-confirmation.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -177,10 +177,13 @@ class FamilyController extends AbstractController
 
     //Voir la page de réservation
     #[Route('/reservations', methods: ['GET', 'POST'], name: 'reservation1')]
-    public function showReservation(): Response
+    public function showReservation(FamilyRepository $familyRepository): Response
     {
-        return $this->render('parent/reservations.html.twig', [
+        $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
+
+        return $this->render('parent/booking.html.twig', [
             'controller_name' => 'FamilyController',
+            'family' => $family
         ]);
     }
 
@@ -189,7 +192,7 @@ class FamilyController extends AbstractController
     public function foldersRegister(ChildRepository $childRepository): Response
     {
         $child = $childRepository->findAll();
-        return $this->render('parent/dossiers-inscriptions.html.twig', [
+        return $this->render('parent/register-file.html.twig', [
             'controller_name' => 'FamilyController',
             'childs' => $child
         ]);
@@ -200,7 +203,7 @@ class FamilyController extends AbstractController
     public function childRegister(): Response
     {
 
-        return $this->render('parent/dossiers-enfants.html.twig', [
+        return $this->render('parent/child-file.html.twig', [
             'controller_name' => 'FamilyController',
 
         ]);
@@ -210,7 +213,7 @@ class FamilyController extends AbstractController
     #[Route('/dossiers-parents', name: 'dossiers-parents')]
     public function parentRegister(): Response
     {
-        return $this->render('parent/dossiers-parents.html.twig', [
+        return $this->render('parent/parent-file.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }
@@ -219,7 +222,7 @@ class FamilyController extends AbstractController
     /*#[Route('/informations-personnelles', name: 'informations-personnelles')]
     public function infosFamily(): Response
     {
-        return $this->render('', [
+        return $this->render('parent/parent-file.html.twig', [
             'controller_name' => 'FamilyController',
         ]);
     }*/
@@ -303,7 +306,7 @@ class FamilyController extends AbstractController
         $calendar = $calendarRepository->getFreeCalendar($creche);
         $childs = $childRepository->findBy(['family' => $family->getId()]);
 
-        return $this->render('parent/presentation-creche.html.twig', [
+        return $this->render('parent/creche-introduction.html.twig', [
             'family' => $family,
             'creches' => $creches,
             'calendar' => $calendar,
@@ -314,6 +317,6 @@ class FamilyController extends AbstractController
     #[Route('/moyens-de-paiement', methods: ['GET'], name: 'checkout')]
     public function checkout(): Response
     {
-        return $this->render('parent/moyens-de-paiement.html.twig');
+        return $this->render('parent/payment.html.twig');
     }
 }

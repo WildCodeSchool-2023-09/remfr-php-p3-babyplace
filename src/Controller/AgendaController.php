@@ -26,17 +26,19 @@ class AgendaController extends AbstractController
         $creche = $creche->getId();
         $rdvs = [];
         foreach ($events as $event) {
-            $rdvs[] = [
-                'id' => $event->getId(),
-                'crecheId' => $creche,
-                'start' => $event->getStart()->format('Y-m-d H:i:s'),
-                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-                'title' => $event->getTitle(),
-                'description' => $event->getDescription(),
-                'backgroundColor' => $event->getBackgroundColor(),
-                'textColor' => $event->getTextColor(),
-                'allDay' => $event->getAllDay(),
-            ];
+            if ($event->getCreche()->getId() === $creche) {
+                $rdvs[] = [
+                    'id' => $event->getId(),
+                    'crecheId' => $creche,
+                    'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                    'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                    'title' => $event->getTitle(),
+                    'description' => $event->getDescription(),
+                    'backgroundColor' => $event->getBackgroundColor(),
+                    'textColor' => $event->getTextColor(),
+                    'allDay' => $event->getAllDay(),
+                ];
+            }
         }
 
         $data = json_encode($rdvs);

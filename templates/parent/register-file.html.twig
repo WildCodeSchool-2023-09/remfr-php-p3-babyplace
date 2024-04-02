@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+		<title>
+			{% block title %}Dossiers d'inscriptions - Parent
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class="body_search-parent">
+		{% include 'parent/_navbar-parent.html.twig' %}
+		<!-- Searchbar -->
+		<header class="header_search-parent">
+			<nav class="navbar top-navbar_filters">
+				<div class="div-searchbar_filters">
+					<a href="javascript: history.go(-1)">
+						<i class="icon-filter_filters fa-solid fa-chevron-left"></i>
+					</a>
+					<h5 class="title_filters">Dossiers d'inscriptions</h5>
+				</div>
+			</nav>
+			<div class="div-btn-parents_dossiers-inscriptions">
+				<a href="{{ path('parent_dossiers-parents', {'id': app.user.family.id}) }}" class="btn-parents_dossiers-inscriptions">Parents</a>
+				<a href="{{ path('parent_dossiers-inscriptions', {'family_id': app.user.family.id}) }}" class="btn-enfants_dossiers-inscriptions">Enfants</a>
+			</div>
+		</header>
+		{% block body %}
+			<section class="section_dossiers-inscriptions">
+				<div class="div_search-parent">
+					{% for child in childs %}
+						{% if child.family.id == app.user.family.id %}
+							<div class="crud-enfant_dossiers-inscriptions mb-3">
+								<p class="name-crud-enfant_dossiers-inscriptions">{{ child.childFirstname}}</p>
+								<div>
+									<a {# href="{{ path('child_edit', {'family_id': app.user.family.id, 'child_id': child.id}) }}" #}>
+										<i class="fa-solid fa-pen icon-edit_dossiers-inscriptions"></i>
+									</a>
+									<a href="{{ path('child_delete', {'family_id': app.user.family.id, 'child_id': child.id}) }}">
+										<i class="fa-solid fa-trash icon-delete_dossiers-inscriptions"></i>
+									</a>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+					<a href="{{ path('child_new', {'family_id': app.user.family.id}) }}" class="button_dossiers-inscriptions mt-3">
+						<i class="fa-solid fa-user-plus icon_dossiers-inscriptions"></i>Ajouter un enfant</a>
+				</div>
+			</section>
+		{% endblock %}
+	</body>
+</html>

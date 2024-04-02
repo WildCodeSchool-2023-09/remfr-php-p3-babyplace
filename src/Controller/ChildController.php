@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ChildController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ChildRepository $childRepository): Response
+    public function indexChildren(ChildRepository $childRepository): Response
     {
         return $this->render('child/index-child.html.twig', [
             'children' => $childRepository->findAll(),
@@ -28,7 +28,7 @@ class ChildController extends AbstractController
     }
 
     #[Route('/{family_id}/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(
+    public function newChild(
         Request $request,
         EntityManagerInterface $entityManager,
         #[MapEntity(mapping: ['family_id' => 'id'])] Family $family,
@@ -54,7 +54,7 @@ class ChildController extends AbstractController
     }
 
     #[Route('/parent/{family_id}/child/{child_id}', name: 'show', methods: ['GET'])]
-    public function show(
+    public function showChild(
         #[MapEntity(mapping:['family_id' => 'id'])] Family $parent,
         #[MapEntity(mapping:['child_id' => 'id'])]Child $child
     ): Response {
@@ -65,7 +65,7 @@ class ChildController extends AbstractController
     }
 
     #[Route('/parent/{family_id}/child/{child_id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(
+    public function editChild(
         Request $request,
         Child $child,
         EntityManagerInterface $entityManager
