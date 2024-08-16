@@ -26,7 +26,7 @@
                     <input type="text" class="form-text_search input-file_search mb-3" id="exampleInputPassword1" placeholder="Adresse">
                     <input type="date" class="form-text_search input-file_search mb-3" id="exampleInputPassword1" placeholder="Date disponible">
                     {# <button type="submit" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</button> #}
-                    <a href="{{ path('parent_liste-de-recherches') }}" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</a>
+                    <a href="{{ path('parent_liste-de-recherches',{'id': app.user.id}) }}" class="button_dossiers-inscriptions mt-5">Rechercher des crèches</a>
                 </form>
             </div>
         </section>

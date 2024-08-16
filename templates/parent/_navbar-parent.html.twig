@@ -2,7 +2,7 @@
 
     <a href="{{ path('parent_menu', {'id': app.user.family.id}) }}"class="lien_nav-parent"><i class="fa-solid btn-parent fa-border-all"></i></a>
     <a href="{{ path('parent_liste-de-recherches', {'id': app.user.family.id}) }}"class="lien_nav-parent"><i class="fa-solid btn-parent fa-magnifying-glass"></i></a>
-    <a href="{{ path('parent_dossiers-inscriptions', {'id': app.user.family.id}) }}" class="lien_nav-parent"><i class="fa-solid btn-parent fa-user"></i></a>
+    <a href="{{ path('parent_dossiers-inscriptions', {'family_id': app.user.family.id}) }}" class="lien_nav-parent"><i class="fa-solid btn-parent fa-user"></i></a>
     <a href="#" class="lien_nav-parent"><i class="fa-solid btn-parent fa-bell"></i></a>
 
 </nav>

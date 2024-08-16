@@ -17,33 +17,35 @@ class ScheduleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('weekdays', ChoiceType::class, [
-            'label' => false,
-            'attr' => ['class' => 'form-control'],
-            'placeholder' => 'Jour',
-            'choices' => Schedule::DAYS,
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Veuillez selectionner un jour.',
-                ]),
-            ],
-        ])
-        ->add('openingHours', TextType::class, [
-            'attr' => ['class' => 'form-control'],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Veuillez selectionner une heure d\'ouverture.',
-                ]),
-            ],
-        ])
-        ->add('closingHours', TextType::class, [
-            'attr' => ['class' => 'form-control'],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Veuillez selectionner une heure de fermeture.',
-                ]),
-            ],
-        ]);
+            ->add('weekdays', ChoiceType::class, [
+                'label' => false,
+                'attr' => ['class' => 'form-text_informations-personnelles-creche'],
+                'placeholder' => 'Jour',
+                'choices' => Schedule::DAYS,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez selectionner un jour.',
+                    ]),
+                ],
+            ])
+            ->add('openingHours', TextType::class, [
+                'label' => false,
+                'attr' => ['class' => 'form-text_informations-personnelles-creche'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez selectionner une heure d\'ouverture.',
+                    ]),
+                ],
+            ])
+            ->add('closingHours', TextType::class, [
+                'label' => false,
+                'attr' => ['class' => 'form-text_informations-personnelles-creche'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez selectionner une heure de fermeture.',
+                    ]),
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

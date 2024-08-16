@@ -3,10 +3,13 @@
 {% block title %}Edit photo Creche{% endblock %}
 
 {% block content %}
-	<h1>Edit Schedule</h1>
-	<a href="javascript: history.go(-1)">Retour</a>
+    <h4 class="title_demandes mb-5">Images de ma crèche</h4>
 	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	<button class="form-control"  type="submit">Save</button>
+    <h5 class="">Téléverser votre photographie ici</h5>
+    {{ form_row(form.picturesFile, {'attr': {'class': 'form-text_informations-personnelles-creche mb-3'}}) }}
+	<button class="button_informations-personnelles-creche mt-3" type="submit">Sauvegarder mon image</button>
 	{{ form_end(form) }}
 {% endblock %}
+
+
+

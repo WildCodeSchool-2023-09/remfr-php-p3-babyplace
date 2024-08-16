@@ -13,8 +13,9 @@ $footer-text-color: #000;
 }
 
 // Navigation styles
-.bg-dark {
-    background: linear-gradient(158deg, $gradient-start 0%, $gradient-end 100%);
+.aside_dashboard {
+    //background-color: #9c69e2;
+    background: linear-gradient(45deg, rgba(124, 77, 189, 1) 0%, rgba(156, 105, 226, 1) 100%);
     height: 100vh;
     position: fixed;
     top: 0;
@@ -88,6 +89,7 @@ $footer-text-color: #000;
     position: relative;
     top: 10vh;
     bottom: 10vh;
+    padding-bottom: 10vh;
     margin-right: 3vw;
     margin-left: 18vw;
     height: auto;
@@ -149,4 +151,172 @@ $footer-text-color: #000;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 
+}
+
+// Vue d'ensemble
+
+.row-1_dashboard {
+    margin-bottom: 2vh;
+    gap: 2%;
+}
+
+.div-agenda_dashboard {
+    background: linear-gradient(rgba(71, 79, 255, 0.4), rgba(172, 60, 147, 0.9));
+    height: 30vh;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.div-img-creche_dashboard {
+    background-color: #E37ACC;
+    height: 30vh;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
+
+// Grid
+
+.widgets_dashboard {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.agenda-widgets_dashboard {
+    color: $h-color;
+    text-decoration: none;
+    font-family: $headings-font-family;
+    font-size: 5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.title-widgets_dashboard {
+    color: $h-color;
+    text-decoration: none;
+    font-family: $headings-font-family;
+    font-size: $h5-font-size;
+    font-weight: 600;
+}
+
+.description-widgets_dashboard {
+    color: $h-color;
+    font-family: $font-family-sans-serif;
+    font-size: $p-size-desktop;
+}
+
+.div1_dashboard {
+    grid-area: 1 / 1 / 4 / 9;
+    background-color: #fde8f4;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    height: 30vh;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+
+    &:hover {
+        animation-name: ease-in-out;
+        animation-duration: 3s;
+        transform: scale(1.02);
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.8);
+        transition: 500ms;
+    }
+}
+
+.div2_dashboard {
+    grid-area: 1 / 9 / 4 / 13;
+    background-color: #E37ACC;
+    height: 30vh;
+    background-position: center;
+    background-size: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+    opacity: 0.7;
+}
+
+.div-card-img-top_dashboard {
+    width: 100%;
+    height: 30vh;
+    border-radius: 1rem 1rem 0rem 0rem;
+    z-index: 99;
+}
+
+// Dernière ligne - Informations personnelles
+
+.div3_dashboard {
+    grid-area: 4 / 1 / 6 / 5;
+    background-color: darken(#eaf4f0, 5%);
+    height: 15vh;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+
+    &:hover {
+        animation-name: ease-in-out;
+        animation-duration: 3s;
+        transform: scale(1.02);
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.8);
+        transition: 500ms;
+    }
+}
+
+.div4_dashboard {
+    grid-area: 4 / 5 / 6 / 9;
+    background-color: darken(#f2f1fe, 5%);
+    height: 15vh;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+
+    &:hover {
+        animation-name: ease-in-out;
+        animation-duration: 3s;
+        transform: scale(1.02);
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.8);
+        transition: 500ms;
+    }
+}
+
+.div5_dashboard {
+    grid-area: 4 / 9 / 6 / 13;
+    background-color: darken(#eaf5fb, 5%);
+    height: 15vh;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+
+    &:hover {
+        animation-name: ease-in-out;
+        animation-duration: 3s;
+        transform: scale(1.02);
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.8);
+        transition: 500ms;
+    }
+}
+
+.label-redirection_demandes {
+    background-color: $btn-color;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 60%;
+
+    &:hover {
+        opacity: 0.3;
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+        transition: 350ms;
+    }
 }

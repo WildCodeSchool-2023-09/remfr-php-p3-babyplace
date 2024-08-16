@@ -1,0 +1,144 @@
+.title_demandes {
+    font-size: $h4-font-size;
+    font-weight: 600;
+    color: lighten($btn-color, 10%);
+}
+
+.card_demandes {
+    background-color: white;
+    box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+
+    &:hover {
+        animation-name: ease-in-out;
+        animation-duration: 3s;
+        transform: scale(1.02);
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.8);
+        transition: 500ms;
+    }
+
+    ul {
+        list-style: none;
+    }
+}
+
+.row_demandes {
+    margin-bottom: 2vh;
+}
+
+.col_demandes {
+    padding: 2vh 0 2vh 0;
+}
+
+/* Styles pour la pastille */
+.pastille {
+    height: 100%;
+    /* Prend la hauteur de la card */
+    width: 25%;
+    border-radius: 5px 5px 5px 5px;
+    /* Coins arrondis à gauche */
+}
+
+/* Styles pour la pastille en état "refusé" */
+.pastille.refuse {
+    background-color: $button-color-danger;
+}
+
+/* Styles pour la pastille en état "accepté" */
+.pastille.accept {
+    background-color: $button-color-success;
+}
+
+/* Styles pour la pastille en état "en attente" */
+.pastille.attente {
+    background-color: $button-color-alert;
+}
+
+/* Styles pour la pastille en état "annulé" */
+.pastille.annule {
+    background-color: #c4c7cb;
+}
+
+/* Labels */
+
+.div-label_demandes {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.label-accepte_demandes {
+    background-color: $button-color-success;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 60%;
+
+    &:hover {
+        opacity: 0.3;
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+        transition: 350ms;
+    }
+}
+
+.label-refuse_demandes {
+    background-color: $button-color-danger;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 60%;
+
+    &:hover {
+        opacity: 0.3;
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+        transition: 350ms;
+    }
+}
+
+.label-attente_demandes {
+    background-color: $button-color-alert;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 60%;
+
+    &:hover {
+        opacity: 0.3;
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+        transition: 350ms;
+    }
+}
+
+.label-annuler_demandes {
+    background-color: #c4c7cb;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1vw 0.5rem 1vw;
+    width: 60%;
+
+    &:hover {
+        opacity: 0.3;
+        box-shadow: 0px 5px 15px 0px rgba(211, 211, 211, 0.3);
+        transition: 350ms;
+    }
+}
+
+.bold_demandes {
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    font-weight: 800;
+}
+
+.regular_demandes {
+    font-family: $font-family-sans-serif;
+    font-size: $btn-font-size;
+    font-weight: 500;
+}

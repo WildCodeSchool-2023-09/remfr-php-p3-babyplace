@@ -176,20 +176,25 @@ class FamilyController extends AbstractController
     }
 
     //Voir la page de réservation
-    #[Route('/reservation', methods: ['GET', 'POST'], name: 'parent_reservation1')]
-    public function showReservation(): Response
+    #[Route('/reservations', methods: ['GET', 'POST'], name: 'reservation1')]
+    public function showReservation(FamilyRepository $familyRepository): Response
     {
-        return $this->render('parent/reservation1-parent.html.twig', [
+        $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
+
+        return $this->render('parent/reservations.html.twig', [
             'controller_name' => 'FamilyController',
+            'family' => $family
         ]);
     }
 
     // Dossiers d'inscriptions - Parents
-    #[Route('/dossiers-inscriptions', name: 'dossiers-inscriptions')]
-    public function foldersRegister(): Response
+    #[Route('/{family_id}/dossiers-inscriptions', name: 'dossiers-inscriptions')]
+    public function foldersRegister(ChildRepository $childRepository): Response
     {
+        $child = $childRepository->findAll();
         return $this->render('parent/dossiers-inscriptions.html.twig', [
             'controller_name' => 'FamilyController',
+            'childs' => $child
         ]);
     }
 
@@ -197,8 +202,10 @@ class FamilyController extends AbstractController
     #[Route('/dossiers-enfants', name: 'dossiers-enfants')]
     public function childRegister(): Response
     {
+
         return $this->render('parent/dossiers-enfants.html.twig', [
             'controller_name' => 'FamilyController',
+
         ]);
     }
 

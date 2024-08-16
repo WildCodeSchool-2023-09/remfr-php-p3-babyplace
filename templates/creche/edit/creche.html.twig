@@ -1,12 +1,11 @@
 {% extends "dashboard-creche.html.twig" %}
 
-{% block title %}Edit info Creche{% endblock %}
+{% block title %}Informations personnelles{% endblock %}
 
 {% block content %}
-    <h4>Edit Creche</h4>
-    <a href="javascript: history.go(-1)">Retour</a>
+    <h4 class="title_demandes mb-5">Informations personnelles</h4>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="form-control" type="submit">Save</button>
+    <button class="button_informations-personnelles-creche" type="submit">Sauvegarder mes informations</button>
     {{ form_end(form) }}
 {% endblock %}

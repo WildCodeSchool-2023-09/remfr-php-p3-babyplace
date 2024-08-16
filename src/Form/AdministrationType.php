@@ -19,74 +19,74 @@ class AdministrationType extends AbstractType
     {
         $builder
             ->add('familyIncomeFile', VichFileType::class, [
-            'label' => 'Justificatif de revenu',
-            'required' => true,
+            'label' => false,
+            'required' => false,
             'allow_delete' => true,
             'download_uri' => true,
             ])
             ->add('taxReturnFile', VichFileType::class, [
-                'label' => 'Déclaration de revenu',
-                'required' => true,
+                'label' => false,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
             ->add('cafNumber', TextType::class, [
-                'label' => 'Numéro CAF',
-                new Assert\Length([
-                    'min' => 7,
-                    'max' => 7,
-                    'exactMessage' => 'Le numéro de sécurité sociale doit comporter exactement {{ limit }} caractères.',
-                ]),
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Numéro authentification CAF',
+                ],
             ])
             ->add('socialNumber', TextType::class, [
-                'label' => 'Numéro de sécurité sociale',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Numéro de sécurité sociale',
+                ],
                 'constraints'  => [
-                    new Assert\Length([
-                        'min' => 15,
-                        'max' => 15,
-                        'exactMessage' => 'Le numéro de sécurité sociale doit
-                         comporter exactement {{ limit }} caractères.',
-                    ]),
                     new Assert\Regex([
                         'pattern' => '/^[0-9]+$/',
                         'message' => 'Le numéro de sécurité sociale ne doit contenir que des chiffres.',
                     ]),
-                ]
+                ],
             ])
             ->add('residencyProofFile', VichFileType::class, [
-                'label' => 'Justificatif de domicile',
-                'required' => true,
+                'label' => false,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
             ->add('statusProofFile', VichFileType::class, [
-                'label' => 'Justificatif de revenu',
-                'required' => true,
+                'label' => false,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
             ->add('bankingInfo', TextType::class, [
-                'label' => 'RIB',
-                new Assert\Length([
-                    'min' => 34,
-                    'max' => 34,
-                    'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
-                ]),
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Votre RIB',
+                ],
+                'constraints' => [
+                    new Assert\Length([
+                        'min' => 27,
+                        'max' => 27,
+                        'exactMessage' => 'Le RIB doit être composé de {{ limit }} caractères.',
+                    ]),
+                ],
             ])
             ->add('dischargeFile', VichFileType::class, [
-                'label' => 'Autorisation de sortie',
-                'required' => true,
+                'label' => false,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
             ->add('familyRecordFile', VichFileType::class, [
-                'label' => 'Copie du livret de famille',
-                'required' => true,
+                'label' => false,
+                'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
                 ])
             ->add('divorceDecreeFile', VichFileType::class, [
-                'label' => 'Jugement de divorce',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => true,
@@ -94,11 +94,13 @@ class AdministrationType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Family::class,
                 'choice_label' => 'id',
+                'label' => false,
             ])
             ->add('creche', EntityType::class, [
                 'class' => Creche::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'label' => false,
             ])
         ;
     }

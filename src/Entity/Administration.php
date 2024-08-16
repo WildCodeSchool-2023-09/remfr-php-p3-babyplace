@@ -14,87 +14,88 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use DateTimeInterface;
 use DateTime;
+use Serializable;
 
 #[ORM\Entity(repositoryClass: AdministrationRepository::class)]
 #[Vich\Uploadable]
-class Administration
+class Administration implements Serializable
 {
+
+    const MAX_SIZE_MESSAGE = 'La taille du fichier ne doit pas dépasser 1Mo.';
+    const MIME_TYPE_PDF = 'application/pdf';
+    const MIME_TYPE_JPEG = 'image/jpeg';
+    const MIME_TYPE_PNG = 'image/png';
+
+    const MIME_TYPES = [self::MIME_TYPE_JPEG, self::MIME_TYPE_PNG, self::MIME_TYPE_PDF];
+    const MIME_TYPES_MESSAGE = 'Veuillez insérer un fichier en format jpeg, png ou un fichier pdf.';
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-
     #[ORM\Column(length: 255, nullable: true)]
-    private string $familyIncome = 'null';
+    private ?string $familyIncome = null;
 
-
-    #[Vich\UploadableField(mapping: 'family_income_file', fileNameProperty:'familyIncome')]
+    #[Vich\UploadableField(mapping: 'family_income_file', fileNameProperty: 'familyIncome')]
     #[Assert\File(
-        maxSize:'1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSize: '1M',
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $familyIncomeFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $taxReturn = 'null';
+    private ?string $taxReturn = null;
 
-
-    #[Vich\UploadableField(mapping: 'tax_return_file', fileNameProperty:'taxReturn')]
+    #[Vich\UploadableField(mapping: 'tax_return_file', fileNameProperty: 'taxReturn')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $taxReturnFile = null;
 
     #[ORM\Column(length: 7, nullable: true)]
     #[Assert\Length(
-        min: 15,
-        max: 15,
-        exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
+        min: 7,
+        max: 7,
+        exactMessage: 'Votre numéro d\'authentification CAF doit être composé de 7 caractères.'
     )]
-    private string $cafNumber = 'null';
-    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cafNumber = null;
+
+    #[ORM\Column(length: 15, nullable: true)]
     #[Assert\Length(
         min: 15,
         max: 15,
         exactMessage: 'Veuillez rentrer un numéro de sécurité social de 15 caractères valide.'
     )]
-    private string $socialNumber = 'null';
+    private ?string $socialNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $residencyProof;
+    private ?string $residencyProof = null;
 
-    #[Vich\UploadableField(mapping: 'residency_proof_file', fileNameProperty:'residencyProof')]
+    #[Vich\UploadableField(mapping: 'residency_proof_file', fileNameProperty: 'residencyProof')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $residencyProofFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $statusProof = 'null';
+    private ?string $statusProof = null;
 
-    #[Vich\UploadableField(mapping: 'status_proof_file', fileNameProperty:'statusProof')]
+    #[Vich\UploadableField(mapping: 'status_proof_file', fileNameProperty: 'statusProof')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $statusProofFile = null;
 
@@ -102,46 +103,40 @@ class Administration
     #[Assert\Iban(
         message: 'Le numéro IBAN n\'est pas valide',
     )]
-    private string $bankingInfo = 'null';
+    private ?string $bankingInfo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $discharge = 'null';
+    private ?string $discharge = null;
 
-    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty:'discharge')]
+    #[Vich\UploadableField(mapping: 'discharge_file', fileNameProperty: 'discharge')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $dischargeFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $familyRecord = 'null';
+    private ?string $familyRecord = null;
 
-    #[Vich\UploadableField(mapping: 'family_record_file', fileNameProperty:'familyRecord')]
+    #[Vich\UploadableField(mapping: 'family_record_file', fileNameProperty: 'familyRecord')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $familyRecordFile = null;
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $divorceDecree = null;
 
-    #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty:'divorceDecree')]
+    #[Vich\UploadableField(mapping: 'divorce_decree_file', fileNameProperty: 'divorceDecree')]
     #[Assert\File(
         maxSize: '1M',
-        maxSizeMessage: 'La taille du fichier ne
-         doit pas dépasser 1Mo.',
-        mimeTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-        mimeTypesMessage: 'Veuillez insérer un fichier en format jpeg,
-         png ou un fichier pdf.'
+        maxSizeMessage: self::MAX_SIZE_MESSAGE,
+        mimeTypes: self::MIME_TYPES,
+        mimeTypesMessage: self::MIME_TYPES_MESSAGE,
     )]
     private ?File $divorceDecreeFile = null;
 
@@ -170,7 +165,7 @@ class Administration
         return $this->familyIncome;
     }
 
-    public function setFamilyIncome(string $familyIncome): static
+    public function setFamilyIncome(?string $familyIncome): static
     {
         $this->familyIncome = $familyIncome;
 
@@ -184,7 +179,7 @@ class Administration
 
     public function setFamilyIncomeFile(File $image = null): Administration
     {
-        $this-> familyIncomeFile = $image;
+        $this->familyIncomeFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -197,7 +192,7 @@ class Administration
         return $this->taxReturn;
     }
 
-    public function setTaxReturn(string $taxReturn): static
+    public function setTaxReturn(?string $taxReturn): static
     {
         $this->taxReturn = $taxReturn;
 
@@ -211,7 +206,7 @@ class Administration
 
     public function setTaxReturnFile(File $image = null): Administration
     {
-        $this-> taxReturnFile = $image;
+        $this->taxReturnFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -224,7 +219,7 @@ class Administration
         return $this->cafNumber;
     }
 
-    public function setCafNumber(string $cafNumber): static
+    public function setCafNumber(?string $cafNumber): static
     {
         $this->cafNumber = $cafNumber;
 
@@ -236,7 +231,7 @@ class Administration
         return $this->socialNumber;
     }
 
-    public function setSocialNumber(string $socialNumber): static
+    public function setSocialNumber(?string $socialNumber): static
     {
         $this->socialNumber = $socialNumber;
 
@@ -248,7 +243,7 @@ class Administration
         return $this->residencyProof;
     }
 
-    public function setResidencyProof(string $residencyProof): static
+    public function setResidencyProof(?string $residencyProof): static
     {
         $this->residencyProof = $residencyProof;
 
@@ -262,7 +257,7 @@ class Administration
 
     public function setResidencyProofFile(File $image = null): Administration
     {
-        $this-> residencyProofFile = $image;
+        $this->residencyProofFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -275,7 +270,7 @@ class Administration
         return $this->statusProof;
     }
 
-    public function setStatusProof(string $statusProof): static
+    public function setStatusProof(?string $statusProof): static
     {
         $this->statusProof = $statusProof;
 
@@ -289,7 +284,7 @@ class Administration
 
     public function setStatusProofFile(File $image = null): Administration
     {
-        $this-> statusProofFile = $image;
+        $this->statusProofFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -302,7 +297,7 @@ class Administration
         return $this->bankingInfo;
     }
 
-    public function setBankingInfo(string $bankingInfo): static
+    public function setBankingInfo(?string $bankingInfo): static
     {
         $this->bankingInfo = $bankingInfo;
 
@@ -314,7 +309,7 @@ class Administration
         return $this->discharge;
     }
 
-    public function setDischarge(string $discharge): self
+    public function setDischarge(?string $discharge): self
     {
         $this->discharge = $discharge;
 
@@ -328,7 +323,7 @@ class Administration
 
     public function setDischargeFile(File $image = null): Administration
     {
-        $this-> dischargeFile = $image;
+        $this->dischargeFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -341,7 +336,7 @@ class Administration
         return $this->familyRecord;
     }
 
-    public function setFamilyRecord(string $familyRecord): static
+    public function setFamilyRecord(?string $familyRecord): static
     {
         $this->familyRecord = $familyRecord;
 
@@ -355,7 +350,7 @@ class Administration
 
     public function setFamilyRecordFile(File $image = null): Administration
     {
-        $this-> familyRecordFile = $image;
+        $this->familyRecordFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -368,7 +363,7 @@ class Administration
         return $this->divorceDecree;
     }
 
-    public function setDivorceDecree(string $divorceDecree): static
+    public function setDivorceDecree(?string $divorceDecree): static
     {
         $this->divorceDecree = $divorceDecree;
 
@@ -382,7 +377,7 @@ class Administration
 
     public function setDivorceDecreeFile(File $image = null): Administration
     {
-        $this-> divorceDecreeFile = $image;
+        $this->divorceDecreeFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -436,5 +431,19 @@ class Administration
         $this->creche->removeElement($creche);
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+        ) = unserialize($serialized);
     }
 }

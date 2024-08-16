@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CrecheType extends AbstractType
 {
@@ -16,7 +17,7 @@ class CrecheType extends AbstractType
     {
         $commonOptions = [
             'label' => false,
-            'attr' => ['class' => 'form-control'],
+            'attr' => ['class' => 'form-text_informations-personnelles-creche'],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Ce champ est obligatoire.',
@@ -25,43 +26,60 @@ class CrecheType extends AbstractType
         ];
 
         $builder
-            ->add('introduction', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Presentation',
-                'class' => 'form-control'],
-            ]))
             ->add('name', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Nom de la crèche',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Nom de la crèche',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
+            ]))
+            ->add('introduction', TextareaType::class, array_merge($commonOptions, [
+                'attr' => [
+                    'placeholder' => 'Presentation',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('localisation', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Adresse',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Adresse',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('postCode', IntegerType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Code postal',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Code postal',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('city', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Ville',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Ville',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('phoneNumber', TelType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Telephone',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Telephone',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('insuranceNumber', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Numero d\'assurance',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Numero d\'assurance',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('legalStatus', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Statut juridique',
-                'class' => 'form-control'],
+                'attr' => [
+                    'placeholder' => 'Statut juridique',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
             ]))
             ->add('rules', TextType::class, array_merge($commonOptions, [
-                'attr' => ['placeholder' => 'Règlement intérieur',
-                'class' => 'form-control'],
-            ]))
-            ;
+                'attr' => [
+                    'placeholder' => 'Règlement intérieur',
+                    'class' => 'form-text_informations-personnelles-creche'
+                ],
+            ]));
     }
 
     public function configureOptions(OptionsResolver $resolver)
