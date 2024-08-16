@@ -20,14 +20,13 @@ use Serializable;
 #[Vich\Uploadable]
 class Administration implements Serializable
 {
+    private const MAX_SIZE_MESSAGE = 'La taille du fichier ne doit pas dépasser 1Mo.';
+    private const MIME_TYPE_PDF = 'application/pdf';
+    private const MIME_TYPE_JPEG = 'image/jpeg';
+    private const MIME_TYPE_PNG = 'image/png';
 
-    const MAX_SIZE_MESSAGE = 'La taille du fichier ne doit pas dépasser 1Mo.';
-    const MIME_TYPE_PDF = 'application/pdf';
-    const MIME_TYPE_JPEG = 'image/jpeg';
-    const MIME_TYPE_PNG = 'image/png';
-
-    const MIME_TYPES = [self::MIME_TYPE_JPEG, self::MIME_TYPE_PNG, self::MIME_TYPE_PDF];
-    const MIME_TYPES_MESSAGE = 'Veuillez insérer un fichier en format jpeg, png ou un fichier pdf.';
+    private const MIME_TYPES = [self::MIME_TYPE_JPEG, self::MIME_TYPE_PNG, self::MIME_TYPE_PDF];
+    private const MIME_TYPES_MESSAGE = 'Veuillez insérer un fichier en format jpeg, png ou un fichier pdf.';
 
 
     #[ORM\Id]
