@@ -53,8 +53,6 @@ class ApiController extends AbstractController
     {
 
         $events = $this->calendarRepository->findAll();
-        //$creche = new Creche();
-        //$var = $creche->getId();
 
         $rdvs = [];
 
@@ -71,8 +69,7 @@ class ApiController extends AbstractController
                 'allDay' => $event->getAllDay(),
             ];
         }
-         $data = json_encode($rdvs);
-
-         return $data;
+        
+         return json_encode($rdvs);
     }
 }

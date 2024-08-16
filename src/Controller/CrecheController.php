@@ -5,15 +5,15 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Creche;
 use App\Form\PhotoType;
-use App\Form\Type\TeamType;
-use App\Form\Type\CrecheType;
-use App\Form\Type\ScheduleType;
+use App\Form\TeamType;
+use App\Form\CrecheType;
+use App\Form\ScheduleType;
 use App\Repository\ChildRepository;
 use App\Repository\CrecheRepository;
 use App\Repository\FamilyRepository;
 use App\Repository\CalendarRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\Type\RegistrationCrecheType;
+use App\Form\RegistrationCrecheType;
 use App\Repository\ReservationRepository;
 use App\Repository\AdministrationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +33,7 @@ class CrecheController extends AbstractController
         } elseif (in_array('ROLE_CRECHE', $this->getUser()->getRoles()) && $this->getUser()->getCreche()) {
             return $this->redirectToRoute('creche_edit_index', ['id' => $this->getUser()->getCreche()->getId()]);
         }
+
         $form = $this->createForm(RegistrationCrecheType::class);
         $form->handleRequest($request);
 
@@ -73,14 +74,22 @@ class CrecheController extends AbstractController
         ]);
     }
 
-    #[Route('/gestion/{id}', methods: ['GET'], name: 'edit_index')]
-    public function editIndex(#[MapEntity(mapping: ['id' => 'id'])]
-    Creche $creche): Response
-    {
+    #[Route('/gestion/{id}', methods: ['GET', 'POST'], name: 'edit_index')]
+    public function editIndex(
+        CrecheRepository $crecheRepository,
+        FamilyRepository $familyRepository,
+        ReservationRepository $reservationRepo,
+    ): Response {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
+        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
+        $family = $familyRepository->findAll();
+        $reservations = $reservationRepo->findBy(['creche' => $this->getUser()->getCreche()], ['id' => 'DESC'], 1);
+
         return $this->render('creche/editIndex.html.twig', [
+            'reservations' => $reservations,
+            'family' => $family,
             'creche' => $creche,
         ]);
     }
@@ -171,27 +180,15 @@ class CrecheController extends AbstractController
 
     #[Route('/demandes/{id}', methods: ['GET', 'POST'], name: 'demandes')]
     public function demandes(
-        CrecheRepository $crecheRepository,
-        FamilyRepository $familyRepository,
         ReservationRepository $reservationRepo,
-        CalendarRepository $calendarRepository,
-        ChildRepository $childRepository,
-        AdministrationRepository $administrationRepo
     ): Response {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
-        $creche = $crecheRepository->findOneBy(['user' => $this->getUser()]);
-        $family = $familyRepository->findAll();
-        //$reservation = $reservationRepo->findAll();
         $reservations = $reservationRepo->findBy([], ['id' => 'DESC']);
-        $calendar = $calendarRepository->findAll();
-        $children = $childRepository->findAll();
-        $administration = $administrationRepo->findAll();
-
+    
         return $this->render('creche/demandes.html.twig', [
             'reservations' => $reservations,
-            'family' => $family,
         ]);
     }
 

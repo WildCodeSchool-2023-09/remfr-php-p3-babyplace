@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Type;
+namespace App\Form;
 
 use App\Form\PhotoType;
 use Symfony\Component\Form\AbstractType;

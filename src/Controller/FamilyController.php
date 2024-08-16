@@ -252,13 +252,6 @@ class FamilyController extends AbstractController
         $creche = $entityManager->getRepository(Creche::class)->find($crecheId);
         $child = $entityManager->getRepository(Child::class)->find($childId);
         $calendar = $entityManager->getRepository(Calendar::class)->find($calendarId);
-
-        if (!$creche || !$child || !$calendar) {
-            // Gérer le cas où une des entités n'est pas trouvée
-            throw $this->createNotFoundException('Certaines entités n\'ont pas été trouvées.');
-        }
-
-        // Supposons que vous ayez déjà l'objet Family à partir du contexte de l'utilisateur
         $family = $this->getUser()->getFamily();
 
         // Créer une nouvelle instance de réservation
@@ -285,14 +278,12 @@ class FamilyController extends AbstractController
 
     #[Route('/{id}/results/{id_creche}', methods: ['GET', 'POST'], name: 'results')]
     public function showCrecheResults(
-        Request $request,
         #[MapEntity(mapping: ['id' => 'id'])] Family $family,
         #[MapEntity(mapping: ['id_creche' => 'id'])] Creche $creche,
         FamilyRepository $familyRepository,
         CrecheRepository $crecheRepository,
         CalendarRepository $calendarRepository,
         ChildRepository $childRepository,
-        EntityManagerInterface $entityManager
     ): Response {
         $family = $familyRepository->findOneBy(['id' => $this->getUser()->getFamily()->getId()]);
         $creches = $crecheRepository->findOneBy(['id' => $creche->getId()]);

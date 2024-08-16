@@ -25,7 +25,7 @@
 
 	<script>
 
-		document.addEventListener('DOMContentLoaded', function () { // déclaration des constantes
+document.addEventListener('DOMContentLoaded', function () { // déclaration des constantes
 const calendarEl = document.getElementById('calendar');
 
 
@@ -47,7 +47,9 @@ const eventId = info.event.id;
 const editEventURL = `/calendar/${eventId}/edit`;
 
 
-fetch (`/calendar/${eventId}/edit`).then(response => response.text()).then(html => { // Insérer le contenu de la modal dans le corps du document
+fetch (`/calendar/${eventId}/edit`)
+.then(response => response.text())
+.then(html => { // Insérer le contenu de la modal dans le corps du document
 document.body.insertAdjacentHTML('beforeend', html);
 
 // Activer la modal après avoir ajouté son contenu au DOM
@@ -59,7 +61,8 @@ modal.show();
 modal._element.addEventListener('shown.bs.modal', editSubmitHandler);
 });
 
-function editSubmitHandler() { // Récupérer le formulaire de la modal
+// Récupérer le formulaire de la modal
+function editSubmitHandler() {
 const formInModal = document.getElementById('myFormInModal');
 
 formInModal.addEventListener('submit', function (event) {

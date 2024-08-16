@@ -16,8 +16,8 @@ class PhotoType extends AbstractType
         ->add('picturesFile', VichFileType::class, [
             'label'         => 'Photo',
             'required'      => false,
-            'allow_delete'  => true, // not mandatory, default is true
-            'download_uri' => true, // not mandatory, default is true
+            'allow_delete'  => true,
+            'download_uri' => true,
         ]);
     }
 

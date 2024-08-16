@@ -18,7 +18,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Création d’un utilisateur de type “contributeur” (= auteur)
+        // Création d’un utilisateur de type “creche”
         $contributor = new User();
         $contributor->setEmail('creche@creche.com');
         $contributor->setRoles(['ROLE_CRECHE']);
@@ -32,7 +32,7 @@ class UserFixtures extends Fixture
         $contributor->setPassword($hashedPassword);
         $manager->persist($contributor);
 
-        // Création d’un utilisateur de type “administrateur”
+        // Création d’un utilisateur de type “Parent”
         $admin = new User();
         $admin->setEmail('parent@parent.com');
         $admin->setRoles(['ROLE_PARENT']);

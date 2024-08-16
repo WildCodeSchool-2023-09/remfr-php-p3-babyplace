@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 // phpcs:ignoreFile
-/** 
+/**
  * @SuppressWarnings(PHPMD)
  */
 
@@ -59,11 +59,6 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         {
             return new RedirectResponse($this->urlGenerator->generate('parent_new'));
         }
-        elseif (in_array('[]', $token->getRoleNames()))
-        {
-            throw new \Exception('Encore raté');
-        }
-        //throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

@@ -1,5 +1,4 @@
 <form id="registrationForm" method="post" enctype="multipart/form-data">
-
 	<div id="step1" class="form-step">
 		<h1>La Creche</h1>
 		{{form_start(form)}}
@@ -14,14 +13,12 @@
 		{{ form_row(form.creche.rules)}}
 		<button type="button" onclick="nextStep(1)" class="btn button_login mt-4 text-uppercase">Next</button>
 	</div>
-
 	<div id="step2" class="form-step" style="display: none;">
 		<h1>Les Photos</h1>
 		{{ form_row(form.photo, {'attr': {'class': 'form-control'}}) }}
 		<button type="button" onclick="prevStep(2)" class="btn button_login mt-4 text-uppercase">Previous</button>
 		<button type="button" onclick="nextStep(2)" class="btn button_login mt-4 text-uppercase">Next</button>
 	</div>
-
 	<div id="step3" class="form-step" style="display: none;">
 		<h1>Le planning</h1>
 		<ul>
@@ -30,7 +27,6 @@
 		<button type="button" onclick="prevStep(3)" class="btn button_login mt-4 text-uppercase">Previous</button>
 		<button type="button" onclick="nextStep(3)" class="btn button_login mt-4 text-uppercase">Next</button>
 	</div>
-
 	<div id="step4" class="form-step" style="display: none;">
 		<h1>L'equipe</h1>
 		{{ form_row(form.teams)}}
@@ -41,10 +37,6 @@
 </form>
 
 <script>
-document.querySelectorAll('.add_item_link').forEach(btn => {
-btn.addEventListener("click", addFormToCollection);
-});
-
 function showStep(step) { // Masquer toutes les étapes
 document.querySelectorAll('.form-step').forEach(function (el) {
 el.style.display = 'none';
@@ -58,8 +50,6 @@ updateProgressBar(step);
 }
 
 function nextStep(currentStep) {
-// Ajoutez ici la logique de validation nécessaire pour chaque étape
-// ...
 
 // Passer à la prochaine étape
 showStep(currentStep + 1);

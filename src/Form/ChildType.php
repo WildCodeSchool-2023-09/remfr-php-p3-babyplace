@@ -111,7 +111,7 @@ class ChildType extends AbstractType
                 'disability',
                 'isDisabled',
                 function (DependentField $disabilityDepend, ?bool $isDisabledValue) {
-                    if ($isDisabledValue == true) {
+                    if ($isDisabledValue) {
                         $disabilityDepend->add(TextareaType::class, [
                             'label' => false,
                             'attr' => [
