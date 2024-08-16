@@ -69,7 +69,7 @@ class ApiController extends AbstractController
                 'allDay' => $event->getAllDay(),
             ];
         }
-        
+
          return json_encode($rdvs);
     }
 }

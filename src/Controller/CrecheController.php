@@ -186,7 +186,7 @@ class CrecheController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         $reservations = $reservationRepo->findBy([], ['id' => 'DESC']);
-    
+
         return $this->render('creche/demandes.html.twig', [
             'reservations' => $reservations,
         ]);

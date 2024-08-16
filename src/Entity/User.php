@@ -210,17 +210,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the value of updatedAt
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?DatetimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Set the value of updatedAt
-     *
-     * @return  self
-     */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
